@@ -1,0 +1,156 @@
+<%# Gestión > Bloqueo de equipo > Formulario — Figma 119:4590
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<%# ── Topbar CTAs ──────────────────────────────────────────────────────── %>
+<% content_for :topbar_right do %>
+  <div class="alestra-topbar__actions">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+    <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+      <span class="alestra-notification-cta__dot"></span>
+      &#128276;
+    </button>
+  </div>
+<% end %>
+
+<%# ── Section header ──────────────────────────────────────────────────── %>
+<section class="alestra-gestion-header">
+  <div class="alestra-gestion-header__text">
+    <h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+    <p class="alestra-gestion-header__desc">
+      Administra todas las líneas y servicios de tu cuenta de forma rápida y segura.<br>
+      Consulta consumos, realiza cambios y activa o desactiva líneas fácilmente.
+    </p>
+    <span class="alestra-badge alestra-badge--active">Promoción de datos dobles</span>
+  </div>
+</section>
+
+<%# ── Filter bar ──────────────────────────────────────────────────────── %>
+<div class="alestra-card alestra-filter-bar">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Plan">
+      <option>Plan</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Estado">
+      <option>Estado</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Cuenta">
+      <option>Cuenta</option>
+    </select>
+    <div class="alestra-form-group alestra-form-group--inline alestra-filter-bar__search">
+      <span class="alestra-filter-bar__search-icon" aria-hidden="true">&#128269;</span>
+      <input type="search" class="alestra-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+    <button type="button" class="alestra-btn-secondary alestra-btn--small">+ Más filtros</button>
+  </div>
+  <div class="alestra-filter-bar__indicators">
+    <span class="alestra-filter-bar__indicators-label">Indicadores:</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-green">Líneas con datos disponibles</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-red">Líneas con consumo excedente</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-grey">Líneas bloqueadas</span>
+  </div>
+</div>
+
+<%# ── Lines table ─────────────────────────────────────────────────────── %>
+<div class="alestra-gestion-tabla">
+  <p class="alestra-gestion-tabla__meta">
+    <strong>Última actualización:</strong> 2 minutos.
+  </p>
+
+  <div class="alestra-table" data-controller="alestra--accordion">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+
+    <% 8.times do |i| %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">
+          <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Ver detalle">›</button>
+        </span>
+      </div>
+      <div class="alestra-table__row-detail"></div>
+    <% end %>
+  </div>
+
+  <div class="alestra-table__pagination">
+    <span class="alestra-table__pagination-info">1-10 de 2823 resultados - última consulta 14:53</span>
+    <nav class="alestra-pagination" aria-label="Paginación">
+      <button class="alestra-pagination__btn" aria-label="Anterior">‹</button>
+      <button class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+      <button class="alestra-pagination__btn">2</button>
+      <button class="alestra-pagination__btn">3</button>
+      <button class="alestra-pagination__btn">4</button>
+      <button class="alestra-pagination__btn">5</button>
+      <span class="alestra-pagination__ellipsis">...</span>
+      <button class="alestra-pagination__btn">283</button>
+      <button class="alestra-pagination__btn" aria-label="Siguiente">›</button>
+    </nav>
+  </div>
+</div>
+
+<%# ── Modal: Bloqueo de equipo ────────────────────────────────────────── %>
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" id="bloqueo-equipo-modal-backdrop"></div>
+  <div class="alestra-modal" id="bloqueo-equipo-modal" role="dialog" aria-modal="true" aria-labelledby="bloqueo-equipo-modal-title">
+    <div class="alestra-modal__inner">
+      <h2 class="alestra-modal__title" id="bloqueo-equipo-modal-title">Bloqueo de equipo</h2>
+
+      <p class="alestra-modal__body-text">
+        Llena los siguientes datos para solicitar el bloqueo de tu equipo.<br>
+        En un plazo de hasta 48 horas, recibirás un correo de confirmación del bloqueo.
+      </p>
+
+      <%= form_with url: gestion_bloqueo_equipo_confirmar_path, method: :post, local: true do |f| %>
+        <div class="alestra-form-grid alestra-form-grid--2col">
+          <div class="alestra-form-group">
+            <%= f.label :marca, "Marca*", class: "alestra-label" %>
+            <%= f.text_field :marca, class: "alestra-input", placeholder: "SAMSUNG" %>
+          </div>
+          <div class="alestra-form-group">
+            <%= f.label :modelo, "Modelo*", class: "alestra-label" %>
+            <%= f.text_field :modelo, class: "alestra-input", placeholder: "GALAXI 123 2025" %>
+          </div>
+          <div class="alestra-form-group">
+            <%= f.label :imei, "IMEI*", class: "alestra-label" %>
+            <%= f.text_field :imei, class: "alestra-input", placeholder: "354723091234567" %>
+          </div>
+          <div class="alestra-form-group">
+            <%= f.label :comentarios, "Comentarios", class: "alestra-label" %>
+            <%= f.text_field :comentarios, class: "alestra-input", placeholder: "Escribe un comentario" %>
+          </div>
+          <div class="alestra-form-group alestra-form-group--full">
+            <span class="alestra-label alestra-label--accent">Adjuntar factura del equipo*</span>
+            <div class="alestra-file-upload">
+              <button type="button" class="alestra-btn-secondary alestra-btn--small alestra-file-upload__btn">
+                <%= alestra_icon("upload", css_class: "alestra-icon alestra-icon--sm") %> Subir archivo
+              </button>
+            </div>
+            <p class="alestra-form-hint">
+              Si el equipo lo adquiriste con Alestra Móvil, solicítala en Servicio al Cliente.*
+            </p>
+          </div>
+        </div>
+
+        <div class="alestra-modal__footer">
+          <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+          <%= f.submit "Confirmar", class: "alestra-btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>

@@ -1,0 +1,77 @@
+/**
+ * Paleta Alestra (fija). Usar variables en componentes propios del host.
+ * No depende de Tailwind: funciona con Propshaft/Sprockets puro.
+ */
+:root {
+  /* Figma source tokens */
+  --alestra-blue-visionary: #10069f;
+  --alestra-blue-digital: #00b8ff;
+  --alestra-purple-mobility: #ac4fc6;
+  --alestra-purple-mobility-dark: #691a80;
+  --alestra-mouse-gray: #9ea8b1;
+  --alestra-light-blue: #ebf0f8;
+  --alestra-light-gray: #e7e7f0;
+  --alestra-off-white: #f8f8f8;
+  /* Primarios — indigo / púrpura portal */
+  --alestra-indigo-50: #eef2ff;
+  --alestra-indigo-100: #e0e7ff;
+  --alestra-indigo-500: #6366f1;
+  --alestra-indigo-600: #10069f;
+  --alestra-indigo-700: #0c057c;
+  --alestra-indigo-900: #10069f;
+
+  --alestra-purple-600: #ac4fc6;
+  --alestra-purple-700: #691a80;
+
+  /* Acento (gradiente avatar / highlights) */
+  --alestra-cyan-500: #00b8ff;
+
+  /* Neutros */
+  --alestra-gray-50: #f9fafb;
+  --alestra-gray-100: #f3f4f6;
+  --alestra-gray-200: #e5e7eb;
+  --alestra-gray-300: #d1d5db;
+  --alestra-gray-500: #6b7280;
+  --alestra-gray-600: #4b5563;
+  --alestra-gray-700: #374151;
+  --alestra-gray-900: #111827;
+
+  /* Semánticos */
+  --alestra-success-bg: #ecfdf5;
+  --alestra-success-border: #a7f3d0;
+  --alestra-success-text: #065f46;
+
+  --alestra-warning-bg: #fffbeb;
+  --alestra-warning-border: #fcd34d;
+  --alestra-warning-text: #92400e;
+
+  --alestra-error-bg: #fef2f2;
+  --alestra-error-border: #fecaca;
+  --alestra-error-text: #991b1b;
+
+  /* Tokens semánticos de aplicación */
+  --alestra-color-primary: var(--alestra-indigo-600);
+  --alestra-color-primary-hover: var(--alestra-indigo-700);
+  --alestra-color-heading: var(--alestra-indigo-900);
+  --alestra-color-body-bg: #fff;
+  --alestra-color-text: var(--alestra-gray-900);
+  --alestra-color-muted: var(--alestra-gray-600);
+  --alestra-radius-lg: 0.75rem;
+  --alestra-radius-xl: 0.875rem;
+  --alestra-shadow-sm: 4px 4px 8px rgb(0 0 0 / 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.alestra-layout-body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--alestra-color-body-bg);
+  color: var(--alestra-color-text);
+  font-family: "Segoe UI", Montserrat, ui-sans-serif, system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}

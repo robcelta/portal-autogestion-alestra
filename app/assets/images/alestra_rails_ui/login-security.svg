@@ -1,0 +1,10 @@
+<svg viewBox="0 0 360 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Seguridad de cuenta</title>
+  <rect width="360" height="420" rx="24" fill="#EAF6FC"/>
+  <path d="M0 332C87 276 148 358 234 306C292 271 326 248 360 260V420H0V332Z" fill="#00B8FF" fill-opacity=".22"/>
+  <path d="M180 68L286 108V194C286 271 239 316 180 348C121 316 74 271 74 194V108L180 68Z" fill="#10069F"/>
+  <path d="M180 93L261 124V194C261 250 228 287 180 315C132 287 99 250 99 194V124L180 93Z" fill="#FFF"/>
+  <path d="m138 196 28 28 57-68" stroke="#AC4FC6" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="300" cy="59" r="34" fill="#AC4FC6"/>
+  <path d="M300 43v32M284 59h32" stroke="#FFF" stroke-width="7" stroke-linecap="round"/>
+</svg>

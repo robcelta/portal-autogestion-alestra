@@ -1,0 +1,76 @@
+<%
+  rows = local_assigns.fetch(:rows, 10)
+  active_action = local_assigns.fetch(:active_action, "mensual")
+  detail = local_assigns.fetch(:detail, true)
+  statuses = %w[Activo Bloqueado Suspendido]
+  plans = [
+    "Cobertura Completa 3.5 GB_Control",
+    "Cobertura Nacional 5 GB",
+    "Plan Empresa 10 GB",
+    "Roaming Internacional 2 GB"
+  ]
+  users = ["Jon Snow", "María González", "Carlos Ramírez", "Ana López", "Luis Hernández"]
+  consumos = ["15%", "47%", "78%", "92%", "62%"]
+  capacidades = ["5GB", "8GB", "10GB", "12GB", "15GB"]
+%>
+
+<div class="alestra-gestion-tabla">
+  <p class="alestra-gestion-tabla__meta">
+    <strong>Última actualización:</strong> 2 minutos.
+  </p>
+
+  <div class="alestra-table alestra-table--gestion" data-controller="alestra--accordion">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+    </div>
+
+    <% rows.times do |i| %>
+      <% status = statuses[i % statuses.length] %>
+      <% status_class = status == "Activo" ? "alestra-badge--active" : (status == "Bloqueado" ? "alestra-badge--inactive" : "alestra-badge--pending") %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 544<%= i %></span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge <%= status_class %>"><%= status %></span>
+        </span>
+        <span class="alestra-table__cell"><%= users[i % users.length] %></span>
+        <span class="alestra-table__cell"><%= plans[i % plans.length] %></span>
+        <span class="alestra-table__cell"><%= consumos[i % consumos.length] %> de consumo de datos</span>
+        <span class="alestra-table__cell"><%= capacidades[i % capacidades.length] %> de capacidad total</span>
+        <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Ver detalle">›</button>
+      </div>
+      <div class="alestra-table__row-detail">
+        <div class="alestra-gestion-line-detail">
+          <% if active_action == "unica" %>
+            <a href="<%= gestion_productos_unica_path %>" class="alestra-btn-primary alestra-btn--small">Paquete única ocasión</a>
+          <% elsif active_action == "paises" %>
+            <a href="<%= gestion_productos_paises_path %>" class="alestra-btn-primary alestra-btn--small">Roaming internacional</a>
+          <% else %>
+            <a href="<%= gestion_productos_mensual_path %>" class="alestra-btn-primary alestra-btn--small">Paquete mensual</a>
+            <a href="<%= gestion_productos_unica_path %>" class="alestra-btn-primary alestra-btn--small">Paquete única ocasión</a>
+            <a href="<%= gestion_productos_paises_path %>" class="alestra-btn-secondary alestra-btn--small">Roaming internacional</a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="alestra-table__pagination">
+    <span class="alestra-table__pagination-info">1-<%= rows %> de 2823 resultados - última consulta 14:53</span>
+    <nav class="alestra-pagination" aria-label="Paginación">
+      <button class="alestra-pagination__btn" aria-label="Anterior">‹</button>
+      <button class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+      <button class="alestra-pagination__btn">2</button>
+      <button class="alestra-pagination__btn">3</button>
+      <button class="alestra-pagination__btn">4</button>
+      <button class="alestra-pagination__btn">5</button>
+      <span class="alestra-pagination__ellipsis">…</span>
+      <button class="alestra-pagination__btn">283</button>
+      <button class="alestra-pagination__btn" aria-label="Siguiente">›</button>
+    </nav>
+  </div>
+</div>

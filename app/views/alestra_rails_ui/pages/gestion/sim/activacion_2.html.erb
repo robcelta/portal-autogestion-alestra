@@ -1,0 +1,25 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+
+<div class="alestra-card" style="max-width:640px;">
+  <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;">
+    <span style="width:32px;height:32px;border-radius:50%;background:#10069f;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem;">1</span><span style="width:32px;height:32px;border-radius:50%;background:#10069f;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem;">2</span><span style="width:32px;height:32px;border-radius:50%;background:#e7e7f0;color:#535359;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem;">3</span>
+  </div>
+  <h2 style="font-size:1.25rem;font-weight:700;color:#10069f;margin-bottom:0.75rem;">Activación de SIM — Paso 2</h2>
+  <p style="color:#535359;margin-bottom:1.5rem;">Verifica los datos ingresados y selecciona el plan para la nueva línea.</p>
+  <div class="alestra-form-group">
+    <label class="alestra-label">Número de línea*</label>
+    <input class="alestra-input" type="tel" value="618 382 5441">
+  </div>
+  <div class="alestra-form-group">
+    <label class="alestra-label">Número de SIM (ICCID)*</label>
+    <input class="alestra-input" type="text" placeholder="8952140061100399588">
+  </div>
+  <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+    <a href="<%= gestion_sim_activacion_3_path %>" class="alestra-btn-primary">Continuar</a>
+  </div>
+</div>

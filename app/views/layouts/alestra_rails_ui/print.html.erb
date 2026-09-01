@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : "Impresión" %></title>
+    <%= stylesheet_link_tag "alestra_rails_ui/tokens", "alestra_rails_ui/components", "alestra_rails_ui/print", media: "all" %>
+    <style> @media print { body { background: #fff !important; } } </style>
+  </head>
+  <body class="alestra-layout-body alestra-print-body">
+    <main class="alestra-print-main" style="max-width: 100%; padding: 1rem;">
+      <%= yield %>
+    </main>
+  </body>
+</html>

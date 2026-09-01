@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : "Iniciar sesión" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags if respond_to?(:csrf_meta_tags) %>
+    <%= csp_meta_tag if respond_to?(:csp_meta_tag) %>
+    <%= yield :head %>
+    <%= stylesheet_link_tag "alestra_rails_ui/tokens", "alestra_rails_ui/components", "alestra_rails_ui/print", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="alestra-layout-body alestra-devise-shell">
+    <% if respond_to?(:alert) && alert.present? %>
+      <div class="alestra-auth-flash alestra-alert alestra-alert--error"><%= alert %></div>
+    <% end %>
+    <% if respond_to?(:notice) && notice.present? %>
+      <div class="alestra-auth-flash alestra-alert alestra-alert--success"><%= notice %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

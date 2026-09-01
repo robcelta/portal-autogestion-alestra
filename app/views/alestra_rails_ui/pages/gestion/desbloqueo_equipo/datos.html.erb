@@ -1,0 +1,54 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+<div class="alestra-gestion-tabla">
+  <div class="alestra-table">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">›</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" data-controller="alestra--modal" data-alestra--modal-open-value="true">
+    <div class="alestra-modal alestra-modal--confirm" role="dialog" aria-modal="true">
+      <div class="alestra-modal__icon alestra-modal__icon--info">ℹ</div>
+      <div class="alestra-modal__header">
+        <h2 class="alestra-modal__title">Datos del desbloqueo</h2>
+      </div>
+      <div class="alestra-modal__body">
+        <dl style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem;font-size:0.875rem;">
+          <dt style="font-weight:600;color:#535359;">Marca:</dt><dd>SAMSUNG</dd>
+          <dt style="font-weight:600;color:#535359;">Modelo:</dt><dd>Galaxy S25</dd>
+          <dt style="font-weight:600;color:#535359;">IMEI:</dt><dd>354723091234567</dd>
+          <dt style="font-weight:600;color:#535359;">Estatus:</dt><dd><span class="alestra-badge alestra-badge--pending">En proceso</span></dd>
+          <dt style="font-weight:600;color:#535359;">Fecha solicitud:</dt><dd>01/10/2025</dd>
+        </dl>
+      </div>
+      <div class="alestra-modal__footer">
+        <a href="<%= gestion_desbloqueo_equipo_exito_path %>" class="alestra-btn-primary">Continuar</a>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

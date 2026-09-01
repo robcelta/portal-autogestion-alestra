@@ -1,0 +1,58 @@
+<%# Configuración — Permisos — Figma 772:26860
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>).
+    Note: this screen is "Permisos" (permissions), mapped to perfil.html.erb per route naming. %>
+
+<%# ── Page heading ──────────────────────────────────────────────────────── %>
+<section class="alestra-page-heading">
+  <div class="alestra-page-heading__tabs">
+    <a href="<%= configuracion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Perfil y notificaciones</a>
+    <a href="<%= configuracion_perfil_path %>" class="alestra-btn-primary alestra-btn--small alestra-btn--active">Permisos</a>
+  </div>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+  </button>
+</section>
+
+<h1 class="alestra-page-title">Permisos</h1>
+
+<%# ── Permissions card ───────────────────────────────────────────────────── %>
+<div class="alestra-card alestra-configuracion-permisos-card">
+
+  <%# Permission item: Descargas %>
+  <div class="alestra-card alestra-card--border-left alestra-configuracion-permiso">
+    <div class="alestra-configuracion-permiso__content">
+      <p class="alestra-configuracion-permiso__title">Descargas</p>
+      <p class="alestra-configuracion-permiso__desc">Permitir descargas del portal a tu equipo</p>
+    </div>
+    <label class="alestra-switch alestra-configuracion-permiso__switch">
+      <input type="checkbox" checked>
+      <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+    </label>
+  </div>
+
+  <%# Permission item: Ventanas emergentes %>
+  <div class="alestra-card alestra-card--border-left alestra-configuracion-permiso">
+    <div class="alestra-configuracion-permiso__content">
+      <p class="alestra-configuracion-permiso__title">Ventanas emergentes</p>
+      <p class="alestra-configuracion-permiso__desc">Permitir que el portal abra hipervínculos a páginas de terceros</p>
+    </div>
+    <label class="alestra-switch alestra-configuracion-permiso__switch">
+      <input type="checkbox" checked>
+      <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+    </label>
+  </div>
+
+  <%# Permission item: Cookies %>
+  <div class="alestra-card alestra-card--border-left alestra-configuracion-permiso">
+    <div class="alestra-configuracion-permiso__content">
+      <p class="alestra-configuracion-permiso__title">Cookies</p>
+      <p class="alestra-configuracion-permiso__desc">Permitir todas las cookies lorem ipsum dolor sit amet</p>
+    </div>
+    <label class="alestra-switch alestra-configuracion-permiso__switch">
+      <input type="checkbox" checked>
+      <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+    </label>
+  </div>
+
+</div>

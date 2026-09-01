@@ -1,0 +1,41 @@
+.alestra-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.alestra-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.alestra-radio__circle {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid var(--alestra-gray-300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease;
+}
+.alestra-radio input:checked + .alestra-radio__circle {
+  border-color: var(--alestra-indigo-600);
+}
+.alestra-radio input:checked + .alestra-radio__circle::after {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  background: var(--alestra-indigo-600);
+  border-radius: 50%;
+}
+.alestra-radio input:focus-visible + .alestra-radio__circle {
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25);
+}
+.alestra-radio input:disabled + .alestra-radio__circle {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : "Alestra" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags if respond_to?(:csrf_meta_tags) %>
+    <%= csp_meta_tag if respond_to?(:csp_meta_tag) %>
+    <%= yield :head %>
+    <%= stylesheet_link_tag "alestra_rails_ui/tokens", "alestra_rails_ui/components", "alestra_rails_ui/print", "data-turbo-track": "reload" %>
+    <%= yield :styles %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="alestra-layout-body alestra-shell">
+    <header class="alestra-no-print alestra-shell__header">
+      <div class="alestra-shell__header-inner">
+        <div class="alestra-flex alestra-items-center alestra-gap-3">
+          <%= yield :brand %>
+          <span class="alestra-page-title" style="font-size: 1.25rem;"><%= content_for?(:app_name) ? yield(:app_name) : "App" %></span>
+        </div>
+        <nav><%= yield :nav %></nav>
+      </div>
+    </header>
+
+    <main class="alestra-shell__main alestra-print-main">
+      <% if respond_to?(:alert) && alert.present? %>
+        <div class="alestra-alert alestra-alert--error alestra-mb-4" role="alert"><%= alert %></div>
+      <% end %>
+      <% if respond_to?(:notice) && notice.present? %>
+        <div class="alestra-alert alestra-alert--success alestra-mb-4" role="status"><%= notice %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+
+    <footer class="alestra-no-print alestra-shell__footer">
+      <%= yield :footer %>
+    </footer>
+    <%= yield :scripts %>
+  </body>
+</html>

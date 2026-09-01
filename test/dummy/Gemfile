@@ -1,0 +1,13 @@
+source "https://rubygems.org"
+
+gem "rails", "~> 8.0"
+gem "sprockets-rails"
+gem "importmap-rails", "~> 2.0"
+gem "stimulus-rails", "~> 1.0"
+gem "turbo-rails", "~> 2.0"
+gem "sqlite3", "~> 2.0"
+gem "puma", "~> 6.0"
+
+gem "alestra-rails-ui", path: "../.."
+
+gem "bootsnap", require: false

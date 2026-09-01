@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alestra Rails UI — Preview</title>
+  <style>
+    /* ===== TOKENS ===== */
+    :root {
+      --alestra-indigo-50: #eef2ff;
+      --alestra-indigo-100: #e0e7ff;
+      --alestra-indigo-500: #6366f1;
+      --alestra-indigo-600: #4f46e5;
+      --alestra-indigo-700: #4338ca;
+      --alestra-indigo-900: #312e81;
+      --alestra-purple-600: #9333ea;
+      --alestra-purple-700: #7e22ce;
+      --alestra-cyan-500: #06b6d4;
+      --alestra-gray-50: #f9fafb;
+      --alestra-gray-100: #f3f4f6;
+      --alestra-gray-200: #e5e7eb;
+      --alestra-gray-300: #d1d5db;
+      --alestra-gray-500: #6b7280;
+      --alestra-gray-600: #4b5563;
+      --alestra-gray-700: #374151;
+      --alestra-gray-900: #111827;
+      --alestra-success-bg: #ecfdf5;
+      --alestra-success-border: #a7f3d0;
+      --alestra-success-text: #065f46;
+      --alestra-warning-bg: #fffbeb;
+      --alestra-warning-border: #fcd34d;
+      --alestra-warning-text: #92400e;
+      --alestra-error-bg: #fef2f2;
+      --alestra-error-border: #fecaca;
+      --alestra-error-text: #991b1b;
+      --alestra-color-primary: var(--alestra-indigo-600);
+      --alestra-color-primary-hover: var(--alestra-indigo-700);
+      --alestra-color-heading: var(--alestra-indigo-900);
+      --alestra-color-body-bg: var(--alestra-gray-50);
+      --alestra-color-text: var(--alestra-gray-900);
+      --alestra-color-muted: var(--alestra-gray-600);
+      --alestra-radius-lg: 0.75rem;
+      --alestra-radius-xl: 0.875rem;
+      --alestra-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--alestra-color-body-bg);
+      color: var(--alestra-color-text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* ===== COMPONENTS ===== */
+    .alestra-page-title { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; color: var(--alestra-color-heading); }
+    .alestra-card { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); padding: 2rem; }
+    .alestra-card--border-left { border-left: 4px solid var(--alestra-indigo-500); }
+    .alestra-btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; font-size: 1rem; font-weight: 500; color: #fff; background-color: var(--alestra-color-primary); border: none; border-radius: var(--alestra-radius-lg); cursor: pointer; text-decoration: none; transition: background-color 0.15s ease; }
+    .alestra-btn-primary:hover { background-color: var(--alestra-color-primary-hover); color: #fff; }
+    .alestra-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .alestra-btn-secondary { display: inline-flex; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; color: var(--alestra-gray-700); background: #fff; border: 1px solid var(--alestra-gray-300); border-radius: var(--alestra-radius-lg); cursor: pointer; text-decoration: none; }
+    .alestra-btn-secondary:hover { background: var(--alestra-gray-50); }
+    .alestra-badge { display: inline-block; padding: 0.125rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 9999px; }
+    .alestra-badge--info { background: var(--alestra-indigo-100); color: var(--alestra-indigo-900); }
+    .alestra-badge--success { background: var(--alestra-success-bg); color: var(--alestra-success-text); }
+    .alestra-badge--warning { background: var(--alestra-warning-bg); color: var(--alestra-warning-text); }
+    .alestra-badge--active { background: var(--alestra-success-bg); color: var(--alestra-success-text); }
+    .alestra-badge--inactive { background: var(--alestra-gray-100); color: var(--alestra-gray-500); }
+    .alestra-badge--pending { background: var(--alestra-warning-bg); color: var(--alestra-warning-text); }
+    .alestra-alert { padding: 1rem; border-radius: var(--alestra-radius-lg); font-size: 0.875rem; }
+    .alestra-alert--error { background: var(--alestra-error-bg); border: 1px solid var(--alestra-error-border); color: var(--alestra-error-text); }
+    .alestra-alert--success { background: var(--alestra-success-bg); border: 1px solid var(--alestra-success-border); color: var(--alestra-success-text); }
+    .alestra-form-group { margin-bottom: 1rem; }
+    .alestra-label { display: block; font-size: 0.875rem; font-weight: 500; color: var(--alestra-gray-900); margin-bottom: 0.25rem; }
+    .alestra-input { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--alestra-gray-300); border-radius: var(--alestra-radius-lg); font-size: 1rem; }
+    .alestra-input:focus { outline: 2px solid transparent; outline-offset: 2px; border-color: var(--alestra-indigo-500); box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25); }
+    .alestra-avatar-gradient { background: linear-gradient(to bottom right, var(--alestra-purple-600), var(--alestra-cyan-500)); color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; border-radius: 9999px; }
+    .alestra-shell { display: flex; flex-direction: column; min-height: 100vh; }
+    .alestra-shell__header { flex-shrink: 0; border-bottom: 1px solid var(--alestra-gray-200); background: #fff; padding: 1rem 1.5rem; }
+    .alestra-shell__header-inner { max-width: 80rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .alestra-shell__main { flex: 1; max-width: 80rem; width: 100%; margin: 0 auto; padding: 2rem 1rem; }
+    .alestra-shell__footer { flex-shrink: 0; margin-top: auto; border-top: 1px solid var(--alestra-gray-200); padding: 1.5rem; text-align: center; font-size: 0.875rem; color: var(--alestra-color-muted); }
+    .alestra-flex { display: flex; }
+    .alestra-items-center { align-items: center; }
+    .alestra-gap-3 { gap: 0.75rem; }
+    .alestra-mb-4 { margin-bottom: 1rem; }
+
+    /* Portal Shell */
+    .alestra-devise-shell { background: linear-gradient(135deg, var(--alestra-indigo-50) 0%, #fff 50%, var(--alestra-indigo-100) 100%); }
+    .alestra-portal-shell { display: flex; flex-direction: row; min-height: 100vh; }
+    .alestra-sidebar { width: 240px; flex-shrink: 0; background: var(--alestra-indigo-900); color: #fff; display: flex; flex-direction: column; padding: 1.5rem 1rem; }
+    .alestra-sidebar__logo { margin-bottom: 2rem; font-size: 1.25rem; font-weight: 700; color: #fff; }
+    .alestra-sidebar__nav { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+    .alestra-sidebar__item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--alestra-radius-lg); color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: background-color 0.15s ease, color 0.15s ease; }
+    .alestra-sidebar__item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .alestra-sidebar__item--active { background: rgba(255,255,255,0.1); color: #fff; }
+    .alestra-sidebar__item-icon { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .alestra-sidebar__user { margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 0.75rem; }
+    .alestra-sidebar__user-avatar { width: 40px; height: 40px; flex-shrink: 0; }
+    .alestra-sidebar__user-info { display: flex; flex-direction: column; min-width: 0; }
+    .alestra-sidebar__user-name { font-size: 0.875rem; font-weight: 600; color: #fff; }
+    .alestra-sidebar__user-role { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+    .alestra-topbar { height: 64px; flex-shrink: 0; border-bottom: 1px solid var(--alestra-gray-200); background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; }
+    .alestra-portal-main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+    .alestra-portal-content { flex: 1; padding: 2rem; }
+
+    /* Sidebar collapsed */
+    .alestra-sidebar--collapsed { width: 64px; }
+    .alestra-sidebar--collapsed .alestra-sidebar__item { justify-content: center; padding: 0.75rem; }
+    .alestra-sidebar--collapsed .alestra-sidebar__item > span:not(.alestra-sidebar__item-icon) { display: none; }
+    .alestra-sidebar--collapsed .alestra-sidebar__user-info { display: none; }
+    .alestra-sidebar--collapsed .alestra-sidebar__user { justify-content: center; }
+    .alestra-sidebar--collapsed .alestra-sidebar__logo { text-align: center; }
+
+    /* Section title, breadcrumb */
+    .alestra-section-title { font-size: 1.5rem; font-weight: 700; color: var(--alestra-color-heading); }
+    .alestra-section-title__subtitle { font-size: 0.875rem; color: var(--alestra-color-muted); margin-top: 0.25rem; }
+    .alestra-breadcrumb { display: flex; gap: 0.5rem; font-size: 0.875rem; color: var(--alestra-color-muted); align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .alestra-breadcrumb__item { color: var(--alestra-color-muted); text-decoration: none; }
+    .alestra-breadcrumb__item:hover { color: var(--alestra-color-primary); text-decoration: underline; }
+    .alestra-breadcrumb__item--current { color: var(--alestra-color-text); font-weight: 500; }
+    .alestra-breadcrumb__separator { color: var(--alestra-gray-300); user-select: none; }
+
+    /* Quick links */
+    .alestra-quick-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .alestra-quick-links__card { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--alestra-color-text); transition: box-shadow 0.15s ease, transform 0.15s ease; }
+    .alestra-quick-links__card:hover { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transform: translateY(-2px); }
+    .alestra-quick-links__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: var(--alestra-indigo-50); border-radius: var(--alestra-radius-lg); color: var(--alestra-indigo-600); }
+    .alestra-quick-links__label { font-size: 0.875rem; font-weight: 500; text-align: center; }
+
+    /* Tabs */
+    .alestra-tabs { display: flex; border-bottom: 2px solid var(--alestra-gray-200); gap: 0; }
+    .alestra-tabs__tab { padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; color: var(--alestra-color-muted); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; transition: color 0.15s ease, border-color 0.15s ease; }
+    .alestra-tabs__tab:hover { color: var(--alestra-indigo-600); }
+    .alestra-tabs__tab--active { color: var(--alestra-indigo-600); border-bottom-color: var(--alestra-indigo-600); }
+
+    /* Pagination */
+    .alestra-pagination { display: flex; align-items: center; gap: 0.25rem; margin: 1rem 0; }
+    .alestra-pagination__btn { display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; height: 2.25rem; padding: 0 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--alestra-color-text); background: #fff; border: 1px solid var(--alestra-gray-200); border-radius: var(--alestra-radius-lg); cursor: pointer; text-decoration: none; transition: background-color 0.15s ease; }
+    .alestra-pagination__btn:hover { background: var(--alestra-gray-50); }
+    .alestra-pagination__btn--active { background: var(--alestra-indigo-600); color: #fff; border-color: var(--alestra-indigo-600); }
+    .alestra-pagination__btn--active:hover { background: var(--alestra-indigo-700); }
+    .alestra-pagination__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Filter */
+    .alestra-filter { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+    .alestra-filter__search { position: relative; flex: 1; min-width: 200px; }
+    .alestra-filter__search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--alestra-gray-500); font-size: 0.875rem; pointer-events: none; }
+    .alestra-filter__search-input { width: 100%; padding: 0.5rem 0.75rem 0.5rem 2.25rem; border: 1px solid var(--alestra-gray-300); border-radius: var(--alestra-radius-lg); font-size: 0.875rem; }
+    .alestra-filter__search-input:focus { outline: 2px solid transparent; outline-offset: 2px; border-color: var(--alestra-indigo-500); box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25); }
+    .alestra-filter__chip { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 500; background: var(--alestra-indigo-50); color: var(--alestra-indigo-700); border-radius: 9999px; }
+    .alestra-filter__chip-close { cursor: pointer; font-size: 0.875rem; line-height: 1; }
+
+    /* Indicator */
+    .alestra-indicator { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); padding: 1.5rem; position: relative; }
+    .alestra-indicator__trend { position: absolute; top: 1rem; right: 1rem; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; }
+    .alestra-indicator__trend--up { color: var(--alestra-success-text); }
+    .alestra-indicator__trend--down { color: var(--alestra-error-text); }
+    .alestra-indicator__metric { font-size: 2rem; font-weight: 700; color: var(--alestra-indigo-900); line-height: 1.2; }
+    .alestra-indicator__label { font-size: 0.875rem; color: var(--alestra-color-muted); margin-top: 0.25rem; }
+
+    /* Plan card */
+    .alestra-plan-card { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); padding: 1.5rem; }
+    .alestra-plan-card__title { font-size: 1rem; font-weight: 600; color: var(--alestra-color-text); }
+    .alestra-plan-card__price { font-size: 2rem; font-weight: 700; color: var(--alestra-indigo-900); margin: 0.5rem 0; }
+    .alestra-plan-card__features { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+    .alestra-plan-card__feature { font-size: 0.875rem; color: var(--alestra-color-muted); padding: 0.25rem 0; }
+    .alestra-plan-card__cta { margin-top: 1rem; }
+
+    /* Product card */
+    .alestra-product-card { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; }
+    .alestra-product-card__icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; background: var(--alestra-indigo-50); border-radius: var(--alestra-radius-xl); color: var(--alestra-indigo-600); }
+    .alestra-product-card__name { font-size: 0.875rem; font-weight: 600; color: var(--alestra-color-text); }
+    .alestra-product-card__price { font-size: 1.25rem; font-weight: 700; color: var(--alestra-indigo-900); }
+
+    /* Table */
+    .alestra-table { background: #fff; border-radius: var(--alestra-radius-xl); box-shadow: var(--alestra-shadow-sm); overflow: hidden; }
+    .alestra-table__header { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--alestra-gray-200); font-size: 0.75rem; font-weight: 600; color: var(--alestra-color-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .alestra-table__row { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--alestra-gray-100); transition: background-color 0.1s ease; }
+    .alestra-table__row:hover { background: var(--alestra-gray-50); }
+    .alestra-table__cell { flex: 1; font-size: 0.875rem; min-width: 0; }
+    .alestra-table__cell--sm { flex: 0 0 100px; }
+    .alestra-table__cell--actions { flex: 0 0 auto; display: flex; gap: 0.5rem; }
+    .alestra-table__expand-toggle { flex: 0 0 32px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--alestra-gray-500); font-size: 1rem; transition: transform 0.2s ease; }
+    .alestra-table__expand-toggle--open { transform: rotate(90deg); }
+    .alestra-table__row-detail { display: none; padding: 1rem 1.5rem 1rem 3.5rem; background: var(--alestra-gray-50); border-bottom: 1px solid var(--alestra-gray-100); font-size: 0.875rem; color: var(--alestra-color-muted); }
+    .alestra-table__row-detail--open { display: block; }
+
+    /* Checkbox */
+    .alestra-checkbox { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem; }
+    .alestra-checkbox input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .alestra-checkbox__box { width: 1.125rem; height: 1.125rem; border: 2px solid var(--alestra-gray-300); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background-color 0.15s ease, border-color 0.15s ease; }
+    .alestra-checkbox input:checked + .alestra-checkbox__box { background: var(--alestra-indigo-600); border-color: var(--alestra-indigo-600); }
+    .alestra-checkbox input:checked + .alestra-checkbox__box::after { content: ""; display: block; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-top: -1px; }
+    .alestra-checkbox input:focus-visible + .alestra-checkbox__box { box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25); }
+    .alestra-checkbox input:disabled + .alestra-checkbox__box { opacity: 0.5; cursor: not-allowed; }
+
+    /* Switch */
+    .alestra-switch { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem; }
+    .alestra-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .alestra-switch__track { width: 44px; height: 24px; background: var(--alestra-gray-300); border-radius: 9999px; position: relative; flex-shrink: 0; transition: background-color 0.2s ease; }
+    .alestra-switch__thumb { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: transform 0.2s ease; box-shadow: 0 1px 3px rgb(0 0 0 / 0.15); }
+    .alestra-switch input:checked + .alestra-switch__track { background: var(--alestra-indigo-600); }
+    .alestra-switch input:checked + .alestra-switch__track .alestra-switch__thumb { transform: translateX(20px); }
+    .alestra-switch input:focus-visible + .alestra-switch__track { box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25); }
+    .alestra-switch input:disabled + .alestra-switch__track { opacity: 0.5; cursor: not-allowed; }
+
+    /* Radio */
+    .alestra-radio { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem; }
+    .alestra-radio input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .alestra-radio__circle { width: 1.125rem; height: 1.125rem; border: 2px solid var(--alestra-gray-300); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.15s ease; }
+    .alestra-radio input:checked + .alestra-radio__circle { border-color: var(--alestra-indigo-600); }
+    .alestra-radio input:checked + .alestra-radio__circle::after { content: ""; width: 0.625rem; height: 0.625rem; background: var(--alestra-indigo-600); border-radius: 50%; }
+    .alestra-radio input:focus-visible + .alestra-radio__circle { box-shadow: 0 0 0 3px rgb(99 102 241 / 0.25); }
+    .alestra-radio input:disabled + .alestra-radio__circle { opacity: 0.5; cursor: not-allowed; }
+
+    /* Dropdown */
+    .alestra-dropdown { position: relative; display: inline-block; }
+    .alestra-dropdown__trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.75rem 1rem; border: 1px solid var(--alestra-gray-300); border-radius: var(--alestra-radius-lg); font-size: 1rem; background: #fff; cursor: pointer; min-width: 160px; }
+    .alestra-dropdown__chevron { font-size: 0.75rem; color: var(--alestra-gray-500); }
+    .alestra-dropdown__menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 50; min-width: 100%; background: #fff; border: 1px solid var(--alestra-gray-200); border-radius: var(--alestra-radius-lg); box-shadow: var(--alestra-shadow-sm); list-style: none; padding: 0.25rem 0; margin: 0; display: none; }
+    .alestra-dropdown__menu--open { display: block; }
+    .alestra-dropdown__item { padding: 0.5rem 1rem; font-size: 0.875rem; color: var(--alestra-color-text); cursor: pointer; white-space: nowrap; }
+    .alestra-dropdown__item:hover { background: var(--alestra-gray-50); }
+
+    /* Input variants */
+    .alestra-input--search { padding-left: 2.5rem; }
+    .alestra-input--password { padding-right: 2.5rem; }
+    .alestra-input--email { padding-left: 2.5rem; }
+    .alestra-input-wrapper { position: relative; }
+    .alestra-input-wrapper__icon { position: absolute; top: 50%; transform: translateY(-50%); color: var(--alestra-gray-500); font-size: 0.875rem; pointer-events: none; }
+    .alestra-input-wrapper__icon--left { left: 0.75rem; }
+    .alestra-input-wrapper__icon--right { right: 0.75rem; cursor: pointer; pointer-events: auto; }
+
+    /* Selection small */
+    .alestra-selection-sm.alestra-checkbox .alestra-checkbox__box,
+    .alestra-selection-sm.alestra-radio .alestra-radio__circle { width: 1rem; height: 1rem; }
+    .alestra-selection-sm.alestra-checkbox,
+    .alestra-selection-sm.alestra-radio { font-size: 0.75rem; }
+
+    /* Modal */
+    .alestra-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; display: flex; align-items: center; justify-content: center; }
+    .alestra-modal-backdrop[hidden] { display: none; }
+    .alestra-modal { background: #fff; border-radius: var(--alestra-radius-xl); padding: 2rem; max-width: 640px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .alestra-modal--sm { max-width: 400px; }
+    .alestra-modal--lg { max-width: 800px; }
+    .alestra-modal--full { max-width: 100%; width: 100%; height: 100%; max-height: 100vh; border-radius: 0; }
+    .alestra-modal__close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--alestra-gray-500); line-height: 1; }
+    .alestra-modal__close:hover { color: var(--alestra-gray-900); }
+    .alestra-modal__title { font-size: 1.25rem; font-weight: 700; color: var(--alestra-color-heading); margin-bottom: 1rem; }
+    .alestra-modal__body { font-size: 0.875rem; color: var(--alestra-color-text); }
+    .alestra-modal__footer { margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem; }
+
+    /* Spinner */
+    .alestra-spinner { display: inline-block; width: 40px; height: 40px; border: 3px solid var(--alestra-gray-200); border-top-color: var(--alestra-indigo-600); border-radius: 50%; animation: alestra-spin 0.8s linear infinite; }
+    .alestra-spinner--sm { width: 20px; height: 20px; border-width: 2px; }
+    .alestra-spinner--lg { width: 64px; height: 64px; border-width: 4px; }
+    @keyframes alestra-spin { to { transform: rotate(360deg); } }
+    .alestra-spinner-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.8); z-index: 150; display: flex; align-items: center; justify-content: center; }
+
+    /* Tooltip */
+    .alestra-tooltip { position: relative; display: inline-block; }
+    .alestra-tooltip__text { position: absolute; z-index: 200; background: var(--alestra-gray-900); color: #fff; font-size: 0.75rem; padding: 0.375rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.15s ease; }
+    .alestra-tooltip:hover .alestra-tooltip__text,
+    .alestra-tooltip:focus-within .alestra-tooltip__text { opacity: 1; }
+    .alestra-tooltip__text--top { bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
+    .alestra-tooltip__text--bottom { top: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
+    .alestra-tooltip__text--left { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+    .alestra-tooltip__text--right { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+
+    /* Notification toast */
+    .alestra-notification { position: fixed; top: 1rem; right: 1rem; z-index: 200; background: #fff; border-radius: var(--alestra-radius-lg); box-shadow: 0 4px 12px rgb(0 0 0 / 0.15); padding: 1rem 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem; max-width: 400px; animation: alestra-slide-in 0.2s ease; }
+    @keyframes alestra-slide-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .alestra-notification__icon { flex-shrink: 0; font-size: 1.125rem; }
+    .alestra-notification__content { flex: 1; min-width: 0; }
+    .alestra-notification__message { font-size: 0.875rem; color: var(--alestra-color-text); }
+    .alestra-notification__dismiss { flex-shrink: 0; background: none; border: none; cursor: pointer; color: var(--alestra-gray-500); font-size: 1rem; line-height: 1; padding: 0; }
+    .alestra-notification__dismiss:hover { color: var(--alestra-gray-900); }
+    .alestra-notification--info { border-left: 4px solid var(--alestra-indigo-500); }
+    .alestra-notification--success { border-left: 4px solid var(--alestra-success-text); }
+    .alestra-notification--warning { border-left: 4px solid var(--alestra-warning-text); }
+    .alestra-notification--error { border-left: 4px solid var(--alestra-error-text); }
+    .alestra-notification--cta .alestra-notification__content { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    /* Banner */
+    .alestra-banner { padding: 0.75rem 1.5rem; font-size: 0.875rem; text-align: center; }
+    .alestra-banner--info { background: var(--alestra-indigo-50); color: var(--alestra-indigo-900); border-bottom: 1px solid var(--alestra-indigo-100); }
+    .alestra-banner--warning { background: var(--alestra-warning-bg); color: var(--alestra-warning-text); border-bottom: 1px solid var(--alestra-warning-border); }
+    .alestra-banner__dismiss { margin-left: 0.75rem; background: none; border: none; cursor: pointer; font-size: 1rem; color: inherit; opacity: 0.7; }
+    .alestra-banner__dismiss:hover { opacity: 1; }
+
+    /* Button extensions */
+    .alestra-btn--small { padding: 0.25rem 0.75rem; font-size: 0.875rem; }
+    .alestra-btn--large { padding: 0.75rem 1.5rem; font-size: 1.125rem; }
+    .alestra-btn--icon { padding: 0.5rem; width: 2.5rem; height: 2.5rem; }
+    .alestra-btn--with-icon { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+    /* Preview page styles */
+    .preview-nav { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--alestra-gray-200); padding: 0.5rem 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .preview-nav a { font-size: 0.75rem; color: var(--alestra-indigo-600); text-decoration: none; padding: 0.25rem 0.5rem; border-radius: 4px; }
+    .preview-nav a:hover { background: var(--alestra-indigo-50); }
+    .preview-nav strong { font-size: 0.875rem; margin-right: 1rem; font-weight: 700; color: var(--alestra-indigo-900); }
+    .preview-section { padding: 2rem; border-bottom: 1px solid var(--alestra-gray-200); }
+    .preview-section h2 { font-size: 1.25rem; font-weight: 700; color: var(--alestra-indigo-900); margin: 0 0 0.5rem 0; }
+    .preview-section p.desc { font-size: 0.875rem; color: var(--alestra-gray-500); margin: 0 0 1.5rem 0; }
+    .preview-grid { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; }
+    .preview-grid > * { margin-bottom: 0.5rem; }
+  </style>
+  <script type="module">
+    import { Application, Controller } from "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.2/+esm";
+    window.Stimulus = Application.start();
+
+    class TabsController extends Controller {
+      static targets = ["tab", "panel"];
+      connect() { this.showPanel(0); }
+      switch(e) { e.preventDefault(); this.showPanel(this.tabTargets.indexOf(e.currentTarget)); }
+      showPanel(i) { this.tabTargets.forEach((t, j) => { t.classList.toggle("alestra-tabs__tab--active", i===j); t.setAttribute("aria-selected", i===j); }); this.panelTargets.forEach((p, j) => p.hidden = i!==j); }
+    }
+    class AccordionController extends Controller {
+      toggle(e) { e.preventDefault(); const d = e.currentTarget.closest(".alestra-table__row").nextElementSibling; d.classList.toggle("alestra-table__row-detail--open"); e.currentTarget.classList.toggle("alestra-table__expand-toggle--open"); }
+    }
+    class DropdownController extends Controller {
+      static targets = ["menu"];
+      connect() { this.boundOutside = this.clickOutside.bind(this); this.boundKey = this.keydown.bind(this); }
+      disconnect() { this.close(); }
+      toggle() { this.menuTarget.classList.contains("alestra-dropdown__menu--open") ? this.close() : this.open(); }
+      open() { this.menuTarget.classList.add("alestra-dropdown__menu--open"); document.addEventListener("click", this.boundOutside); document.addEventListener("keydown", this.boundKey); }
+      close() { this.menuTarget.classList.remove("alestra-dropdown__menu--open"); document.removeEventListener("click", this.boundOutside); document.removeEventListener("keydown", this.boundKey); }
+      select(e) { const t = this.element.querySelector(".alestra-dropdown__trigger-label"); if(t) t.textContent = e.currentTarget.textContent.trim(); this.close(); }
+      clickOutside(e) { if(!this.element.contains(e.target)) this.close(); }
+      keydown(e) { if(e.key === "Escape") this.close(); }
+    }
+    class ModalController extends Controller {
+      static targets = ["backdrop"]; connect() { this.boundKey = this.kb.bind(this); }
+      open() { this.backdropTarget.hidden = false; document.addEventListener("keydown", this.boundKey); this.backdropTarget.querySelector(".alestra-modal__close")?.focus(); }
+      close() { this.backdropTarget.hidden = true; document.removeEventListener("keydown", this.boundKey); }
+      clickOutside(e) { if(e.target === this.backdropTarget) this.close(); }
+      kb(e) { if(e.key === "Escape") this.close(); if(e.key === "Tab" && this.hasBackdropTarget) { const f = this.backdropTarget.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])'); if(e.shiftKey && document.activeElement===f[0]) { e.preventDefault(); f[f.length-1].focus(); } else if(!e.shiftKey && document.activeElement===f[f.length-1]) { e.preventDefault(); f[0].focus(); } } }
+    }
+    class NotificationController extends Controller {
+      static values = { timeout: { type: Number, default: 5000 } };
+      connect() { if(this.timeoutValue>0) this.timer = setTimeout(() => this.dismiss(), this.timeoutValue); }
+      disconnect() { clearTimeout(this.timer); }
+      dismiss() { clearTimeout(this.timer); this.element.remove(); }
+    }
+    class SidebarController extends Controller {
+      static targets = ["sidebar"];
+      toggle() { if(this.hasSidebarTarget) this.sidebarTarget.classList.toggle("alestra-sidebar--collapsed"); }
+    }
+
+    Stimulus.register("alestra--tabs", TabsController);
+    Stimulus.register("alestra--accordion", AccordionController);
+    Stimulus.register("alestra--dropdown", DropdownController);
+    Stimulus.register("alestra--modal", ModalController);
+    Stimulus.register("alestra--notification", NotificationController);
+    Stimulus.register("alestra--sidebar", SidebarController);
+  </script>
+</head>
+<body>
+
+<div class="preview-nav">
+  <strong>Alestra Rails UI</strong>
+  <a href="#base">Base Components</a> <a href="#shell">Portal Shell</a> <a href="#nav">Navigation</a> <a href="#data">Data Display</a> <a href="#forms">Form Controls</a> <a href="#feedback">Feedback</a> <a href="#buttons">Button Extensions</a>
+</div>
+
+<!-- ===== BASE COMPONENTS ===== -->
+<div class="preview-section" id="base">
+  <h2>Base Components</h2>
+  <p class="desc">Cards, buttons, badges, alerts, form inputs, avatar. These exist from v1.</p>
+
+  <div class="alestra-card alestra-card--border-left" style="margin-bottom:1rem;">
+    <h1 class="alestra-page-title">Page Title</h1>
+    <p style="color:var(--alestra-color-muted);">Secondary text with CSS variables.</p>
+    <div style="margin-top:1rem;">
+      <a href="#" class="alestra-btn-primary">Primary</a>
+      <span style="margin-left:0.5rem;"></span>
+      <a href="#" class="alestra-btn-secondary">Secondary</a>
+    </div>
+  </div>
+
+  <div class="preview-grid">
+    <span class="alestra-badge alestra-badge--info">Info</span>
+    <span class="alestra-badge alestra-badge--success">Success</span>
+    <span class="alestra-badge alestra-badge--warning">Warning</span>
+  </div>
+
+  <div class="alestra-alert alestra-alert--error alestra-mb-4" role="alert" style="margin-top:1rem;">Error message</div>
+  <div class="alestra-alert alestra-alert--success" role="status">Success message</div>
+
+  <div class="alestra-form-group" style="max-width:320px; margin-top:1rem;">
+    <label class="alestra-label" for="demo-input">Label</label>
+    <input id="demo-input" type="text" class="alestra-input" placeholder="Text">
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <div class="alestra-avatar-gradient" style="width:3rem;height:3rem;font-size:1rem;">AB</div>
+    <div class="alestra-avatar-gradient" style="width:2rem;height:2rem;font-size:0.75rem;">CD</div>
+    <div class="alestra-avatar-gradient" style="width:40px;height:40px;font-size:0.875rem;">JD</div>
+  </div>
+</div>
+
+<!-- ===== PORTAL SHELL ===== -->
+<div class="preview-section" id="shell" style="padding:0;">
+  <h2 style="padding:2rem 2rem 0.5rem;">Portal Shell Layout</h2>
+  <p class="desc" style="padding:0 2rem;">Two-column layout: fixed sidebar + scrollable main content.</p>
+
+  <div class="alestra-portal-shell" data-controller="alestra--sidebar">
+    <div class="alestra-sidebar" data-alestra--sidebar-target="sidebar">
+      <div class="alestra-sidebar__logo">Alestra</div>
+      <nav class="alestra-sidebar__nav">
+        <a href="#" class="alestra-sidebar__item alestra-sidebar__item--active">
+          <span class="alestra-sidebar__item-icon">&#x1F3E0;</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="alestra-sidebar__item">
+          <span class="alestra-sidebar__item-icon">&#x1F4CB;</span>
+          <span>Gesti&oacute;n</span>
+        </a>
+        <a href="#" class="alestra-sidebar__item">
+          <span class="alestra-sidebar__item-icon">&#x1F4CA;</span>
+          <span>Reportes</span>
+        </a>
+        <a href="#" class="alestra-sidebar__item">
+          <span class="alestra-sidebar__item-icon">&#x2699;&#xFE0F;</span>
+          <span>Configuraci&oacute;n</span>
+        </a>
+      </nav>
+      <div class="alestra-sidebar__user">
+        <div class="alestra-sidebar__user-avatar">
+          <div class="alestra-avatar-gradient" style="width:40px;height:40px;font-size:0.875rem;">JD</div>
+        </div>
+        <div class="alestra-sidebar__user-info">
+          <span class="alestra-sidebar__user-name">Juan Dom&iacute;nguez</span>
+          <span class="alestra-sidebar__user-role">Administrador</span>
+        </div>
+      </div>
+    </div>
+    <div class="alestra-portal-main">
+      <header class="alestra-topbar">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <button class="alestra-btn-secondary alestra-btn--small" data-action="click->alestra--sidebar#toggle">&#x2261;</button>
+          <span class="alestra-badge alestra-badge--info">Portal</span>
+        </div>
+        <div style="font-size:0.875rem;color:var(--alestra-color-muted);">Notifications</div>
+      </header>
+      <main class="alestra-portal-content">
+        <h1 class="alestra-page-title">Main Content Area</h1>
+        <p style="color:var(--alestra-color-muted);">This is the scrollable content area of the portal layout.</p>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<div class="preview-section" id="nav">
+  <h2>Navigation Components</h2>
+  <p class="desc">Section title, breadcrumb, tabs, quick links, pagination, filter bar.</p>
+
+  <div class="alestra-section-title">
+    Gesti&oacute;n de l&iacute;neas y servicios
+    <p class="alestra-section-title__subtitle">Administra tus servicios activos y solicita cambios</p>
+  </div>
+
+  <nav class="alestra-breadcrumb" aria-label="Breadcrumb" style="margin-top:1rem;">
+    <a href="#" class="alestra-breadcrumb__item">Inicio</a>
+    <span class="alestra-breadcrumb__separator">/</span>
+    <a href="#" class="alestra-breadcrumb__item">Gesti&oacute;n</a>
+    <span class="alestra-breadcrumb__separator">/</span>
+    <span class="alestra-breadcrumb__item--current">Bloqueo</span>
+  </nav>
+
+  <div data-controller="alestra--tabs" style="margin:1rem 0;">
+    <div class="alestra-tabs" role="tablist">
+      <button class="alestra-tabs__tab alestra-tabs__tab--active" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="true">Consumo</button>
+      <button class="alestra-tabs__tab" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="false">Reportes</button>
+      <button class="alestra-tabs__tab" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="false">Historial</button>
+    </div>
+    <div data-alestra--tabs-target="panel"><p style="padding:1rem 0;">Consumo content here...</p></div>
+    <div data-alestra--tabs-target="panel" hidden><p style="padding:1rem 0;">Reportes content here...</p></div>
+    <div data-alestra--tabs-target="panel" hidden><p style="padding:1rem 0;">Historial content here...</p></div>
+  </div>
+
+  <div class="alestra-quick-links" style="margin:1rem 0;">
+    <a href="#" class="alestra-quick-links__card"><span class="alestra-quick-links__icon">&#x1F4CB;</span><span class="alestra-quick-links__label">Gestionar l&iacute;neas</span></a>
+    <a href="#" class="alestra-quick-links__card"><span class="alestra-quick-links__icon">&#x1F4CA;</span><span class="alestra-quick-links__label">Ver consumo</span></a>
+    <a href="#" class="alestra-quick-links__card"><span class="alestra-quick-links__icon">&#x1F4B3;</span><span class="alestra-quick-links__label">Pagos</span></a>
+    <a href="#" class="alestra-quick-links__card"><span class="alestra-quick-links__icon">&#x1F6E1;&#xFE0F;</span><span class="alestra-quick-links__label">Seguridad</span></a>
+  </div>
+
+  <nav class="alestra-pagination" aria-label="Pagination" style="margin:1rem 0;">
+    <button class="alestra-pagination__btn" disabled>&#x2190;</button>
+    <span class="alestra-pagination__btn alestra-pagination__btn--active">1</span>
+    <button class="alestra-pagination__btn">2</button>
+    <button class="alestra-pagination__btn">3</button>
+    <button class="alestra-pagination__btn">4</button>
+    <button class="alestra-pagination__btn">5</button>
+    <button class="alestra-pagination__btn">&#x2192;</button>
+  </nav>
+
+  <div class="alestra-filter" style="margin-top:1rem;">
+    <div class="alestra-filter__search">
+      <span class="alestra-filter__search-icon">&#x1F50D;</span>
+      <input type="text" class="alestra-filter__search-input" placeholder="Buscar...">
+    </div>
+    <span class="alestra-filter__chip">Activo <span class="alestra-filter__chip-close">&#x00D7;</span></span>
+    <span class="alestra-filter__chip">Internet <span class="alestra-filter__chip-close">&#x00D7;</span></span>
+  </div>
+</div>
+
+<!-- ===== DATA DISPLAY ===== -->
+<div class="preview-section" id="data">
+  <h2>Data Display</h2>
+  <p class="desc">Stat indicators, plan cards, product cards, accordion tables, badge variants.</p>
+
+  <div class="preview-grid">
+    <div class="alestra-indicator" style="min-width:200px;">
+      <span class="alestra-indicator__trend alestra-indicator__trend--up">&#x25B2; 12%</span>
+      <div class="alestra-indicator__metric">1,248</div>
+      <div class="alestra-indicator__label">L&iacute;neas activas</div>
+    </div>
+    <div class="alestra-indicator" style="min-width:200px;">
+      <span class="alestra-indicator__trend alestra-indicator__trend--down">&#x25BC; 3%</span>
+      <div class="alestra-indicator__metric">$48.2K</div>
+      <div class="alestra-indicator__label">Facturaci&oacute;n</div>
+    </div>
+    <div class="alestra-indicator" style="min-width:200px;">
+      <div class="alestra-indicator__metric">97.5%</div>
+      <div class="alestra-indicator__label">Disponibilidad</div>
+    </div>
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <div class="alestra-plan-card" style="max-width:320px;">
+      <div class="alestra-plan-card__title">Plan Empresarial</div>
+      <div class="alestra-plan-card__price">$1,299<span style="font-size:0.875rem;font-weight:400;color:var(--alestra-color-muted);">/mes</span></div>
+      <ul class="alestra-plan-card__features">
+        <li class="alestra-plan-card__feature">&#x2713; 10 l&iacute;neas incluidas</li>
+        <li class="alestra-plan-card__feature">&#x2713; Internet 500 Mbps</li>
+        <li class="alestra-plan-card__feature">&#x2713; Soporte 24/7</li>
+      </ul>
+      <div class="alestra-plan-card__cta"><a href="#" class="alestra-btn-primary">Cambiar plan</a></div>
+    </div>
+
+    <div class="alestra-product-card" style="max-width:200px;">
+      <span class="alestra-product-card__icon">&#x1F4E1;</span>
+      <span class="alestra-product-card__name">Internet 100Mbps</span>
+      <span class="alestra-product-card__price">$499</span>
+      <a href="#" class="alestra-btn-primary" style="width:100%;">Contratar</a>
+    </div>
+
+    <div class="alestra-product-card" style="max-width:200px;">
+      <span class="alestra-product-card__icon">&#x1F4DE;</span>
+      <span class="alestra-product-card__name">Voz IP</span>
+      <span class="alestra-product-card__price">$199</span>
+      <a href="#" class="alestra-btn-secondary" style="width:100%;">Detalles</a>
+    </div>
+  </div>
+
+  <div class="alestra-table" data-controller="alestra--accordion" style="margin-top:1.5rem;">
+    <div class="alestra-table__header">
+      <span style="flex:0 0 32px;"></span>
+      <span class="alestra-table__cell">L&iacute;nea</span>
+      <span class="alestra-table__cell--sm">Estado</span>
+      <span class="alestra-table__cell--actions">Acciones</span>
+    </div>
+    <div class="alestra-table__row">
+      <button class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir">&#x25B6;</button>
+      <span class="alestra-table__cell">L&iacute;nea 01 &mdash; Internet</span>
+      <span class="alestra-table__cell--sm"><span class="alestra-badge alestra-badge--active">Activo</span></span>
+      <span class="alestra-table__cell--actions"><a href="#" class="alestra-btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.75rem;">Editar</a></span>
+    </div>
+    <div class="alestra-table__row-detail">Velocidad contratada 100 Mbps, instalaci&oacute;n 15/03/2025.</div>
+    <div class="alestra-table__row">
+      <button class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir">&#x25B6;</button>
+      <span class="alestra-table__cell">L&iacute;nea 02 &mdash; Voz</span>
+      <span class="alestra-table__cell--sm"><span class="alestra-badge alestra-badge--pending">Pendiente</span></span>
+      <span class="alestra-table__cell--actions"><a href="#" class="alestra-btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.75rem;">Editar</a></span>
+    </div>
+    <div class="alestra-table__row-detail">Portabilidad en proceso, fecha estimada 20/04/2025.</div>
+    <div class="alestra-table__row">
+      <button class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir">&#x25B6;</button>
+      <span class="alestra-table__cell">L&iacute;nea 03 &mdash; TV</span>
+      <span class="alestra-table__cell--sm"><span class="alestra-badge alestra-badge--inactive">Inactivo</span></span>
+      <span class="alestra-table__cell--actions"><a href="#" class="alestra-btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.75rem;">Editar</a></span>
+    </div>
+    <div class="alestra-table__row-detail">Servicio suspendido desde 01/01/2025.</div>
+  </div>
+
+  <div style="margin-top:1rem;">
+    <span class="alestra-badge alestra-badge--active">Activo</span>
+    <span class="alestra-badge alestra-badge--inactive">Inactivo</span>
+    <span class="alestra-badge alestra-badge--pending">Pendiente</span>
+  </div>
+</div>
+
+<!-- ===== FORM CONTROLS ===== -->
+<div class="preview-section" id="forms">
+  <h2>Form Controls</h2>
+  <p class="desc">Checkbox, switch toggle, radio buttons, dropdown, input variants.</p>
+
+  <div class="preview-grid" style="flex-direction:column;align-items:flex-start;">
+    <div class="preview-grid">
+      <label class="alestra-checkbox">
+        <input type="checkbox">
+        <span class="alestra-checkbox__box"></span>
+        Recordar sesi&oacute;n
+      </label>
+      <label class="alestra-checkbox">
+        <input type="checkbox" checked>
+        <span class="alestra-checkbox__box"></span>
+        Acepto los t&eacute;rminos
+      </label>
+      <label class="alestra-checkbox">
+        <input type="checkbox" disabled>
+        <span class="alestra-checkbox__box"></span>
+        Opci&oacute;n deshabilitada
+      </label>
+    </div>
+
+    <div class="preview-grid">
+      <label class="alestra-switch">
+        <input type="checkbox">
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        Notificaciones email
+      </label>
+      <label class="alestra-switch">
+        <input type="checkbox" checked>
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        SMS habilitados
+      </label>
+    </div>
+
+    <div class="preview-grid">
+      <label class="alestra-radio">
+        <input type="radio" name="plan-preview" value="basico" checked>
+        <span class="alestra-radio__circle"></span>
+        Plan B&aacute;sico
+      </label>
+      <label class="alestra-radio">
+        <input type="radio" name="plan-preview" value="empresarial">
+        <span class="alestra-radio__circle"></span>
+        Plan Empresarial
+      </label>
+      <label class="alestra-radio">
+        <input type="radio" name="plan-preview" value="premium" disabled>
+        <span class="alestra-radio__circle"></span>
+        Plan Premium
+      </label>
+    </div>
+
+    <div class="preview-grid" style="margin-top:0.5rem;">
+      <div class="alestra-dropdown" data-controller="alestra--dropdown">
+        <button class="alestra-dropdown__trigger" data-action="click->alestra--dropdown#toggle">
+          <span class="alestra-dropdown__trigger-label">Seleccionar</span>
+          <span class="alestra-dropdown__chevron">&#x25BC;</span>
+        </button>
+        <ul class="alestra-dropdown__menu" data-alestra--dropdown-target="menu">
+          <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opci&oacute;n 1</li>
+          <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opci&oacute;n 2</li>
+          <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opci&oacute;n 3</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:0.75rem;max-width:320px;width:100%;margin-top:0.5rem;">
+      <div class="alestra-input-wrapper">
+        <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--left">&#x1F50D;</span>
+        <input type="text" class="alestra-input alestra-input--search" placeholder="Buscar...">
+      </div>
+      <div class="alestra-input-wrapper">
+        <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--left">&#x1F4E7;</span>
+        <input type="email" class="alestra-input alestra-input--email" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="alestra-input-wrapper">
+        <input type="password" class="alestra-input alestra-input--password" placeholder="Contrase&ntilde;a" value="secret">
+        <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--right">&#x1F441;</span>
+      </div>
+    </div>
+
+    <label class="alestra-checkbox alestra-selection-sm" style="margin-top:0.5rem;">
+      <input type="checkbox">
+      <span class="alestra-checkbox__box"></span>
+      Opci&oacute;n compacta (selection-sm)
+    </label>
+  </div>
+</div>
+
+<!-- ===== FEEDBACK & OVERLAYS ===== -->
+<div class="preview-section" id="feedback">
+  <h2>Feedback &amp; Overlays</h2>
+  <p class="desc">Modal, spinner, tooltip, notifications, banner.</p>
+
+  <div class="preview-grid">
+    <div data-controller="alestra--modal">
+      <button class="alestra-btn-primary" data-action="click->alestra--modal#open">Open Modal</button>
+      <div class="alestra-modal-backdrop" data-alestra--modal-target="backdrop" hidden data-action="click->alestra--modal#clickOutside">
+        <div class="alestra-modal alestra-modal--sm">
+          <button class="alestra-modal__close" data-action="click->alestra--modal#close" aria-label="Cerrar">&times;</button>
+          <h2 class="alestra-modal__title">Confirmar acci&oacute;n</h2>
+          <p class="alestra-modal__body">&iquest;Est&aacute;s seguro de que deseas continuar?</p>
+          <div class="alestra-modal__footer">
+            <button class="alestra-btn-secondary" data-action="click->alestra--modal#close">Cancelar</button>
+            <button class="alestra-btn-primary">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alestra-tooltip">
+      <button class="alestra-btn-secondary">Hover me</button>
+      <span class="alestra-tooltip__text alestra-tooltip__text--top">M&aacute;s informaci&oacute;n aqu&iacute;</span>
+    </div>
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <div class="alestra-spinner" role="status" aria-label="Loading"></div>
+    <div class="alestra-spinner alestra-spinner--sm" role="status" aria-label="Loading"></div>
+    <div class="alestra-spinner alestra-spinner--lg" role="status" aria-label="Loading"></div>
+  </div>
+
+  <div style="margin-top:1rem;">
+    <button class="alestra-btn-secondary" onclick="showToast()">Show Notification Toast</button>
+  </div>
+
+  <div class="alestra-banner alestra-banner--info" style="margin-top:1rem;">
+    Nueva actualizaci&oacute;n disponible. <button class="alestra-banner__dismiss" aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="alestra-banner alestra-banner--warning" style="margin-top:0.5rem;">
+    Mantenimiento programado para el 15/05. <button class="alestra-banner__dismiss" aria-label="Cerrar">&times;</button>
+  </div>
+</div>
+
+<!-- ===== BUTTON EXTENSIONS ===== -->
+<div class="preview-section" id="buttons">
+  <h2>Button Extensions</h2>
+  <p class="desc">Size modifiers and icon variants on existing buttons.</p>
+
+  <div class="preview-grid">
+    <a href="#" class="alestra-btn-primary alestra-btn--small">Small</a>
+    <a href="#" class="alestra-btn-primary">Default</a>
+    <a href="#" class="alestra-btn-primary alestra-btn--large">Large</a>
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Small</a>
+    <a href="#" class="alestra-btn-secondary">Default</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--large">Large</a>
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <button class="alestra-btn-primary alestra-btn--icon" aria-label="Edit">&#x270E;</button>
+    <button class="alestra-btn-secondary alestra-btn--icon" aria-label="Delete">&#x1F5D1;</button>
+  </div>
+
+  <div class="preview-grid" style="margin-top:1rem;">
+    <a href="#" class="alestra-btn-primary alestra-btn--with-icon"><span>&#x1F4CB;</span><span>Gestionar</span></a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--with-icon"><span>&#x2699;&#xFE0F;</span><span>Settings</span></a>
+  </div>
+</div>
+
+<script>
+  function showToast() {
+    const toast = document.createElement('div');
+    toast.className = 'alestra-notification alestra-notification--success';
+    toast.innerHTML = '\u2713 <div class="alestra-notification__content"><span class="alestra-notification__message">Changes saved successfully.</span></div><button class="alestra-notification__dismiss" onclick="this.parentElement.remove()">&times;</button>';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+  }
+</script>
+
+</body>
+</html>

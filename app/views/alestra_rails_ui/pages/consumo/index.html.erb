@@ -1,0 +1,279 @@
+<%# Consumo y reportes - Figma 392:14414. The portal layout renders the sidebar. %>
+<% services = [
+     { name: "SMS", value: "1,234 mensajes enviados", color: "#00b8ff", class_name: "sms" },
+     { name: "Datos", value: "1,234 GB utilizados", color: "#ac4fc6", class_name: "data" },
+     { name: "Telefonía", value: "1,234 mins. utilizados", color: "#10069f", class_name: "phone" }
+   ] %>
+
+<% content_for :topbar_right do %>
+  <a href="<%= consumo_root_path %>" class="alestra-btn-primary alestra-btn--small">Consumos y reportes</a>
+  <a href="<%= consumo_por_linea_path %>" class="alestra-btn-secondary alestra-btn--small">Consumo y reportes por línea</a>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+    <span class="alestra-notification-cta__dot" aria-hidden="true"></span>
+  </button>
+<% end %>
+
+<div class="alestra-consumption-report" data-controller="alestra--tabs">
+  <header class="alestra-report-intro">
+    <h1 class="alestra-page-title">Consumo y reportes</h1>
+    <p>Consulta el uso de datos, voz y SMS en tiempo real para cada línea de tu cuenta.<br>Identifica patrones, anticipa sobreconsumo y genera reportes detallados que te ayuden a tomar decisiones informadas.</p>
+    <button type="button" class="alestra-btn-primary alestra-btn--small">Descargar reporte mensual</button>
+  </header>
+
+  <div class="alestra-tabs alestra-report-tabs" role="tablist" aria-label="Periodo del reporte">
+    <button type="button"
+            id="consumption-tab-monthly"
+            class="alestra-tabs__tab alestra-tabs__tab--active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="consumption-panel-monthly"
+            tabindex="0"
+            data-alestra--tabs-target="tab"
+            data-action="click->alestra--tabs#switch">
+      Mensual
+    </button>
+    <button type="button"
+            id="consumption-tab-quarterly"
+            class="alestra-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="consumption-panel-quarterly"
+            tabindex="-1"
+            data-alestra--tabs-target="tab"
+            data-action="click->alestra--tabs#switch">
+      Trimestral
+    </button>
+    <button type="button"
+            id="consumption-tab-annual"
+            class="alestra-tabs__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="consumption-panel-annual"
+            tabindex="-1"
+            data-alestra--tabs-target="tab"
+            data-action="click->alestra--tabs#switch">
+      Anual
+    </button>
+  </div>
+
+  <section id="consumption-panel-monthly"
+           class="alestra-tabs__panel"
+           role="tabpanel"
+           aria-labelledby="consumption-tab-monthly"
+           tabindex="0"
+           data-alestra--tabs-target="panel">
+    <article class="alestra-report-section">
+      <div class="alestra-report-section__header">
+        <h2 class="alestra-section-title">Consumo Mensual</h2>
+        <p>Mostrando consumo del último mes facturado | Se muestra el total de consumo por el total de líneas activas</p>
+        <div class="alestra-report-dates" role="group" aria-label="Rango de fechas del consumo mensual">
+          <span>Rango de fechas:</span>
+          <label><span class="alestra-report-sr-only">Fecha inicial</span><input type="date" value="2025-09-01"></label>
+          <label><span class="alestra-report-sr-only">Fecha final</span><input type="date" value="2025-09-30"></label>
+        </div>
+      </div>
+
+      <div class="alestra-report-section__content">
+        <div class="alestra-report-chart">
+          <svg class="alestra-report-chart__svg" viewBox="0 0 700 220" role="img" aria-labelledby="monthly-chart-title monthly-chart-description">
+            <title id="monthly-chart-title">Frecuencia de consumo diario</title>
+            <desc id="monthly-chart-description">Gráfica de área con el consumo de SMS, datos y telefonía durante septiembre.</desc>
+            <defs>
+              <linearGradient id="monthly-sms-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00b8ff" stop-opacity=".24"/><stop offset="1" stop-color="#00b8ff" stop-opacity=".03"/></linearGradient>
+              <linearGradient id="monthly-data-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ac4fc6" stop-opacity=".24"/><stop offset="1" stop-color="#ac4fc6" stop-opacity=".03"/></linearGradient>
+              <linearGradient id="monthly-phone-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#10069f" stop-opacity=".2"/><stop offset="1" stop-color="#10069f" stop-opacity=".03"/></linearGradient>
+            </defs>
+            <g class="alestra-report-chart__grid" aria-hidden="true">
+              <% 6.times do |i| %><line x1="54" y1="<%= 18 + (i * 32) %>" x2="680" y2="<%= 18 + (i * 32) %>"/><% end %>
+            </g>
+            <path class="alestra-report-chart__area" fill="url(#monthly-sms-fill)" d="M54 83 C110 67 155 63 205 69 S305 86 350 109 S430 103 480 92 S575 84 680 75 L680 178 L54 178 Z"/>
+            <path class="alestra-report-chart__area" fill="url(#monthly-data-fill)" d="M54 114 C105 124 145 139 180 131 S275 105 335 91 S430 75 500 74 S590 49 680 20 L680 178 L54 178 Z"/>
+            <path class="alestra-report-chart__area" fill="url(#monthly-phone-fill)" d="M54 52 L145 96 L225 117 L330 95 L405 92 L500 111 L590 71 L680 33 L680 178 L54 178 Z"/>
+            <path class="alestra-report-chart__line alestra-report-chart__line--sms" d="M54 83 C110 67 155 63 205 69 S305 86 350 109 S430 103 480 92 S575 84 680 75"/>
+            <path class="alestra-report-chart__line alestra-report-chart__line--data" d="M54 114 C105 124 145 139 180 131 S275 105 335 91 S430 75 500 74 S590 49 680 20"/>
+            <path class="alestra-report-chart__line alestra-report-chart__line--phone" d="M54 52 L145 96 L225 117 L330 95 L405 92 L500 111 L590 71 L680 33"/>
+            <g class="alestra-report-chart__axis" aria-hidden="true">
+              <line x1="54" y1="178" x2="680" y2="178"/><line x1="54" y1="18" x2="54" y2="178"/>
+              <% [100, 80, 60, 40, 20, 0].each_with_index do |value, i| %><text x="47" y="<%= 22 + (i * 32) %>" text-anchor="end"><%= value %></text><% end %>
+              <% (1..30).each do |day| %><text x="<%= 54 + ((day - 1) * 21.55) %>" y="194" text-anchor="middle"><%= day %></text><% end %>
+              <text class="alestra-report-chart__label" x="367" y="215" text-anchor="middle">Día</text>
+              <text class="alestra-report-chart__label" transform="translate(12 105) rotate(-90)" text-anchor="middle">Frecuencia de consumo</text>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="alestra-service-summary" aria-label="Resumen de servicios mensual">
+          <h3>Servicios</h3>
+          <ul class="alestra-service-legend">
+            <% services.each do |service| %>
+              <li>
+                <input type="checkbox" checked aria-label="Mostrar <%= service[:name] %>">
+                <span class="alestra-service-legend__dot alestra-service-legend__dot--<%= service[:class_name] %>" aria-hidden="true"></span>
+                <span><strong><%= service[:name] %>:</strong> <%= service[:value] %></span>
+              </li>
+            <% end %>
+          </ul>
+          <p class="alestra-service-summary__cutoff">Próxima fecha de corte: 01/10</p>
+          <p class="alestra-service-summary__lines">345 líneas activas</p>
+          <button type="button" class="alestra-btn-primary alestra-btn--small">Descargar reporte</button>
+        </aside>
+      </div>
+    </article>
+  </section>
+
+  <section id="consumption-panel-quarterly"
+           class="alestra-tabs__panel"
+           role="tabpanel"
+           aria-labelledby="consumption-tab-quarterly"
+           tabindex="0"
+           data-alestra--tabs-target="panel"
+           hidden>
+    <article class="alestra-report-section">
+      <div class="alestra-report-section__header">
+        <h2 class="alestra-section-title">Consumo Trimestral</h2>
+        <p>Distribución del consumo por trimestre | Se muestra el total por servicio de todas las líneas activas</p>
+        <div class="alestra-report-dates" role="group" aria-label="Rango de fechas del consumo trimestral">
+          <span>Rango de fechas:</span>
+          <label><span class="alestra-report-sr-only">Fecha inicial</span><input type="date" value="2025-01-01"></label>
+          <label><span class="alestra-report-sr-only">Fecha final</span><input type="date" value="2025-12-31"></label>
+        </div>
+      </div>
+
+      <div class="alestra-report-section__content">
+        <div class="alestra-donut-grid" aria-label="Distribución trimestral de consumo">
+          <% [
+               ["Q1", "20% SMS, 50% datos y 30% telefonía", "20% 50% 30%", "20", "50", "30"],
+               ["Q2", "10% SMS, 50% datos y 40% telefonía", "10% 50% 40%", "10", "50", "40"],
+               ["Q3", "10% SMS, 75% datos y 15% telefonía", "10% 75% 15%", "10", "75", "15"],
+               ["Q4", "Sin consumo registrado", "0% 0% 0%", "0", "0", "0"]
+             ].each do |quarter, accessible_label, stops, sms, data, phone| %>
+            <div class="alestra-donut-card">
+              <div class="alestra-donut alestra-donut--<%= quarter.downcase %>" role="img" aria-label="<%= quarter %>: <%= accessible_label %>">
+                <span class="alestra-donut__hole" aria-hidden="true"></span>
+              </div>
+              <ul class="alestra-donut-card__legend" aria-label="<%= quarter %> porcentajes">
+                <li><span class="alestra-service-legend__dot alestra-service-legend__dot--sms"></span><%= sms %>% consumo</li>
+                <li><span class="alestra-service-legend__dot alestra-service-legend__dot--data"></span><%= data %>% consumo</li>
+                <li><span class="alestra-service-legend__dot alestra-service-legend__dot--phone"></span><%= phone %>% consumo</li>
+              </ul>
+              <p><span>Consumo</span><strong><%= quarter %></strong></p>
+            </div>
+          <% end %>
+        </div>
+
+        <aside class="alestra-service-summary" aria-label="Resumen de servicios trimestral">
+          <h3>Servicios</h3>
+          <ul class="alestra-service-legend">
+            <% services.each do |service| %>
+              <li><span class="alestra-service-legend__dot alestra-service-legend__dot--<%= service[:class_name] %>"></span><span><strong><%= service[:name] %>:</strong> <%= service[:value] %></span></li>
+            <% end %>
+          </ul>
+          <p class="alestra-service-summary__cutoff">Próxima fecha de corte: 01/10</p>
+          <p class="alestra-service-summary__lines">345 líneas activas</p>
+          <button type="button" class="alestra-btn-primary alestra-btn--small">Descargar reporte</button>
+        </aside>
+      </div>
+    </article>
+
+    <article class="alestra-report-section alestra-report-section--secondary">
+      <div class="alestra-report-section__header">
+        <h2 class="alestra-section-title">Comparativa trimestral</h2>
+        <p>Comparación de consumo 2024 vs 2025 | Se muestra la frecuencia de consumo por servicio</p>
+      </div>
+      <div class="alestra-report-chart alestra-report-chart--full">
+        <svg class="alestra-report-chart__svg" viewBox="0 0 700 230" role="img" aria-labelledby="quarter-bars-title quarter-bars-description">
+          <title id="quarter-bars-title">Comparativa trimestral 2024 y 2025</title>
+          <desc id="quarter-bars-description">Barras agrupadas de SMS, datos y telefonía para cada trimestre de 2024 y 2025.</desc>
+          <g class="alestra-report-chart__grid" aria-hidden="true"><% 6.times do |i| %><line x1="54" y1="<%= 18 + (i * 32) %>" x2="680" y2="<%= 18 + (i * 32) %>"/><% end %></g>
+          <% quarter_values = [[55, 83, 60, 72, 42, 78], [68, 40, 82, 74, 63, 35], [39, 51, 31, 80, 69, 88], [74, 55, 76, 61, 82, 67]] %>
+          <% quarter_values.each_with_index do |values, quarter_index| %>
+            <% values.each_with_index do |value, bar_index| %>
+              <% colors = ["#00b8ff", "#ac4fc6", "#10069f"] %>
+              <rect x="<%= 92 + (quarter_index * 150) + (bar_index * 10) %>" y="<%= 178 - (value * 1.55) %>" width="7" height="<%= value * 1.55 %>" rx="2" fill="<%= colors[bar_index % 3] %>" opacity="<%= bar_index < 3 ? 0.55 : 1 %>"/>
+            <% end %>
+          <% end %>
+          <g class="alestra-report-chart__axis" aria-hidden="true">
+            <line x1="54" y1="178" x2="680" y2="178"/><line x1="54" y1="18" x2="54" y2="178"/>
+            <% [100, 80, 60, 40, 20, 0].each_with_index do |value, i| %><text x="47" y="<%= 22 + (i * 32) %>" text-anchor="end"><%= value %></text><% end %>
+            <% ["Q1 2024 vs Q1 2025", "Q2 2024 vs Q2 2025", "Q3 2024 vs Q3 2025", "Q4 2024 vs Q4 2025"].each_with_index do |label, i| %><text x="<%= 120 + (i * 150) %>" y="198" text-anchor="middle"><%= label %></text><% end %>
+            <text class="alestra-report-chart__label" x="367" y="222" text-anchor="middle">Trimestre</text>
+            <text class="alestra-report-chart__label" transform="translate(12 105) rotate(-90)" text-anchor="middle">Frecuencia de consumo</text>
+          </g>
+        </svg>
+      </div>
+    </article>
+  </section>
+
+  <section id="consumption-panel-annual"
+           class="alestra-tabs__panel"
+           role="tabpanel"
+           aria-labelledby="consumption-tab-annual"
+           tabindex="0"
+           data-alestra--tabs-target="panel"
+           hidden>
+    <article class="alestra-report-section">
+      <div class="alestra-report-section__header">
+        <h2 class="alestra-section-title">Consumo por mes | Anual</h2>
+        <p>Mostrando consumo del último año facturado | Se muestra el total de consumo por el total de líneas activas</p>
+        <div class="alestra-report-dates" role="group" aria-label="Rango de fechas del consumo anual">
+          <span>Rango de fechas:</span>
+          <label><span class="alestra-report-sr-only">Fecha inicial</span><input type="date" value="2025-01-01"></label>
+          <label><span class="alestra-report-sr-only">Fecha final</span><input type="date" value="2025-12-31"></label>
+        </div>
+      </div>
+
+      <div class="alestra-report-section__content">
+        <div class="alestra-report-chart">
+          <svg class="alestra-report-chart__svg" viewBox="0 0 700 220" role="img" aria-labelledby="annual-bars-title annual-bars-description">
+            <title id="annual-bars-title">Consumo por mes anual</title>
+            <desc id="annual-bars-description">Barras mensuales de SMS, datos y telefonía de enero a diciembre.</desc>
+            <g class="alestra-report-chart__grid" aria-hidden="true"><% 6.times do |i| %><line x1="54" y1="<%= 18 + (i * 32) %>" x2="680" y2="<%= 18 + (i * 32) %>"/><% end %></g>
+            <% annual_values = [[55,84,60], [68,42,84], [40,47,30], [55,42,74], [18,84,82], [31,57,17], [82,45,18], [55,60,84], [55,84,60], [8,8,8], [8,8,8], [8,8,8]] %>
+            <% annual_values.each_with_index do |values, month_index| %>
+              <% values.each_with_index do |value, service_index| %>
+                <% colors = ["#00b8ff", "#ac4fc6", "#10069f"] %>
+                <rect x="<%= 69 + (month_index * 50) + (service_index * 8) %>" y="<%= 178 - (value * 1.55) %>" width="6" height="<%= value * 1.55 %>" rx="2" fill="<%= colors[service_index] %>"/>
+              <% end %>
+            <% end %>
+            <g class="alestra-report-chart__axis" aria-hidden="true">
+              <line x1="54" y1="178" x2="680" y2="178"/><line x1="54" y1="18" x2="54" y2="178"/>
+              <% [100, 80, 60, 40, 20, 0].each_with_index do |value, i| %><text x="47" y="<%= 22 + (i * 32) %>" text-anchor="end"><%= value %></text><% end %>
+              <% %w[Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic].each_with_index do |month, i| %><text x="<%= 80 + (i * 50) %>" y="195" text-anchor="middle"><%= month %></text><% end %>
+              <text class="alestra-report-chart__label" x="367" y="215" text-anchor="middle">Mes</text>
+              <text class="alestra-report-chart__label" transform="translate(12 105) rotate(-90)" text-anchor="middle">Frecuencia de consumo</text>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="alestra-service-summary" aria-label="Resumen de servicios anual">
+          <h3>Servicios</h3>
+          <ul class="alestra-service-legend">
+            <% services.each do |service| %>
+              <li><span class="alestra-service-legend__dot alestra-service-legend__dot--<%= service[:class_name] %>"></span><span><strong><%= service[:name] %>:</strong> <%= service[:value] %></span></li>
+            <% end %>
+          </ul>
+          <p class="alestra-service-summary__cutoff">Próxima fecha de corte: 01/10</p>
+          <p class="alestra-service-summary__lines">345 líneas activas</p>
+          <button type="button" class="alestra-btn-primary alestra-btn--small">Descargar reporte</button>
+        </aside>
+      </div>
+    </article>
+
+    <article class="alestra-report-section alestra-report-section--secondary">
+      <div class="alestra-report-section__header">
+        <h2 class="alestra-section-title">Resumen anual por servicio</h2>
+        <p>Participación de cada servicio en el consumo total del año</p>
+      </div>
+      <div class="alestra-annual-summary">
+        <% [["SMS", "32%", "annual-sms"], ["Datos", "43%", "annual-data"], ["Telefonía", "25%", "annual-phone"]].each do |name, percent, chart_class| %>
+          <div class="alestra-annual-summary__item">
+            <div class="alestra-donut alestra-donut--<%= chart_class %>" role="img" aria-label="<%= name %>: <%= percent %> del consumo anual"><span class="alestra-donut__hole"><strong><%= percent %></strong></span></div>
+            <h3><%= name %></h3>
+            <p>del consumo anual</p>
+          </div>
+        <% end %>
+      </div>
+    </article>
+  </section>
+</div>

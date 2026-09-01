@@ -1,0 +1,66 @@
+<%# Gestión > Bloqueo de equipo > Procesando solicitud — Figma 508:12332
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<%# ── Topbar CTAs ──────────────────────────────────────────────────────── %>
+<% content_for :topbar_right do %>
+  <div class="alestra-topbar__actions">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+    <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">&#128276;</button>
+  </div>
+<% end %>
+
+<%# ── Section header ──────────────────────────────────────────────────── %>
+<section class="alestra-gestion-header">
+  <div class="alestra-gestion-header__text">
+    <h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+    <p class="alestra-gestion-header__desc">
+      Administra todas las líneas y servicios de tu cuenta de forma rápida y segura.<br>
+      Consulta consumos, realiza cambios y activa o desactiva líneas fácilmente.
+    </p>
+    <span class="alestra-badge alestra-badge--active">Promoción de datos dobles</span>
+  </div>
+</section>
+
+<%# ── Lines table (background) ────────────────────────────────────────── %>
+<div class="alestra-gestion-tabla">
+  <div class="alestra-table">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">›</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# ── Modal: Procesando solicitud ────────────────────────────────────── %>
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" id="procesando-bloqueo-equipo-backdrop"></div>
+  <div class="alestra-modal" id="procesando-bloqueo-equipo-modal" role="dialog" aria-modal="true" aria-labelledby="procesando-bloqueo-equipo-title">
+    <div class="alestra-modal__inner alestra-modal__inner--centered">
+      <h2 class="alestra-modal__title" id="procesando-bloqueo-equipo-title">Bloqueo de equipo</h2>
+
+      <div class="alestra-spinner-overlay">
+        <div class="alestra-spinner alestra-spinner--lg" role="status" aria-label="Cargando"></div>
+        <p>Procesando solicitud...</p>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

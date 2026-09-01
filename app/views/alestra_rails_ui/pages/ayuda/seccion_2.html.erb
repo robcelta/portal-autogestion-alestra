@@ -1,0 +1,218 @@
+<%# Ayuda - FAQs: Agregar pregunta (sección pre-seleccionada) — Figma 649:20401
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>).
+    Background: all sections expanded. Modal: "Agregar pregunta a sección" (section pre-filled). %>
+
+<%# ── Page heading ──────────────────────────────────────────────────────── %>
+<section class="alestra-page-heading">
+  <h1 class="alestra-page-title">Ayuda - FAQs</h1>
+  <div class="alestra-page-heading__actions">
+    <a href="<%= ayuda_agregar_path %>" class="alestra-cta-circle" aria-label="Editar preguntas">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-1.414.586H9v-2a2 2 0 01.586-1.414z" />
+      </svg>
+    </a>
+    <a href="<%= ayuda_seccion_1_path %>" class="alestra-cta-circle" aria-label="Agregar pregunta">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<%# ── FAQ sections (all expanded — background) ──────────────────────────── %>
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">1. Servicio en el extranjero</h2>
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué paquetes tengo disponibles para viajar al extranjero?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Deberás entrar al menú "Gestión de líneas y servicios" → "Productos adicionales" → "Añadir recarga o paquete" → "Paquetes por países" → Elegir país</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">2. Garantías de equipos</h2>
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Cómo tramito la garantía de mi dispositivo de telefonía celular?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>El trámite es directamente con la marca del dispositivo:</p>
+        <ul>
+          <li>Samsung: Marca al 800 726 7864</li>
+          <li>Motorola: Marca al 800 0210 000</li>
+          <li>iPhone: Marca al 55 5209 1200</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Cómo tramitar la garantía de mi dispositivo de datos?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>El trámite es directamente con la marca del dispositivo:</p>
+        <ul>
+          <li>Peplink: 800-</li>
+          <li>Quamtum: 800 -</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">3. Característica del servicio</h2>
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué es el servicio de Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Es una solución que permite a los usuarios conectarse a las tres principales redes móviles de México: Radio Móvil DIPSA, AT&amp;T y Altán.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Lo que no hace la red Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <ul>
+          <li>No se conecta automáticamente a la red con mejor señal.</li>
+          <li>No se conecta automáticamente a la red con mayor velocidad.</li>
+          <li>No cambia de red hasta que se pierde por completo la señal actual.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>3. ¿Cómo me cambio de red manualmente?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p><strong>Android:</strong> Ajustes → Conexiones → Redes Móviles → Operadores de RED</p>
+        <p><strong>iOS:</strong> Configuración → Red celular → Seleccionar operador</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">4. Planes y Recargas</h2>
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué incluyen los planes empresariales?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los planes empresariales tanto control como postpago incluyen uso de datos en México, Estados Unidos y Cánada, minutos ilimitados.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Qué es un plan postpago o no controlado?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los Planes postpago - libre: Te permite realizar consumos excedentes a tu plan base.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>3. ¿Qué es un plan control?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los planes control: Te permiten restringir cargos excedentes en tu factura.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>4. ¿Cómo realizó una recarga?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Deberás entrar al menú "Gestión de líneas y servicios" → "Productos adicionales" → "Añadir recarga o paquete" → Planes → Elige la recarga.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>5. ¿Cómo funciona la oferta de datos móviles en modalidad pool?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>En resumen: todas las líneas comparten el mismo pool de datos, optimizando el uso y reduciendo costos.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>6. ¿Qué es el servicio de Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Es una solución que permite a los usuarios conectarse a las tres principales redes móviles de México: Telcel, AT&amp;T y Altán.</p>
+      </div>
+    </div>
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" data-action="click->alestra--accordion#toggle">
+        <span>7. ¿Lo que no hace la red Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <ul>
+          <li>No se conecta automáticamente a la red con mejor señal.</li>
+          <li>No se conecta automáticamente a la red con mayor velocidad.</li>
+          <li>No cambia de red hasta que se pierde por completo la señal actual.</li>
+          <li>No incluye conectividad 5G.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Modal overlay: Agregar pregunta a sección (section pre-selected) ──── %>
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop"></div>
+  <div class="alestra-modal alestra-modal--form">
+    <h2 class="alestra-modal__title">Agregar pregunta a sección</h2>
+
+    <form action="<%= ayuda_seccion_3_path %>" method="get">
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="ayuda_seccion">Sección</label>
+        <select class="alestra-input" id="ayuda_seccion" name="seccion">
+          <option value="" disabled>Elegir una sección</option>
+          <option value="1" selected>Qué debo hacer si voy a viajar al extran...</option>
+          <option value="2">2. Garantías de equipos</option>
+          <option value="3">3. Característica del servicio</option>
+          <option value="4">4. Planes y Recargas</option>
+        </select>
+      </div>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="ayuda_pregunta">Pregunta nueva*</label>
+        <input class="alestra-input" type="text" id="ayuda_pregunta" name="pregunta" placeholder="Agregar pregunta">
+      </div>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="ayuda_respuesta">Respuesta*</label>
+        <textarea class="alestra-input" id="ayuda_respuesta" name="respuesta" placeholder="Agregar respuesta" rows="4"></textarea>
+      </div>
+
+      <div class="alestra-modal__footer">
+        <a href="<%= ayuda_root_path %>" class="alestra-modal__cancel">Cancelar</a>
+        <button type="submit" class="alestra-btn-primary">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</turbo-frame>

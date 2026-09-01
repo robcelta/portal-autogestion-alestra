@@ -1,0 +1,22 @@
+<%
+  title = local_assigns.fetch(:title)
+  message = local_assigns.fetch(:message)
+  action_path = local_assigns.fetch(:action_path, gestion_root_path)
+%>
+<div class="alestra-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <section class="alestra-modal alestra-modal--sm alestra-modal--success"
+           data-alestra--modal-target="dialog"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="workflow-success-title">
+    <div class="alestra-modal__icon alestra-modal__icon--success" aria-hidden="true">✓</div>
+    <div class="alestra-modal__header">
+      <h2 id="workflow-success-title" class="alestra-modal__title"><%= title %></h2>
+    </div>
+    <div class="alestra-modal__body"><p><%= message %></p></div>
+    <div class="alestra-modal__footer"><a href="<%= action_path %>" class="alestra-btn-primary">Aceptar</a></div>
+  </section>
+</div>

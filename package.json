@@ -1,0 +1,26 @@
+{
+  "name": "alestra-rails-ui-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:ruby && npm run test:unit",
+    "test:all": "npm run test && npm run test:e2e",
+    "test:ruby": "test/dummy/bin/rails test",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@hotwired/stimulus": "^3.2.2",
+    "@playwright/test": "^1.52.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@vitest/coverage-v8": "^3.1.2",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.1.2"
+  }
+}

@@ -1,0 +1,106 @@
+<%# Gestión > Bloqueo de equipo > Validación/errores — Figma 508:11836
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<%# ── Topbar CTAs ──────────────────────────────────────────────────────── %>
+<% content_for :topbar_right do %>
+  <div class="alestra-topbar__actions">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+    <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">&#128276;</button>
+  </div>
+<% end %>
+
+<%# ── Section header ──────────────────────────────────────────────────── %>
+<section class="alestra-gestion-header">
+  <div class="alestra-gestion-header__text">
+    <h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+    <p class="alestra-gestion-header__desc">
+      Administra todas las líneas y servicios de tu cuenta de forma rápida y segura.<br>
+      Consulta consumos, realiza cambios y activa o desactiva líneas fácilmente.
+    </p>
+    <span class="alestra-badge alestra-badge--active">Promoción de datos dobles</span>
+  </div>
+</section>
+
+<%# ── Lines table (background) ────────────────────────────────────────── %>
+<div class="alestra-gestion-tabla">
+  <div class="alestra-table">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">›</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# ── Modal: Bloqueo de equipo — con errores de validación ──────────── %>
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" id="confirmar-bloqueo-equipo-backdrop"></div>
+  <div class="alestra-modal alestra-modal--confirm" id="confirmar-bloqueo-equipo-modal" role="dialog" aria-modal="true" aria-labelledby="confirmar-bloqueo-equipo-title">
+    <div class="alestra-modal__inner">
+      <h2 class="alestra-modal__title" id="confirmar-bloqueo-equipo-title">Bloqueo de equipo</h2>
+
+      <p class="alestra-modal__body-text">
+        Llena los siguientes datos para solicitar el bloqueo de tu equipo.<br>
+        En un plazo de hasta 48 horas, recibirás un correo de confirmación del bloqueo.
+      </p>
+
+      <%= form_with url: gestion_bloqueo_equipo_procesando_path, method: :post, local: true do |f| %>
+        <div class="alestra-form-grid alestra-form-grid--2col">
+          <div class="alestra-form-group alestra-form-group--error">
+            <%= f.label :marca, "Marca*", class: "alestra-label" %>
+            <%= f.text_field :marca, class: "alestra-input alestra-input--error", placeholder: "SAMSUNG" %>
+            <span class="alestra-form-error">Ingresar marca válida</span>
+          </div>
+          <div class="alestra-form-group alestra-form-group--error">
+            <%= f.label :modelo, "Modelo*", class: "alestra-label" %>
+            <%= f.text_field :modelo, class: "alestra-input alestra-input--error", placeholder: "GALAXI 123 2025" %>
+            <span class="alestra-form-error">Ingresar modelo válido</span>
+          </div>
+          <div class="alestra-form-group alestra-form-group--error">
+            <%= f.label :imei, "IMEI*", class: "alestra-label" %>
+            <%= f.text_field :imei, class: "alestra-input alestra-input--error", placeholder: "354723091234567" %>
+            <span class="alestra-form-error">Ingresar IMEI válido</span>
+          </div>
+          <div class="alestra-form-group">
+            <%= f.label :comentarios, "Comentarios", class: "alestra-label" %>
+            <%= f.text_field :comentarios, class: "alestra-input", placeholder: "Escribe un comentario" %>
+          </div>
+          <div class="alestra-form-group alestra-form-group--full">
+            <span class="alestra-label alestra-label--accent">Adjuntar factura del equipo*</span>
+            <div class="alestra-file-upload">
+              <button type="button" class="alestra-btn-secondary alestra-btn--small alestra-file-upload__btn">
+                <%= alestra_icon("upload", css_class: "alestra-icon alestra-icon--sm") %> Subir archivo
+              </button>
+            </div>
+            <p class="alestra-form-hint">
+              Si el equipo lo adquiriste con Alestra Móvil, solicítala en Servicio al Cliente.*
+            </p>
+          </div>
+        </div>
+
+        <div class="alestra-modal__footer">
+          <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+          <%= f.submit "Confirmar", class: "alestra-btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>

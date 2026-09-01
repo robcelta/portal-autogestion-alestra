@@ -1,0 +1,146 @@
+<%# Configuración — Editar (modal: agregar correo) — Figma 392:7617
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>).
+    Shows same page as index with a dimmed overlay + modal dialog. %>
+
+<%# ── Page heading ──────────────────────────────────────────────────────── %>
+<section class="alestra-page-heading">
+  <div class="alestra-page-heading__tabs">
+    <a href="<%= configuracion_root_path %>" class="alestra-btn-primary alestra-btn--small alestra-btn--active">Perfil y notificaciones</a>
+    <a href="<%= configuracion_perfil_path %>" class="alestra-btn-secondary alestra-btn--small">Permisos</a>
+  </div>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+  </button>
+</section>
+
+<h1 class="alestra-page-title">Perfil y notificaciones</h1>
+
+<%# ── Main two-column card (dimmed — modal open) ────────────────────────── %>
+<div class="alestra-card alestra-configuracion-card alestra-configuracion-card--dimmed" aria-hidden="true">
+
+  <div class="alestra-configuracion-card__left">
+    <div class="alestra-configuracion-profile">
+      <div class="alestra-avatar-gradient" aria-hidden="true">JP</div>
+      <div class="alestra-configuracion-profile__info">
+        <span class="alestra-badge alestra-badge--active">Cuenta activa desde 27/09/2020</span>
+        <p class="alestra-configuracion-profile__name">Juan Pérez</p>
+        <p class="alestra-configuracion-profile__role">Administrador de cuenta</p>
+        <p class="alestra-configuracion-profile__email">Juanperez@email.com</p>
+        <p class="alestra-configuracion-profile__phone">618 382 5441</p>
+      </div>
+    </div>
+    <div class="alestra-configuracion-section">
+      <h3 class="alestra-configuracion-section__title">Direcciones</h3>
+      <div class="alestra-configuracion-address">
+        <p class="alestra-configuracion-address__label">Dirección de facturación</p>
+        <p class="alestra-configuracion-address__value">Av. Lázaro Cárdenas 2400, Valle Oriente, 66269 San Pedro Garza García, N.L.</p>
+      </div>
+    </div>
+    <div class="alestra-configuracion-section">
+      <h3 class="alestra-configuracion-section__title">Acciones rápidas</h3>
+      <div class="alestra-configuracion-actions">
+        <a href="<%= configuracion_editar_path %>" class="alestra-btn-primary alestra-btn--small">Editar información</a>
+        <a href="<%= configuracion_seguridad_path %>" class="alestra-btn-primary alestra-btn--small">Cambiar contraseña</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="alestra-configuracion-card__right">
+    <div class="alestra-configuracion-notif-header">
+      <h2 class="alestra-configuracion-notif-header__title">Notificaciones</h2>
+      <p class="alestra-configuracion-notif-header__desc">
+        Aquí puedes controlar las notificaciones que deseas recibir y a qué correos deben llegar.
+      </p>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Movimientos de líneas</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" checked disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" checked disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+      <p class="alestra-configuracion-notif-group__send-label">Enviar notificaciones a:</p>
+      <div class="alestra-email-pills">
+        <span class="alestra-email-pill">
+          Juanperez@email.com
+          <button type="button" class="alestra-email-pill__edit" aria-label="Editar correo" disabled>✏</button>
+          <button type="button" class="alestra-email-pill__remove" aria-label="Eliminar correo" disabled>🗑</button>
+        </span>
+        <span class="alestra-add-email">Agregar correo +</span>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Alerta de alto consumo</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" checked disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Noticias</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" checked disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Fallas o mantenimiento del servicio</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" checked disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch"><input type="checkbox" disabled><span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span></label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alestra-filter alestra-configuracion-filter alestra-configuracion-filter--dimmed" aria-hidden="true">
+  <span class="alestra-filter__label">Filtrar por:</span>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-ciudad-e">Ciudad</label>
+    <select id="filter-ciudad-e" class="alestra-input alestra-input--select" disabled><option value="">Seleccionar</option></select>
+  </div>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-oferta-e">Oferta</label>
+    <select id="filter-oferta-e" class="alestra-input alestra-input--select" disabled><option value="">Seleccionar</option></select>
+  </div>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-cliente-e">Cliente</label>
+    <select id="filter-cliente-e" class="alestra-input alestra-input--select" disabled><option value="">Seleccionar</option></select>
+  </div>
+  <div class="alestra-filter__search">
+    <input type="search" class="alestra-input alestra-input--search" placeholder="Buscar..." aria-label="Buscar" disabled>
+  </div>
+</div>
+
+<%# ── Modal overlay ─────────────────────────────────────────────────────── %>
+<div class="alestra-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-editar-title">
+  <div class="alestra-modal">
+    <h2 id="modal-editar-title" class="alestra-modal__title">Agregar correo a notificación de movimientos</h2>
+    <p class="alestra-modal__body">
+      El correo que ingreses recibirá notificaciones cada vez que haya un movimiento en alguna de tus líneas.
+    </p>
+    <div class="alestra-form-group">
+      <label class="alestra-label" for="modal-email-input">Correo electrónico</label>
+      <input id="modal-email-input" type="email" class="alestra-input" placeholder="Ingresar correo electrónico">
+    </div>
+    <div class="alestra-modal__actions">
+      <a href="<%= configuracion_facturacion_path %>" class="alestra-btn-primary alestra-btn--small">Aceptar</a>
+    </div>
+  </div>
+</div>

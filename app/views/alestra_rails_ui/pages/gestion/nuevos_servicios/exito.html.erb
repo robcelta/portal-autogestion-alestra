@@ -1,0 +1,8 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+<%= render partial: "alestra_rails_ui/shared/workflow_success", locals: {
+  title: "¡Solicitud de servicio enviada!",
+  message: "Registramos la solicitud de tu nueva línea. Un asesor se pondrá en contacto contigo durante las próximas 24 horas."
+} %>

@@ -1,0 +1,150 @@
+/* Account configuration - Figma 146:30291 and related states */
+.alestra-page-heading__tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.alestra-configuracion-page {
+  max-width: 90rem;
+  margin-inline: auto;
+}
+
+.alestra-configuracion-card {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.95fr) minmax(360px, 1.3fr);
+  gap: 2.5rem;
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--alestra-light-gray, #e7e7f0);
+  box-shadow: none;
+}
+.alestra-configuracion-card--dimmed,
+.alestra-configuracion-filter--dimmed { opacity: 0.45; pointer-events: none; }
+.alestra-configuracion-card__left,
+.alestra-configuracion-card__right { min-width: 0; }
+
+.alestra-configuracion-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.alestra-configuracion-profile > .alestra-avatar-gradient {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--alestra-blue-digital, #00b8ff);
+  font-size: 0.75rem;
+}
+.alestra-configuracion-profile__info { min-width: 0; }
+.alestra-configuracion-profile__name,
+.alestra-configuracion-profile__role,
+.alestra-configuracion-profile__email,
+.alestra-configuracion-profile__phone { margin: 0.125rem 0; font-size: 0.8125rem; }
+.alestra-configuracion-profile__name { margin-top: 0.6rem; color: #000; font-weight: 700; }
+.alestra-configuracion-profile__role,
+.alestra-configuracion-profile__email,
+.alestra-configuracion-profile__phone { color: #535359; }
+
+.alestra-configuracion-section { margin-top: 1.5rem; }
+.alestra-configuracion-section__title,
+.alestra-configuracion-notif-header__title,
+.alestra-configuracion-notif-group__title {
+  margin: 0 0 0.5rem;
+  color: var(--alestra-blue-visionary, #10069f);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.alestra-configuracion-address__label,
+.alestra-configuracion-address__value { margin: 0; font-size: 0.8125rem; line-height: 1.4; }
+.alestra-configuracion-address__label { font-weight: 700; }
+.alestra-configuracion-address__value { color: #535359; text-transform: uppercase; }
+.alestra-configuracion-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+
+.alestra-configuracion-notif-header__desc {
+  margin: 0 0 1rem;
+  color: #1f1f1f;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+.alestra-configuracion-notif-group {
+  padding: 1rem;
+  border: 1px solid var(--alestra-light-gray, #e7e7f0);
+  border-radius: 0.75rem;
+}
+.alestra-configuracion-notif-group + .alestra-configuracion-notif-group { margin-top: 0.75rem; }
+.alestra-switch-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.45rem 0; }
+.alestra-switch-row__label { color: #535359; font-size: 0.75rem; }
+.alestra-configuracion-notif-group__send-label { margin: 0.75rem 0 0.4rem; color: #535359; font-size: 0.7rem; }
+.alestra-email-pills { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.alestra-email-pill,
+.alestra-add-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.6rem;
+  padding: 0.2rem 0.65rem;
+  color: #535359;
+  background: #fff;
+  border: 1px solid var(--alestra-light-gray, #e7e7f0);
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  text-decoration: none;
+}
+.alestra-add-email { color: #315b51; background: #e4faf1; border-color: transparent; }
+.alestra-email-pill__edit,
+.alestra-email-pill__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  color: #535359;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.alestra-email-pill__edit:hover,
+.alestra-email-pill__remove:hover { color: var(--alestra-blue-visionary, #10069f); background: var(--alestra-light-blue, #ebf0f8); }
+
+.alestra-configuracion-filter {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(120px, 0.55fr)) minmax(180px, 1fr);
+  align-items: end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+.alestra-configuracion-filter .alestra-label { font-size: 0.75rem; }
+.alestra-configuracion-filter .alestra-input { padding: 0.55rem 0.75rem; font-size: 0.8125rem; }
+.alestra-filter__label { align-self: center; font-weight: 600; }
+.alestra-configuracion-active-filters { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin: 0.5rem 0 1.5rem; }
+.alestra-configuracion-active-filters__label { color: var(--alestra-blue-visionary, #10069f); font-weight: 700; }
+.alestra-filter-tag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.65rem; color: var(--alestra-blue-visionary, #10069f); border: 1px solid currentColor; border-radius: 0.25rem; }
+.alestra-filter-tag__remove { padding: 0; color: inherit; background: transparent; border: 0; cursor: pointer; font-size: 1rem; }
+.alestra-configuracion-active-filters__clear { color: var(--alestra-purple-mobility, #ac4fc6); font-weight: 700; text-decoration: none; }
+.alestra-configuracion-search-loading { display: flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: 12rem; color: #535359; }
+.alestra-configuracion-search-results__heading { color: var(--alestra-blue-visionary, #10069f); font-weight: 700; }
+.alestra-configuracion-result-group { max-width: 24rem; padding: 1rem; border: 1px solid var(--alestra-light-gray, #e7e7f0); border-radius: 0.75rem; }
+.alestra-configuracion-result-group__title { margin: 0 0 0.75rem; color: var(--alestra-blue-visionary, #10069f); }
+
+.alestra-configuracion-permisos-card { display: grid; gap: 1rem; max-width: 56rem; border: 1px solid var(--alestra-light-gray, #e7e7f0); box-shadow: none; }
+.alestra-configuracion-permiso { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem; box-shadow: none; }
+.alestra-configuracion-permiso__title { margin: 0; color: var(--alestra-blue-visionary, #10069f); font-weight: 700; }
+.alestra-configuracion-permiso__desc { margin: 0.25rem 0 0; color: #535359; font-size: 0.8125rem; }
+
+@media (max-width: 1280px) {
+  .alestra-configuracion-card { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .alestra-configuracion-filter { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
+  .alestra-configuracion-filter > .alestra-filter__label { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .alestra-page-heading__tabs { margin-left: 0; flex-wrap: wrap; }
+  .alestra-configuracion-card { padding: 1rem; }
+  .alestra-configuracion-filter { grid-template-columns: 1fr; }
+  .alestra-configuracion-permiso { align-items: flex-start; }
+}

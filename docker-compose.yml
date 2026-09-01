@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - bundle_data:/usr/local/bundle
+    environment:
+      RAILS_ENV: development
+      BUNDLE_FROZEN: "1"
+      SECRET_KEY_BASE: e0f7582a8f4fbd56c4f6b52bab1ec77c77ae5de1a0eb651c9e051937f9ca5c90ee98ac806c98f1cb0257eccef8f771124af6a72174f900df21f412efa4e6d244
+    working_dir: /app/test/dummy
+    command: bin/rails server -b 0.0.0.0
+
+volumes:
+  bundle_data:

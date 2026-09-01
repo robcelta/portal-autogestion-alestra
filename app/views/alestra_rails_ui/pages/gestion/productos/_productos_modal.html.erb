@@ -1,0 +1,103 @@
+<%
+  active = local_assigns.fetch(:active, "roaming")
+  packages = [
+    { name: "Paquete 5 GB América", price: "$999", capacity: "5 GB", countries: "América", vigencia: "30 días" },
+    { name: "Paquete 3 GB Europa",  price: "$1,299", capacity: "3 GB", countries: "Europa", vigencia: "15 días" },
+    { name: "Paquete 1 GB Global",  price: "$799", capacity: "1 GB", countries: "Global",  vigencia: "7 días" },
+    { name: "Paquete 10 GB Asia",   price: "$1,599", capacity: "10 GB", countries: "Asia",   vigencia: "30 días" }
+  ]
+%>
+
+<div class="alestra-modal-backdrop" id="productos-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--product"
+       id="productos-modal"
+       data-alestra--modal-target="dialog"
+       role="dialog" aria-modal="true" aria-labelledby="productos-modal-title">
+    <button type="button" class="alestra-modal__close" aria-label="Cerrar"
+            data-action="click->alestra--modal#close">&times;</button>
+    <div class="alestra-modal__inner">
+      <h2 class="alestra-modal__title" id="productos-modal-title">Añade productos adicionales a tu línea</h2>
+
+      <div class="alestra-modal__body">
+        <p>
+          Agrega datos, minutos o SMS a tu línea cuando lo necesites. Elige entre recargas por única ocasión o paquetes recurrentes mensuales.*
+        </p>
+        <p class="alestra-modal__footnote-title"><strong>Tipos de recarga:</strong></p>
+        <ul class="alestra-modal__list">
+          <li><strong>Única ocasión (Nacional / EU / CAN):</strong> Úsala cuando necesites datos extra por unos días.</li>
+          <li><strong>Mensuales (Nacional / EU / CAN):</strong> Ideal si usas datos adicionales mes con mes. Puedes cancelarla cuando lo desees.</li>
+          <li><strong>Roaming Internacional:</strong> Paquetes de única ocasión ideales para cuando viajas al extranjero, fuera de Estados Unidos y Canadá.</li>
+        </ul>
+      </div>
+
+      <div class="alestra-modal__tab-row">
+        <a href="<%= gestion_productos_unica_path %>"
+           class="alestra-btn-secondary alestra-btn--small <%= 'alestra-btn--hidden' if active == 'unica' %>">
+          Única Ocasión <span aria-hidden="true">📅</span>
+        </a>
+        <a href="<%= gestion_productos_mensual_path %>"
+           class="alestra-btn-secondary alestra-btn--small <%= 'alestra-btn--hidden' if active == 'mensual' %>">
+          Mensuales <span aria-hidden="true">📱</span>
+        </a>
+        <a href="<%= gestion_productos_paises_path %>"
+           class="alestra-btn-primary alestra-btn--small <%= 'alestra-btn--hidden' if active == 'paises' %>">
+          Roaming Internacional <span aria-hidden="true">🌐</span>
+        </a>
+      </div>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="pais-select">Busca paquetes disponibles por país</label>
+        <select id="pais-select" class="alestra-input">
+          <option value="argentina" selected>Argentina, China, Japón</option>
+          <option value="china">China</option>
+          <option value="japon">Japón</option>
+        </select>
+      </div>
+
+      <div class="alestra-product-results">
+        <span class="alestra-product-results__label">Mostrando resultados para:</span>
+        <span class="alestra-product-results__value">Argentina</span>
+      </div>
+
+      <div class="alestra-product-table">
+        <div class="alestra-product-table__header">
+          <span>Nombre recarga</span>
+          <span>Precio</span>
+          <span>Capacidad</span>
+          <span>Países incluidos</span>
+          <span>Vigencia</span>
+          <span>Acción</span>
+        </div>
+        <% packages.each do |pkg| %>
+          <div class="alestra-product-table__row">
+            <span><%= pkg[:name] %></span>
+            <span><%= pkg[:price] %></span>
+            <span><%= pkg[:capacity] %></span>
+            <span><%= pkg[:countries] %></span>
+            <span><%= pkg[:vigencia] %></span>
+            <span>
+              <label class="alestra-product-table__checkbox">
+                <input type="checkbox" name="recarga[]" value="<%= pkg[:name] %>">
+                Seleccionar
+              </label>
+            </span>
+          </div>
+        <% end %>
+      </div>
+
+      <p class="alestra-modal__footnote">
+        * Las recargas no sustituyen tu plan base. Los consumos se reflejan en tu factura.<br>
+        Todos los precios están expresados en pesos mexicanos (MXN).<br>
+        * Puedes seleccionar más de 1 recarga si así lo requieres.
+      </p>
+
+      <div class="alestra-modal__footer">
+        <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+        <a href="<%= gestion_productos_confirmar_path %>" class="alestra-btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
+  <title id="title">Distribución del consumo</title>
+  <desc id="description">El consumo bajo representa 36 por ciento, el medio 35 por ciento y el excedido 29 por ciento.</desc>
+  <circle cx="60" cy="60" r="43" stroke="#E7E7F0" stroke-width="18"/>
+  <circle cx="60" cy="60" r="43" stroke="#22C55E" stroke-width="18" stroke-linecap="butt" stroke-dasharray="97.3 270.2" transform="rotate(-90 60 60)"/>
+  <circle cx="60" cy="60" r="43" stroke="#F59E0B" stroke-width="18" stroke-linecap="butt" stroke-dasharray="94.6 270.2" stroke-dashoffset="-97.3" transform="rotate(-90 60 60)"/>
+  <circle cx="60" cy="60" r="43" stroke="#EF4444" stroke-width="18" stroke-linecap="butt" stroke-dasharray="78.3 270.2" stroke-dashoffset="-191.9" transform="rotate(-90 60 60)"/>
+  <text x="60" y="56" text-anchor="middle" fill="#10069F" font-family="Arial, sans-serif" font-size="20" font-weight="700">345</text>
+  <text x="60" y="74" text-anchor="middle" fill="#535359" font-family="Arial, sans-serif" font-size="10">líneas</text>
+</svg>

@@ -1,0 +1,38 @@
+<%
+  current = request.path
+%>
+
+<a href="<%= dashboard_path %>"
+   class="alestra-sidebar__item <%= _nav_active?(current, dashboard_path) ? 'alestra-sidebar__item--active' : '' %>">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("home") %></span>
+  <span>Inicio</span>
+</a>
+
+<a href="<%= gestion_root_path %>"
+   class="alestra-sidebar__item <%= _nav_active?(current, gestion_root_path) ? 'alestra-sidebar__item--active' : '' %>">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("gestion") %></span>
+  <span>Gestión de líneas y servicios</span>
+</a>
+
+<a href="<%= consumo_root_path %>"
+   class="alestra-sidebar__item <%= _nav_active?(current, consumo_root_path) ? 'alestra-sidebar__item--active' : '' %>">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("consumo") %></span>
+  <span>Consumo y reportes</span>
+</a>
+
+<a href="<%= configuracion_root_path %>"
+   class="alestra-sidebar__item <%= _nav_active?(current, configuracion_root_path) ? 'alestra-sidebar__item--active' : '' %>">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("configuracion") %></span>
+  <span>Configuración de cuenta</span>
+</a>
+
+<a href="<%= ayuda_root_path %>"
+   class="alestra-sidebar__item <%= _nav_active?(current, ayuda_root_path) ? 'alestra-sidebar__item--active' : '' %>">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("ayuda") %></span>
+  <span>Ayuda</span>
+</a>
+
+<a href="<%= login_path %>" class="alestra-sidebar__item">
+  <span class="alestra-sidebar__item-icon"><%= alestra_icon("cerrar_sesion") %></span>
+  <span>Cerrar sesión</span>
+</a>

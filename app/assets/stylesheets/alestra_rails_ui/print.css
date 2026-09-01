@@ -1,0 +1,26 @@
+/**
+ * Estilos de impresión. Incluir con media print o layout dedicado.
+ */
+@media print {
+  .alestra-no-print,
+  .alestra-sidebar,
+  nav,
+  footer,
+  .turbo-progress-bar {
+    display: none !important;
+  }
+
+  body.alestra-print-body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .alestra-print-main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+}

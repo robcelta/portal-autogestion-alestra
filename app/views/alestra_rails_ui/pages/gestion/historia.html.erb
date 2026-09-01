@@ -1,0 +1,51 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+  <a href="<%= gestion_historia_path %>" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+<% end %>
+
+<h1 class="alestra-page-title">Historial de cambios</h1>
+
+<div class="alestra-card alestra-filter-bar">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Tipo de cambio"><option>Tipo de cambio</option></select>
+    <select class="alestra-input alestra-input--sm" aria-label="Período"><option>Período</option></select>
+    <div class="alestra-input-wrapper alestra-filter-bar__search">
+      <input type="search" class="alestra-input" placeholder="Buscar por línea o usuario...">
+    </div>
+  </div>
+</div>
+
+<div class="alestra-table">
+  <div class="alestra-table__header alestra-gestion-table-header">
+    <span class="alestra-table__cell">Fecha</span>
+    <span class="alestra-table__cell"># de línea</span>
+    <span class="alestra-table__cell">Usuario</span>
+    <span class="alestra-table__cell">Tipo de cambio</span>
+    <span class="alestra-table__cell">Realizado por</span>
+    <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+  </div>
+  <% 10.times do %>
+    <div class="alestra-table__row">
+      <span class="alestra-table__cell">01/10/2025</span>
+      <span class="alestra-table__cell">618 382 5441</span>
+      <span class="alestra-table__cell">Jon Snow</span>
+      <span class="alestra-table__cell">Bloqueo de línea</span>
+      <span class="alestra-table__cell">Admin Empresa</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">
+        <span class="alestra-badge alestra-badge--active">Completado</span>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="alestra-table__pagination">
+  <span class="alestra-table__pagination-info">1-10 de 152 resultados</span>
+  <nav class="alestra-pagination" aria-label="Paginación">
+    <button class="alestra-pagination__btn" aria-label="Anterior">‹</button>
+    <button class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+    <button class="alestra-pagination__btn">2</button>
+    <button class="alestra-pagination__btn">3</button>
+    <button class="alestra-pagination__btn" aria-label="Siguiente">›</button>
+  </nav>
+</div>

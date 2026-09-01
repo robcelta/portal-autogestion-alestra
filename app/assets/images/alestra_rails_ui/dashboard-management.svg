@@ -1,0 +1,8 @@
+<svg viewBox="0 0 96 144" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gestión de líneas">
+  <path d="M96 0V144H0L96 0Z" fill="#10069F"/>
+  <path d="M96 42V144H28L96 42Z" fill="#00B8FF" fill-opacity=".9"/>
+  <rect x="39" y="53" width="27" height="54" rx="5" stroke="#FFF" stroke-width="4"/>
+  <path d="M46 64h13M46 73h13M46 82h13M46 91h8" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="71" cy="109" r="13" fill="#AC4FC6"/>
+  <path d="M71 103v12M65 109h12" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+</svg>

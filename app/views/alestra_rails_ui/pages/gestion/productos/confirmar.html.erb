@@ -1,0 +1,68 @@
+<%# Gestión > Productos > Confirmar solicitud — Figma 119:6145
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<% content_for :topbar_right do %>
+  <%= render "alestra_rails_ui/pages/gestion/productos/topbar" %>
+<% end %>
+
+<%= render "alestra_rails_ui/pages/gestion/productos/gestion_header" %>
+
+<div class="alestra-modal-backdrop" id="confirmar-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--product"
+       id="confirmar-modal"
+       data-alestra--modal-target="dialog"
+       role="dialog" aria-modal="true" aria-labelledby="confirmar-modal-title">
+    <button type="button" class="alestra-modal__close" aria-label="Cerrar"
+            data-action="click->alestra--modal#close">&times;</button>
+    <div class="alestra-modal__inner">
+      <h2 class="alestra-modal__title" id="confirmar-modal-title">Confirmar solicitud de producto</h2>
+
+      <div class="alestra-modal__body">
+        <p>Estás a punto de agregar el siguiente producto a tu línea. Revisa los detalles antes de confirmar.</p>
+      </div>
+
+      <div class="alestra-card alestra-confirmar__summary">
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Línea:</span>
+          <span class="alestra-confirmar__value">618 382 5441</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Usuario:</span>
+          <span class="alestra-confirmar__value">Jon Snow</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Producto:</span>
+          <span class="alestra-confirmar__value">Paquete 5 GB América</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Tipo:</span>
+          <span class="alestra-confirmar__value">Roaming Internacional</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Países incluidos:</span>
+          <span class="alestra-confirmar__value">Argentina</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Capacidad:</span>
+          <span class="alestra-confirmar__value">5 GB</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Vigencia:</span>
+          <span class="alestra-confirmar__value">30 días</span>
+        </div>
+        <div class="alestra-confirmar__row">
+          <span class="alestra-confirmar__label">Precio:</span>
+          <span class="alestra-confirmar__value">$999 MXN</span>
+        </div>
+      </div>
+
+      <div class="alestra-modal__footer">
+        <a href="<%= gestion_productos_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+        <a href="<%= gestion_productos_exito_path %>" class="alestra-btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>

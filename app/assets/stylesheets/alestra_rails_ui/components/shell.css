@@ -1,0 +1,195 @@
+/* Classic header layout (non-portal pages) */
+.alestra-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.alestra-shell__header {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--alestra-gray-200);
+  background: #fff;
+  padding: 1rem 1.5rem;
+}
+.alestra-shell__header-inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.alestra-shell__main {
+  flex: 1;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.alestra-shell__footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  border-top: 1px solid var(--alestra-gray-200);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--alestra-color-muted);
+}
+
+/* Devise login background */
+.alestra-devise-shell {
+  min-height: 100vh;
+  background: #fff;
+}
+.alestra-auth-flash { position: fixed; z-index: 50; top: 1rem; left: 50%; transform: translateX(-50%); max-width: min(36rem, calc(100vw - 2rem)); }
+
+/* Utilities */
+.alestra-flex { display: flex; }
+.alestra-items-center { align-items: center; }
+.alestra-gap-3 { gap: 0.75rem; }
+.alestra-mb-4 { margin-bottom: 1rem; }
+
+/* Login pages */
+.alestra-login-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.alestra-login-panel {
+  flex: 0 1 737px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 84px;
+}
+
+.alestra-login-panel--loading {
+  align-items: center;
+  position: relative;
+}
+
+.alestra-login-form-wrap {
+  max-width: 569px;
+  width: 100%;
+}
+
+.alestra-login-logo-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.alestra-login-title {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--alestra-color-primary);
+  margin: 0 0 1rem;
+  line-height: 1.3;
+}
+
+.alestra-login-subtitle {
+  font-size: 1rem;
+  color: var(--alestra-gray-700);
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+.alestra-login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.alestra-login-link {
+  font-size: 0.875rem;
+  color: var(--alestra-purple-600);
+  text-decoration: none;
+}
+
+.alestra-login-link--strong {
+  font-weight: 500;
+}
+
+.alestra-login-submit {
+  width: 100%;
+}
+
+.alestra-login-signup {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--alestra-gray-700);
+}
+
+.alestra-login-password-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.alestra-login-form-wrap--dimmed {
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
+
+.alestra-login-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+}
+
+.alestra-login-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.alestra-login-gallery {
+  flex: 1 1 599px;
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.alestra-login-gallery__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alestra-login-gallery__tile {
+  flex: 1;
+  overflow: hidden;
+}
+
+.alestra-login-gallery__tile--fixed {
+  height: 180px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .alestra-login-panel {
+    flex: 1 1 auto;
+    max-width: none;
+    padding: 2rem 1.25rem;
+  }
+
+  .alestra-login-form-wrap {
+    margin: 0 auto;
+  }
+
+  .alestra-login-options {
+    gap: 1rem;
+  }
+
+  .alestra-login-gallery {
+    display: none;
+  }
+}

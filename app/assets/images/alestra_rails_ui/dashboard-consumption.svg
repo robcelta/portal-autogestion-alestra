@@ -1,0 +1,7 @@
+<svg viewBox="0 0 96 144" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Consumo y reportes">
+  <rect width="96" height="144" fill="#00B8FF"/>
+  <path d="M0 0H96V144H22L0 122V0Z" fill="#10069F" fill-opacity=".8"/>
+  <path d="M23 104V76M39 104V58M55 104V69M71 104V43" stroke="#FFF" stroke-width="8" stroke-linecap="round"/>
+  <path d="m21 61 18-15 17 9 18-22" stroke="#AC4FC6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="74" cy="32" r="8" fill="#FFF"/>
+</svg>

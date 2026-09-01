@@ -1,0 +1,97 @@
+<div class="alestra-login-layout">
+  <div class="alestra-login-panel alestra-login-panel--loading">
+    <div class="alestra-spinner-overlay alestra-login-overlay">
+      <div class="alestra-login-overlay-content">
+        <%= image_tag "alestra_rails_ui/alestra_logo.svg", alt: "Alestra Móvil", class: "alestra-img-logo" %>
+        <div class="alestra-spinner alestra-spinner--lg"></div>
+      </div>
+    </div>
+
+    <div class="alestra-login-form-wrap alestra-login-form-wrap--dimmed">
+      <div class="alestra-login-logo-wrap">
+          <%= image_tag "alestra_rails_ui/alestra_logo.svg", alt: "Alestra Móvil", class: "alestra-img-logo" %>
+      </div>
+
+      <h1 class="alestra-login-title">
+        Bienvenido a tu portal <strong>Alestra Móvil</strong>
+      </h1>
+      <p class="alestra-login-subtitle">
+        Ingresa con tu usuario y contraseña para acceder al portal y personalizar tu experiencia.
+      </p>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="loading_username">Usuario*</label>
+        <div class="alestra-input-wrapper">
+          <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--left">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </span>
+          <input
+            class="alestra-input alestra-input--email"
+            type="text"
+            id="loading_username"
+            placeholder="Ingresa tu correo electrónico o usuario"
+            disabled
+          >
+        </div>
+      </div>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="loading_password">Contraseña*</label>
+        <div class="alestra-input-wrapper">
+          <input
+            class="alestra-input alestra-input--password"
+            type="password"
+            id="loading_password"
+            placeholder="Ingresa tu contraseña"
+            disabled
+          >
+          <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--right">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="alestra-login-options">
+        <label class="alestra-checkbox">
+          <input type="checkbox" disabled>
+          <span class="alestra-checkbox__box"></span>
+          Recuérdame
+        </label>
+        <a href="#" class="alestra-login-link">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="button" class="alestra-btn-primary alestra-btn--large alestra-login-submit" disabled>
+        Ingresar
+      </button>
+
+      <p class="alestra-login-signup">
+        ¿No tienes una cuenta?
+        <a href="#" class="alestra-login-link alestra-login-link--strong">Crear cuenta.</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="alestra-login-gallery">
+    <div class="alestra-login-gallery__col">
+      <div class="alestra-login-gallery__tile alestra-login-gallery__tile--fixed">
+        <%= image_tag "alestra_rails_ui/login-connectivity.svg", alt: "", class: "alestra-img-contain" %>
+      </div>
+      <div class="alestra-login-gallery__tile">
+        <%= image_tag "alestra_rails_ui/login-security.svg", alt: "", class: "alestra-img-contain" %>
+      </div>
+    </div>
+    <div class="alestra-login-gallery__col">
+      <div class="alestra-login-gallery__tile">
+        <%= image_tag "alestra_rails_ui/login-analytics.svg", alt: "", class: "alestra-img-contain" %>
+      </div>
+      <div class="alestra-login-gallery__tile alestra-login-gallery__tile--fixed">
+        <%= image_tag "alestra_rails_ui/login-support.svg", alt: "", class: "alestra-img-contain" %>
+      </div>
+    </div>
+  </div>
+</div>

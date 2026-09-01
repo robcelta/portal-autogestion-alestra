@@ -1,0 +1,8 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+<%= render partial: "alestra_rails_ui/shared/workflow_success", locals: {
+  title: "¡eSIM activada exitosamente!",
+  message: "La línea 618 382 5441 quedó asociada a tu eSIM. Reinicia el dispositivo para completar la activación."
+} %>

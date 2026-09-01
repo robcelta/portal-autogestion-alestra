@@ -1,0 +1,36 @@
+<%# Gestión > Productos > Éxito genérico — Figma 119:5956
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<% content_for :topbar_right do %>
+  <%= render "alestra_rails_ui/pages/gestion/productos/topbar" %>
+<% end %>
+
+<%= render "alestra_rails_ui/pages/gestion/productos/gestion_header" %>
+
+<div class="alestra-modal-backdrop" id="exito-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--success"
+       id="exito-modal"
+       data-alestra--modal-target="dialog"
+       role="dialog" aria-modal="true" aria-labelledby="exito-modal-title">
+    <button type="button" class="alestra-modal__close" aria-label="Cerrar"
+            data-action="click->alestra--modal#close">&times;</button>
+    <div class="alestra-modal__inner alestra-modal__inner--centered">
+      <div class="alestra-modal__icon alestra-modal__icon--success" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+          <circle cx="24" cy="24" r="24" fill="#e4faf1"/>
+          <path d="M14 25l7 7 13-14" stroke="#315b51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="alestra-modal__title" id="exito-modal-title">Solicitud enviada con éxito</h2>
+      <p class="alestra-modal__body-text">
+        Tu solicitud de producto adicional ha sido registrada. Pronto recibirás una confirmación por correo electrónico.
+      </p>
+      <div class="alestra-modal__footer alestra-modal__footer--centered">
+        <a href="<%= gestion_productos_root_path %>" class="alestra-btn-primary">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>

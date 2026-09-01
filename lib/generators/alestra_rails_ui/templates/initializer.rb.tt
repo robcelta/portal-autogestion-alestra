@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+# AlestraRailsUi — opcional
+# El importmap de la gema se fusiona automáticamente con el engine.
+# Los layouts están en: app/views/layouts/alestra_rails_ui/
+#
+# Ejemplo ApplicationController:
+#   layout "alestra_rails_ui/application"
+#
+# Devise (config/initializers/devise.rb o en el modelo):
+#   config.layout = "alestra_rails_ui/devise"
+#
+# ActionMailer (ApplicationMailer):
+#   layout "alestra_rails_ui/mailer"
+
+# AlestraRailsUi.configure do |config|
+# end

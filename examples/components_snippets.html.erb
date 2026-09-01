@@ -1,0 +1,473 @@
+<%# Fragmentos de ejemplo para copiar a vistas del host (no renderizar desde la gema). %>
+
+<div class="alestra-card alestra-card--border-left">
+  <h1 class="alestra-page-title">Título de página</h1>
+  <p style="color: var(--alestra-color-muted);">Texto secundario con variables CSS.</p>
+  <div style="margin-top: 1rem;">
+    <a href="#" class="alestra-btn-primary">Primario</a>
+    <a href="#" class="alestra-btn-secondary" style="margin-left: 0.5rem;">Secundario</a>
+  </div>
+</div>
+
+<div style="margin-top: 1rem;">
+  <span class="alestra-badge alestra-badge--info">Info</span>
+  <span class="alestra-badge alestra-badge--success">Éxito</span>
+  <span class="alestra-badge alestra-badge--warning">Aviso</span>
+</div>
+
+<div class="alestra-alert alestra-alert--error alestra-mb-4" role="alert">Error</div>
+<div class="alestra-alert alestra-alert--success" role="status">Correcto</div>
+
+<div class="alestra-form-group">
+  <label class="alestra-label" for="demo-input">Campo</label>
+  <input id="demo-input" type="text" class="alestra-input" placeholder="Texto">
+</div>
+
+<div class="alestra-avatar-gradient" style="width: 3rem; height: 3rem; font-size: 1rem;">AB</div>
+
+<%# Portal Shell Layout %>
+<div class="alestra-portal-shell">
+  <div class="alestra-sidebar">
+    <div class="alestra-sidebar__logo">Alestra</div>
+    <nav class="alestra-sidebar__nav">
+      <a href="#" class="alestra-sidebar__item alestra-sidebar__item--active">
+        <span class="alestra-sidebar__item-icon">🏠</span>
+        <span>Inicio</span>
+      </a>
+      <a href="#" class="alestra-sidebar__item">
+        <span class="alestra-sidebar__item-icon">📋</span>
+        <span>Gestión</span>
+      </a>
+      <a href="#" class="alestra-sidebar__item">
+        <span class="alestra-sidebar__item-icon">📊</span>
+        <span>Reportes</span>
+      </a>
+      <a href="#" class="alestra-sidebar__item">
+        <span class="alestra-sidebar__item-icon">⚙️</span>
+        <span>Configuración</span>
+      </a>
+    </nav>
+    <div class="alestra-sidebar__user">
+      <div class="alestra-sidebar__user-avatar">
+        <div class="alestra-avatar-gradient" style="width: 40px; height: 40px; font-size: 0.875rem;">JD</div>
+      </div>
+      <div class="alestra-sidebar__user-info">
+        <span class="alestra-sidebar__user-name">Juan Domínguez</span>
+        <span class="alestra-sidebar__user-role">Administrador</span>
+      </div>
+    </div>
+  </div>
+  <div class="alestra-portal-main">
+    <header class="alestra-topbar">
+      <div class="alestra-topbar__left">
+        <span class="alestra-badge alestra-badge--info">Portal</span>
+      </div>
+      <div class="alestra-topbar__right">
+        <span style="font-size: 0.875rem; color: var(--alestra-color-muted);">Notificaciones</span>
+      </div>
+    </header>
+    <main class="alestra-portal-content">
+      <h1 class="alestra-page-title">Contenido principal</h1>
+    </main>
+  </div>
+</div>
+
+<%# Section Title %>
+<div class="alestra-section-title">
+  Gestión de líneas y servicios
+  <p class="alestra-section-title__subtitle">Administra tus servicios activos y solicita cambios</p>
+</div>
+
+<%# Breadcrumb %>
+<nav class="alestra-breadcrumb" aria-label="Breadcrumb">
+  <a href="#" class="alestra-breadcrumb__item">Inicio</a>
+  <span class="alestra-breadcrumb__separator">/</span>
+  <a href="#" class="alestra-breadcrumb__item">Gestión</a>
+  <span class="alestra-breadcrumb__separator">/</span>
+  <span class="alestra-breadcrumb__item--current">Bloqueo</span>
+</nav>
+
+<%# Tabs %>
+<div data-controller="alestra--tabs">
+  <div class="alestra-tabs" role="tablist">
+    <button class="alestra-tabs__tab" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="true">Consumo</button>
+    <button class="alestra-tabs__tab" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="false">Reportes</button>
+    <button class="alestra-tabs__tab" data-alestra--tabs-target="tab" data-action="click->alestra--tabs#switch" role="tab" aria-selected="false">Historial</button>
+  </div>
+  <div data-alestra--tabs-target="panel"><p style="padding: 1rem 0;">Contenido de Consumo</p></div>
+  <div data-alestra--tabs-target="panel" hidden><p style="padding: 1rem 0;">Contenido de Reportes</p></div>
+  <div data-alestra--tabs-target="panel" hidden><p style="padding: 1rem 0;">Contenido de Historial</p></div>
+</div>
+
+<%# Quick Links %>
+<div class="alestra-quick-links">
+  <a href="#" class="alestra-quick-links__card">
+    <span class="alestra-quick-links__icon">📋</span>
+    <span class="alestra-quick-links__label">Gestionar líneas</span>
+  </a>
+  <a href="#" class="alestra-quick-links__card">
+    <span class="alestra-quick-links__icon">📊</span>
+    <span class="alestra-quick-links__label">Ver consumo</span>
+  </a>
+  <a href="#" class="alestra-quick-links__card">
+    <span class="alestra-quick-links__icon">💳</span>
+    <span class="alestra-quick-links__label">Pagos</span>
+  </a>
+  <a href="#" class="alestra-quick-links__card">
+    <span class="alestra-quick-links__icon">🛡️</span>
+    <span class="alestra-quick-links__label">Seguridad</span>
+  </a>
+</div>
+
+<%# Pagination %>
+<nav class="alestra-pagination" aria-label="Pagination">
+  <button class="alestra-pagination__btn" disabled>←</button>
+  <span class="alestra-pagination__btn alestra-pagination__btn--active">1</span>
+  <button class="alestra-pagination__btn">2</button>
+  <button class="alestra-pagination__btn">3</button>
+  <button class="alestra-pagination__btn">4</button>
+  <button class="alestra-pagination__btn">5</button>
+  <button class="alestra-pagination__btn">→</button>
+</nav>
+
+<%# Filter Bar %>
+<div class="alestra-filter">
+  <div class="alestra-filter__search">
+    <span class="alestra-filter__search-icon">🔍</span>
+    <input type="text" class="alestra-filter__search-input" placeholder="Buscar...">
+  </div>
+  <span class="alestra-filter__chip">
+    Activo
+    <span class="alestra-filter__chip-close">×</span>
+  </span>
+  <span class="alestra-filter__chip">
+    Internet
+    <span class="alestra-filter__chip-close">×</span>
+  </span>
+</div>
+
+<%# Stat Indicator Card %>
+<div class="alestra-indicator" style="max-width: 240px;">
+  <span class="alestra-indicator__trend alestra-indicator__trend--up">▲ 12%</span>
+  <div class="alestra-indicator__metric">1,248</div>
+  <div class="alestra-indicator__label">Líneas activas</div>
+</div>
+
+<%# Plan Card %>
+<div class="alestra-plan-card" style="max-width: 320px;">
+  <div class="alestra-plan-card__title">Plan Empresarial</div>
+  <div class="alestra-plan-card__price">$1,299<span style="font-size: 0.875rem; font-weight: 400; color: var(--alestra-color-muted);">/mes</span></div>
+  <ul class="alestra-plan-card__features">
+    <li class="alestra-plan-card__feature">✓ 10 líneas incluidas</li>
+    <li class="alestra-plan-card__feature">✓ Internet 500 Mbps</li>
+    <li class="alestra-plan-card__feature">✓ Soporte 24/7</li>
+  </ul>
+  <div class="alestra-plan-card__cta">
+    <a href="#" class="alestra-btn-primary">Cambiar plan</a>
+  </div>
+</div>
+
+<%# Product Card %>
+<div class="alestra-product-card" style="max-width: 200px;">
+  <span class="alestra-product-card__icon">📡</span>
+  <span class="alestra-product-card__name">Internet 100Mbps</span>
+  <span class="alestra-product-card__price">$499</span>
+  <a href="#" class="alestra-btn-primary" style="width: 100%;">Contratar</a>
+</div>
+
+<%# Accordion Table %>
+<div class="alestra-table" data-controller="alestra--accordion">
+  <div class="alestra-table__header">
+    <span style="flex: 0 0 32px;"></span>
+    <span class="alestra-table__cell">Línea</span>
+    <span class="alestra-table__cell--sm">Estado</span>
+    <span class="alestra-table__cell--actions">Acciones</span>
+  </div>
+  <div class="alestra-table__row">
+    <button class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir">▶</button>
+    <span class="alestra-table__cell">Línea 01 — Internet</span>
+    <span class="alestra-table__cell--sm"><span class="alestra-badge alestra-badge--active">Activo</span></span>
+    <span class="alestra-table__cell--actions">
+      <a href="#" class="alestra-btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Editar</a>
+    </span>
+  </div>
+  <div class="alestra-table__row-detail">
+    Detalle: Velocidad contratada 100 Mbps, instalación 15/03/2025.
+  </div>
+  <div class="alestra-table__row">
+    <button class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir">▶</button>
+    <span class="alestra-table__cell">Línea 02 — Voz</span>
+    <span class="alestra-table__cell--sm"><span class="alestra-badge alestra-badge--pending">Pendiente</span></span>
+    <span class="alestra-table__cell--actions">
+      <a href="#" class="alestra-btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Editar</a>
+    </span>
+  </div>
+  <div class="alestra-table__row-detail">
+    Detalle: Portabilidad en proceso, fecha estimada 20/04/2025.
+  </div>
+</div>
+
+<%# Badge Extended States %>
+<span class="alestra-badge alestra-badge--active">Activo</span>
+<span class="alestra-badge alestra-badge--inactive">Inactivo</span>
+<span class="alestra-badge alestra-badge--pending">Pendiente</span>
+
+<%# Checkbox %>
+<label class="alestra-checkbox">
+  <input type="checkbox">
+  <span class="alestra-checkbox__box"></span>
+  Recordar sesión
+</label>
+
+<%# Switch Toggle %>
+<label class="alestra-switch">
+  <input type="checkbox">
+  <span class="alestra-switch__track">
+    <span class="alestra-switch__thumb"></span>
+  </span>
+  Notificaciones por email
+</label>
+
+<%# Radio Group %>
+<label class="alestra-radio">
+  <input type="radio" name="plan" value="basico" checked>
+  <span class="alestra-radio__circle"></span>
+  Plan Básico
+</label>
+<label class="alestra-radio">
+  <input type="radio" name="plan" value="empresarial">
+  <span class="alestra-radio__circle"></span>
+  Plan Empresarial
+</label>
+
+<%# Dropdown %>
+<div class="alestra-dropdown" data-controller="alestra--dropdown">
+  <button class="alestra-dropdown__trigger" data-action="click->alestra--dropdown#toggle">
+    <span class="alestra-dropdown__trigger-label">Seleccionar</span>
+    <span class="alestra-dropdown__chevron">▼</span>
+  </button>
+  <ul class="alestra-dropdown__menu" data-alestra--dropdown-target="menu">
+    <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opción 1</li>
+    <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opción 2</li>
+    <li class="alestra-dropdown__item" data-action="click->alestra--dropdown#select">Opción 3</li>
+  </ul>
+</div>
+
+<%# Input Variants %>
+<div class="alestra-input-wrapper">
+  <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--left">🔍</span>
+  <input type="text" class="alestra-input alestra-input--search" placeholder="Buscar...">
+</div>
+
+<div class="alestra-input-wrapper">
+  <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--left">📧</span>
+  <input type="email" class="alestra-input alestra-input--email" placeholder="correo@ejemplo.com">
+</div>
+
+<div class="alestra-input-wrapper">
+  <input type="password" class="alestra-input alestra-input--password" placeholder="Contraseña">
+  <span class="alestra-input-wrapper__icon alestra-input-wrapper__icon--right">👁</span>
+</div>
+
+<%# Small Selection Control %>
+<label class="alestra-checkbox alestra-selection-sm">
+  <input type="checkbox">
+  <span class="alestra-checkbox__box"></span>
+  Opción compacta
+</label>
+
+<%# Modal — base (always visible, use data-alestra--modal-open-value="false" to start closed) %>
+<div class="alestra-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="false"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--sm" data-alestra--modal-target="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-base-title">
+    <button class="alestra-modal__close" data-action="click->alestra--modal#close" aria-label="Cerrar">&times;</button>
+    <h2 class="alestra-modal__title" id="modal-base-title">Confirmar acción</h2>
+    <p class="alestra-modal__body">¿Estás seguro de que deseas continuar? Esta acción no se puede deshacer.</p>
+    <div class="alestra-modal__footer">
+      <button class="alestra-btn-secondary" data-action="click->alestra--modal#close">Cancelar</button>
+      <button class="alestra-btn-primary">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<%# Modal — confirm (centered icon + text + two buttons) %>
+<div class="alestra-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="false"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--sm alestra-modal--confirm" data-alestra--modal-target="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+    <button class="alestra-modal__close" data-action="click->alestra--modal#close" aria-label="Cerrar">&times;</button>
+    <div class="alestra-modal__icon alestra-modal__icon--warning">⚠</div>
+    <h2 class="alestra-modal__title" id="modal-confirm-title">¿Seguro que deseas bloquear la línea?</h2>
+    <p class="alestra-modal__body">La línea <strong>618-302-5441</strong> quedará suspendida inmediatamente.</p>
+    <div class="alestra-modal__footer">
+      <button class="alestra-btn-secondary" data-action="click->alestra--modal#close">Cancelar</button>
+      <button class="alestra-btn-primary">Bloquear</button>
+    </div>
+  </div>
+</div>
+
+<%# Modal — success (centered icon + title + single button) %>
+<div class="alestra-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--sm alestra-modal--success" data-alestra--modal-target="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
+    <button class="alestra-modal__close" data-action="click->alestra--modal#close" aria-label="Cerrar">&times;</button>
+    <div class="alestra-modal__inner alestra-modal__inner--centered">
+      <div class="alestra-modal__icon alestra-modal__icon--success">✓</div>
+      <h2 class="alestra-modal__title" id="modal-success-title">¡Línea bloqueada con éxito!</h2>
+      <p class="alestra-modal__body-text">La línea <strong>618-302-5441</strong> ha sido suspendida correctamente.</p>
+      <div class="alestra-modal__footer alestra-modal__footer--centered">
+        <button class="alestra-btn-primary" data-action="click->alestra--modal#close">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Modal — product catalogue (Figma 559:27418) — always visible, 800px wide, package table %>
+<div class="alestra-modal-backdrop"
+     data-controller="alestra--modal"
+     data-alestra--modal-open-value="true"
+     data-action="click->alestra--modal#clickOutside">
+  <div class="alestra-modal alestra-modal--product" data-alestra--modal-target="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
+    <button class="alestra-modal__close" data-action="click->alestra--modal#close" aria-label="Cerrar">&times;</button>
+    <div class="alestra-modal__inner">
+      <h2 class="alestra-modal__title" id="modal-product-title">Añade productos adicionales a tu línea</h2>
+      <div class="alestra-modal__body">
+        <p>Agrega datos, minutos o SMS a tu línea cuando lo necesites.</p>
+        <ul class="alestra-modal__list">
+          <li><strong>Única ocasión:</strong> Úsala cuando necesites datos extra por unos días.</li>
+          <li><strong>Mensuales:</strong> Ideal si usas datos adicionales mes con mes.</li>
+          <li><strong>Roaming Internacional:</strong> Paquetes para cuando viajas al extranjero.</li>
+        </ul>
+      </div>
+
+      <div class="alestra-modal__tab-row">
+        <a href="#" class="alestra-btn-secondary alestra-btn--small">Única Ocasión</a>
+        <a href="#" class="alestra-btn-secondary alestra-btn--small">Mensuales</a>
+        <a href="#" class="alestra-btn-primary alestra-btn--small">Roaming Internacional</a>
+      </div>
+
+      <div class="alestra-form-group">
+        <label class="alestra-label" for="pais-select">Busca paquetes disponibles por país</label>
+        <select id="pais-select" class="alestra-input">
+          <option selected>Argentina, China, Japón</option>
+        </select>
+      </div>
+
+      <div class="alestra-product-results">
+        <span class="alestra-product-results__label">Mostrando resultados para:</span>
+        <span class="alestra-product-results__value">Argentina</span>
+      </div>
+
+      <div class="alestra-product-table">
+        <div class="alestra-product-table__header">
+          <span>Nombre recarga</span>
+          <span>Precio</span>
+          <span>Capacidad</span>
+          <span>Países incluidos</span>
+          <span>Vigencia</span>
+          <span>Acción</span>
+        </div>
+        <div class="alestra-product-table__row">
+          <span>Paquete 5 GB América</span>
+          <span>$999</span>
+          <span>5 GB</span>
+          <span>América</span>
+          <span>30 días</span>
+          <span>
+            <label class="alestra-product-table__checkbox">
+              <input type="checkbox"> Seleccionar
+            </label>
+          </span>
+        </div>
+      </div>
+
+      <p class="alestra-modal__footnote">* Las recargas no sustituyen tu plan base. Precios en MXN.</p>
+
+      <div class="alestra-modal__footer">
+        <a href="#" class="alestra-btn-secondary">Cancelar</a>
+        <a href="#" class="alestra-btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Filter bar (Gestión de líneas) — uses alestra-filter-bar partial %>
+<div class="alestra-card alestra-filter-bar">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Plan"><option>Plan</option></select>
+    <select class="alestra-input alestra-input--sm" aria-label="Estado"><option>Estado</option></select>
+    <select class="alestra-input alestra-input--sm" aria-label="Cuenta"><option>Cuenta</option></select>
+    <div class="alestra-form-group alestra-form-group--inline alestra-filter-bar__search">
+      <span class="alestra-filter-bar__search-icon" aria-hidden="true">🔍</span>
+      <input type="search" class="alestra-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+    <button type="button" class="alestra-btn-secondary alestra-btn--small">+ Más filtros</button>
+  </div>
+  <div class="alestra-filter-bar__indicators">
+    <span class="alestra-filter-bar__indicators-label">Indicadores:</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-green">Líneas con datos disponibles</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-red">Líneas con consumo excedente</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-grey">Líneas bloqueadas</span>
+  </div>
+</div>
+
+<%# Help / floating banner (Figma 559:27418) %>
+<div class="alestra-help-banner">
+  <div class="alestra-help-banner__text">
+    <p class="alestra-help-banner__title">¿Necesitas ayuda?</p>
+    <p class="alestra-help-banner__desc">Selecciona un motivo de consulta y en breve alguien de nuestro equipo técnico se pondrá en contacto contigo.</p>
+  </div>
+  <div class="alestra-help-banner__form">
+    <label class="alestra-label alestra-help-banner__label" for="help-motivo">Motivo de consulta*</label>
+    <select id="help-motivo" class="alestra-input">
+      <option value="">Seleccione un motivo</option>
+    </select>
+  </div>
+</div>
+
+<%# Loading Spinner %>
+<div class="alestra-spinner" role="status" aria-label="Cargando"></div>
+<div class="alestra-spinner alestra-spinner--sm" role="status" aria-label="Cargando"></div>
+<div class="alestra-spinner alestra-spinner--lg" role="status" aria-label="Cargando"></div>
+
+<%# Tooltip %>
+<div class="alestra-tooltip">
+  <button class="alestra-btn-secondary">Info</button>
+  <span class="alestra-tooltip__text alestra-tooltip__text--top">Más información aquí</span>
+</div>
+
+<%# Notification Toast %>
+<div class="alestra-notification alestra-notification--success" data-controller="alestra--notification" data-alestra--notification-timeout-value="5000">
+  <span class="alestra-notification__icon">✓</span>
+  <div class="alestra-notification__content">
+    <span class="alestra-notification__message">Cambios guardados correctamente.</span>
+  </div>
+  <button class="alestra-notification__dismiss" data-action="click->alestra--notification#dismiss" aria-label="Cerrar">&times;</button>
+</div>
+
+<%# Floating Banner %>
+<div class="alestra-banner alestra-banner--info">
+  Nueva actualización disponible.
+  <button class="alestra-banner__dismiss" aria-label="Cerrar">&times;</button>
+</div>
+
+<%# Button Size Modifiers %>
+<a href="#" class="alestra-btn-primary alestra-btn--small">Pequeño</a>
+<a href="#" class="alestra-btn-primary">Normal</a>
+<a href="#" class="alestra-btn-primary alestra-btn--large">Grande</a>
+
+<%# Icon Button %>
+<button class="alestra-btn-primary alestra-btn--icon" aria-label="Editar">✎</button>
+<button class="alestra-btn-secondary alestra-btn--icon" aria-label="Eliminar">🗑</button>
+
+<%# Button with Icon %>
+<a href="#" class="alestra-btn-primary alestra-btn--with-icon">
+  <span>📋</span>
+  <span>Gestionar</span>
+</a>

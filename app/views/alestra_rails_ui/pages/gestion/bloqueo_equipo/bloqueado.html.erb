@@ -1,0 +1,171 @@
+<%# Gestión > Bloqueo de equipo > Vista con línea bloqueada (fila expandida) — Figma 119:4969
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<%# ── Topbar CTAs ──────────────────────────────────────────────────────── %>
+<% content_for :topbar_right do %>
+  <div class="alestra-topbar__actions">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+    <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+      <span class="alestra-notification-cta__dot"></span>
+      &#128276;
+    </button>
+  </div>
+<% end %>
+
+<%# ── Section header ──────────────────────────────────────────────────── %>
+<section class="alestra-gestion-header">
+  <div class="alestra-gestion-header__text">
+    <h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+    <p class="alestra-gestion-header__desc">
+      Administra todas las líneas y servicios de tu cuenta de forma rápida y segura.<br>
+      Consulta consumos, realiza cambios y activa o desactiva líneas fácilmente.
+    </p>
+    <span class="alestra-badge alestra-badge--active">Promoción de datos dobles</span>
+  </div>
+</section>
+
+<%# ── Filter bar ──────────────────────────────────────────────────────── %>
+<div class="alestra-card alestra-filter-bar">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Plan">
+      <option>Plan</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Estado">
+      <option>Estado</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Cuenta">
+      <option>Cuenta</option>
+    </select>
+    <div class="alestra-form-group alestra-form-group--inline alestra-filter-bar__search">
+      <span class="alestra-filter-bar__search-icon" aria-hidden="true">&#128269;</span>
+      <input type="search" class="alestra-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+    <button type="button" class="alestra-btn-secondary alestra-btn--small">+ Más filtros</button>
+  </div>
+  <div class="alestra-filter-bar__indicators">
+    <span class="alestra-filter-bar__indicators-label">Indicadores:</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-green">Líneas con datos disponibles</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-red">Líneas con consumo excedente</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-grey">Líneas bloqueadas</span>
+  </div>
+</div>
+
+<%# ── Lines table con fila bloqueada expandida ────────────────────────── %>
+<div class="alestra-gestion-tabla">
+  <p class="alestra-gestion-tabla__meta">
+    <strong>Última actualización:</strong> 2 minutos.
+  </p>
+
+  <div class="alestra-table" data-controller="alestra--accordion">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+
+    <%# Fila bloqueada — expandida %>
+    <div class="alestra-table__row alestra-table__row--blocked alestra-table__row--expanded">
+      <span class="alestra-table__cell">618 382 5441</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">
+        <span class="alestra-badge alestra-badge--blocked">Línea Bloqueada</span>
+      </span>
+      <span class="alestra-table__cell">Jon Snow</span>
+      <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+      <span class="alestra-table__cell">0 MB de 3.5 GB</span>
+      <span class="alestra-table__cell">5GB de capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">
+        <button type="button" class="alestra-table__expand-toggle alestra-table__expand-toggle--open" data-action="click->alestra--accordion#toggle" aria-label="Cerrar detalle" aria-expanded="true">&#8964;</button>
+      </span>
+    </div>
+
+    <%# Panel de detalle de la línea bloqueada %>
+    <div class="alestra-table__row-detail alestra-table__row-detail--open">
+      <div class="alestra-gestion-line-detail">
+
+        <%# Info de usuario %>
+        <div class="alestra-line-info">
+          <div class="alestra-line-info__row">
+            <span class="alestra-line-info__label">Usuario:</span>
+            <span class="alestra-line-info__value">Jon Snow</span>
+          </div>
+          <div class="alestra-line-info__row">
+            <span class="alestra-line-info__label">Número de teléfono:</span>
+            <span class="alestra-line-info__value">618 382 5441</span>
+          </div>
+          <div class="alestra-line-info__row">
+            <label class="alestra-checkbox-label">
+              <input type="checkbox" class="alestra-checkbox" name="vip">
+              Etiquetar línea como VIP
+            </label>
+          </div>
+        </div>
+
+        <%# Info de plan %>
+        <div class="alestra-line-plan">
+          <p class="alestra-line-plan__name">Cobertura Completa 3.5 GB_Control</p>
+          <p class="alestra-line-plan__consumo">Consumo: 0 MB de 3.5 GB</p>
+          <p class="alestra-line-plan__corte">Fecha de corte: 01/01/2026</p>
+        </div>
+
+        <%# Acciones %>
+        <div class="alestra-line-actions">
+          <p class="alestra-line-actions__title">Acciones en línea</p>
+          <a href="<%= gestion_desbloqueo_root_path %>" class="alestra-btn-primary alestra-btn--small">Desbloquear línea</a>
+          <a href="<%= gestion_desbloqueo_equipo_root_path %>" class="alestra-btn-primary alestra-btn--small">Desbloquear equipo</a>
+          <a href="#" class="alestra-btn-secondary alestra-btn--small">Activar SIM/eSIM</a>
+          <p class="alestra-line-actions__title">Solicitudes</p>
+          <a href="#" class="alestra-btn-secondary alestra-btn--small">Crecer plan</a>
+          <a href="#" class="alestra-btn-secondary alestra-btn--small">Realizar baja de línea</a>
+          <a href="#" class="alestra-btn-secondary alestra-btn--small">Solicitar reemplazo de SIM</a>
+          <a href="#" class="alestra-btn-secondary alestra-btn--small">Solicitar reemplazo de eSIM</a>
+        </div>
+
+      </div>
+    </div>
+
+    <% 7.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">
+          <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Ver detalle" aria-expanded="false">›</button>
+        </span>
+      </div>
+      <div class="alestra-table__row-detail">
+        <div class="alestra-gestion-line-detail">
+          <div class="alestra-line-info"><strong>Jon Snow</strong><br>618 382 5441</div>
+          <div class="alestra-line-plan"><p class="alestra-line-plan__name">Cobertura Completa 3.5 GB_Control</p><p class="alestra-line-plan__consumo">15% de consumo de datos</p></div>
+          <div class="alestra-line-actions"><a href="<%= gestion_bloqueo_root_path %>" class="alestra-btn-secondary alestra-btn--small">Gestionar línea</a></div>
+        </div>
+      </div>
+      <div class="alestra-table__row-detail"></div>
+    <% end %>
+  </div>
+
+  <div class="alestra-table__pagination">
+    <span class="alestra-table__pagination-info">1-10 de 2823 resultados - última consulta 14:53</span>
+    <nav class="alestra-pagination" aria-label="Paginación">
+      <button class="alestra-pagination__btn" aria-label="Anterior">‹</button>
+      <button class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+      <button class="alestra-pagination__btn">2</button>
+      <button class="alestra-pagination__btn">3</button>
+      <button class="alestra-pagination__btn">4</button>
+      <button class="alestra-pagination__btn">5</button>
+      <span class="alestra-pagination__ellipsis">...</span>
+      <button class="alestra-pagination__btn">283</button>
+      <button class="alestra-pagination__btn" aria-label="Siguiente">›</button>
+    </nav>
+  </div>
+</div>

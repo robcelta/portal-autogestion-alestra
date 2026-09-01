@@ -1,0 +1,190 @@
+<%# Consumo por línea — Figma node: 397:12822
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    Renders only the <main> content area. %>
+
+<% content_for :topbar_right do %>
+  <a href="<%= consumo_root_path %>" class="alestra-btn-secondary alestra-btn--small">
+    Consumos y reportes
+  </a>
+  <a href="<%= consumo_por_linea_path %>" class="alestra-btn-primary alestra-btn--small">
+    Consumo y reportes por línea
+  </a>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+  </button>
+<% end %>
+
+<%# ── Page heading ──────────────────────────────────────────────────────── %>
+<div style="margin-bottom: 1.5rem;">
+  <h1 class="alestra-page-title">Consumo por línea</h1>
+</div>
+
+<%# ── Filters & indicators card ────────────────────────────────────────── %>
+<div class="alestra-card" style="background: #f5f4ff; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem;">
+
+  <%# Row 1: Main filter controls %>
+  <div class="alestra-filter">
+    <span style="font-size: 1rem; font-weight: 400; white-space: nowrap;">Filtrar por:</span>
+
+    <select class="alestra-filter__search-input" style="flex: 0 0 auto; width: 110px; padding: 0.5rem 0.75rem;">
+      <option>Plan</option>
+    </select>
+
+    <select class="alestra-filter__search-input" style="flex: 0 0 auto; width: 110px; padding: 0.5rem 0.75rem;">
+      <option>Estado</option>
+    </select>
+
+    <select class="alestra-filter__search-input" style="flex: 0 0 auto; width: 110px; padding: 0.5rem 0.75rem;">
+      <option>Cuenta</option>
+    </select>
+
+    <div class="alestra-filter__search">
+      <span class="alestra-filter__search-icon">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+        </svg>
+      </span>
+      <input type="search" class="alestra-filter__search-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+
+    <button type="button" class="alestra-btn--small" style="background: none; border: none; color: #ac4fc6; font-weight: 600; cursor: pointer; white-space: nowrap; padding: 0.25rem 0.5rem;">
+      - Menos filtros
+    </button>
+  </div>
+
+  <%# Row 2: Quick filter checkboxes %>
+  <div style="display: flex; align-items: center; gap: 1.25rem; font-size: 0.9375rem;">
+    <span style="font-weight: 400; white-space: nowrap;">Filtros rápidos:</span>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="solo_activas" value="1">
+      <span class="alestra-checkbox__box"></span>
+      Solo líneas activas
+    </label>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="solo_sobreconsumo" value="1">
+      <span class="alestra-checkbox__box"></span>
+      Solo líneas con sobreconsumo
+    </label>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="solo_bloqueadas" value="1">
+      <span class="alestra-checkbox__box"></span>
+      Solo líneas bloqueadas
+    </label>
+  </div>
+
+  <%# Row 3: Service totals %>
+  <div style="display: flex; align-items: center; gap: 1.25rem; font-size: 0.875rem;">
+    <span style="font-weight: 600; white-space: nowrap;">Servicios:</span>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="servicio_datos" value="1" checked>
+      <span class="alestra-checkbox__box"></span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00b8ff; margin-right: 2px;"></span>
+      <strong>Datos:</strong>&nbsp;1234 GB utilizadas
+    </label>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="servicio_telefonia" value="1" checked>
+      <span class="alestra-checkbox__box"></span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ac4fc6; margin-right: 2px;"></span>
+      <strong>Telefonía:</strong>&nbsp;1234 mins. utilizados
+    </label>
+    <label class="alestra-checkbox">
+      <input type="checkbox" name="servicio_sms" value="1" checked>
+      <span class="alestra-checkbox__box"></span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10069f; margin-right: 2px;"></span>
+      <strong>SMS:</strong>&nbsp;1234 mensajes enviados
+    </label>
+  </div>
+
+  <%# Row 4: Indicator legend %>
+  <div style="display: flex; align-items: center; gap: 1.25rem; font-size: 0.875rem;">
+    <span style="font-weight: 600; white-space: nowrap;">Indicadores:</span>
+    <span style="display: flex; align-items: center; gap: 0.375rem;">
+      <span style="display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #9ea8b1;"></span>
+      Líneas sin sobreconsumo
+    </span>
+    <span style="display: flex; align-items: center; gap: 0.375rem;">
+      <span style="display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #f87171;"></span>
+      Líneas con sobreconsumo
+    </span>
+    <span style="display: flex; align-items: center; gap: 0.375rem;">
+      <span style="display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #374151;"></span>
+      Líneas bloqueadas
+    </span>
+  </div>
+</div>
+
+<%# ── Last-updated note ─────────────────────────────────────────────────── %>
+<p style="font-size: 0.875rem; color: var(--alestra-color-muted); margin-bottom: 0.75rem;">
+  <strong style="font-weight: 400;">Última actualización:</strong> 2 minutos.
+</p>
+
+<%# ── Lines table ───────────────────────────────────────────────────────── %>
+<div class="alestra-table" data-controller="alestra--accordion" style="border-radius: 12px; overflow: hidden;">
+  <%# Table header %>
+  <div style="display: grid; grid-template-columns: 120px 130px 130px 1fr 150px 150px 44px; background: #10069f; color: #fff; font-size: 1rem; font-weight: 700;">
+    <div style="padding: 1rem 0.75rem;"># de línea</div>
+    <div style="padding: 1rem 0.75rem; text-align: center;">Estatus</div>
+    <div style="padding: 1rem 0.75rem;">Usuario</div>
+    <div style="padding: 1rem 0.75rem;">Tipo de plan</div>
+    <div style="padding: 1rem 0.75rem;">% de consumo</div>
+    <div style="padding: 1rem 0.75rem;">Capacidad total</div>
+    <div style="padding: 1rem 0.75rem;"></div>
+  </div>
+
+  <%# Sample rows — Regular (white) %>
+  <% [
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffffff" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffe0e0" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :inactive, bg: "#e7e7f0" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffffff" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffffff" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffe0e0" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffffff" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :active, bg: "#ffffff" },
+    { linea: "618 382 5441", usuario: "Jon Snow", plan: "Cobertura Completa 3.5 GB_Control", consumo: "15% de consumo de datos", capacidad: "5GB de capacidad total", estado: :inactive, bg: "#e7e7f0" },
+  ].each do |row| %>
+    <div class="alestra-table__row" style="display: grid; grid-template-columns: 120px 130px 130px 1fr 150px 150px 44px; background: <%= row[:bg] %>; border-bottom: 1px solid #e7e7f0; font-size: 0.875rem; align-items: center; padding: 0;">
+      <div style="padding: 1rem 0.75rem; font-weight: 300;"><%= row[:linea] %></div>
+      <div style="padding: 1rem 0.75rem; display: flex; justify-content: center;">
+        <% if row[:estado] == :active %>
+          <span class="alestra-badge alestra-badge--active" style="font-size: 1rem; padding: 0.25rem 0.875rem;">Activo</span>
+        <% elsif row[:estado] == :inactive %>
+          <span class="alestra-badge alestra-badge--inactive" style="font-size: 1rem; padding: 0.25rem 0.875rem; background: #9ea8b1; color: #fff;">Bloqueado</span>
+        <% else %>
+          <span class="alestra-badge alestra-badge--pending" style="font-size: 1rem; padding: 0.25rem 0.875rem;">Pendiente</span>
+        <% end %>
+      </div>
+      <div style="padding: 1rem 0.75rem; font-weight: 300;"><%= row[:usuario] %></div>
+      <div style="padding: 1rem 0.75rem; font-weight: 300;"><%= row[:plan] %></div>
+      <div style="padding: 1rem 0.75rem; font-weight: 300;"><%= row[:consumo] %></div>
+      <div style="padding: 1rem 0.75rem; font-weight: 300;"><%= row[:capacidad] %></div>
+      <div style="padding: 1rem 0.5rem; display: flex; align-items: center; justify-content: center;">
+        <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Expandir" aria-expanded="false">&#8250;</button>
+      </div>
+    </div>
+    <div class="alestra-table__row-detail">
+      <div class="alestra-gestion-line-detail">
+        <div class="alestra-line-info"><strong><%= row[:usuario] %></strong><br><%= row[:linea] %></div>
+        <div class="alestra-line-plan"><p class="alestra-line-plan__name"><%= row[:plan] %></p><p class="alestra-line-plan__consumo"><%= row[:consumo] %></p></div>
+        <div class="alestra-line-actions"><a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Ver gestión de línea</a></div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# ── Pagination ─────────────────────────────────────────────────────────── %>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; font-size: 0.875rem; color: var(--alestra-color-muted);">
+  <span>1-10 de 2823 resultados — última consulta 14:53</span>
+
+  <nav class="alestra-pagination" aria-label="Paginación">
+    <button type="button" class="alestra-pagination__btn" aria-label="Anterior">&#8249;</button>
+    <button type="button" class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+    <button type="button" class="alestra-pagination__btn">2</button>
+    <button type="button" class="alestra-pagination__btn">3</button>
+    <button type="button" class="alestra-pagination__btn">4</button>
+    <button type="button" class="alestra-pagination__btn">5</button>
+    <span class="alestra-pagination__btn" style="border: none; background: none; cursor: default;">…</span>
+    <button type="button" class="alestra-pagination__btn">283</button>
+    <button type="button" class="alestra-pagination__btn" aria-label="Siguiente">&#8250;</button>
+  </nav>
+</div>

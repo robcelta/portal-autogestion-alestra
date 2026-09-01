@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" viewBox="0 0 19.5714 19.5714" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="vertical-slider-square--adjustment-adjust-controls-fader-vertical-settings-slider-square">
+<path id="Vector" d="M0.5 1.92857V17.6429C0.5 18.4319 1.13959 19.0714 1.92857 19.0714H17.6429C18.4319 19.0714 19.0714 18.4319 19.0714 17.6429V1.92857C19.0714 1.13959 18.4319 0.5 17.6429 0.5H1.92857C1.13959 0.5 0.5 1.13959 0.5 1.92857Z" stroke="var(--stroke-0, #535359)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M6.21429 15.5V8.35714" stroke="var(--stroke-0, #535359)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M6.21429 8.35714C7.39776 8.35714 8.35714 7.39776 8.35714 6.21429C8.35714 5.03081 7.39776 4.07143 6.21429 4.07143C5.03081 4.07143 4.07143 5.03081 4.07143 6.21429C4.07143 7.39776 5.03081 8.35714 6.21429 8.35714Z" stroke="var(--stroke-0, black)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M13.3571 4.07143V8.35714" stroke="var(--stroke-0, black)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M13.3571 12.6429V15.5" stroke="var(--stroke-0, black)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M13.3571 12.6429C14.5406 12.6429 15.5 11.6835 15.5 10.5C15.5 9.31653 14.5406 8.35714 13.3571 8.35714C12.1737 8.35714 11.2143 9.31653 11.2143 10.5C11.2143 11.6835 12.1737 12.6429 13.3571 12.6429Z" stroke="var(--stroke-0, black)" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

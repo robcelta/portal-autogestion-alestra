@@ -1,0 +1,15 @@
+<svg viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Conectividad móvil</title>
+  <rect width="360" height="320" rx="24" fill="#10069F"/>
+  <circle cx="284" cy="58" r="90" fill="#00B8FF" fill-opacity=".32"/>
+  <circle cx="60" cy="286" r="112" fill="#AC4FC6" fill-opacity=".52"/>
+  <rect x="112" y="51" width="136" height="220" rx="21" fill="#FFF"/>
+  <rect x="124" y="77" width="112" height="158" rx="10" fill="#EAF6FC"/>
+  <path d="M140 192C154 174 171 165 185 165C199 165 214 174 221 187" stroke="#AC4FC6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M151 177C160 165 171 159 184 159C197 159 209 165 218 178" stroke="#00B8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M163 164C169 158 176 155 184 155C192 155 199 158 205 165" stroke="#10069F" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="184" cy="202" r="7" fill="#10069F"/>
+  <rect x="160" y="246" width="40" height="8" rx="4" fill="#E7E7F0"/>
+  <circle cx="58" cy="73" r="24" stroke="#FFF" stroke-width="5" stroke-opacity=".8"/>
+  <path d="M52 73h12M58 67v12" stroke="#FFF" stroke-width="5" stroke-linecap="round"/>
+</svg>

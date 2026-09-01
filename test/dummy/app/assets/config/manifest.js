@@ -1,0 +1,17 @@
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link alestra_rails_ui/tokens.css
+//= link alestra_rails_ui/components.css
+//= link alestra_rails_ui/print.css
+//= link alestra_rails_ui/alestra_logo.svg
+//= link alestra_rails_ui/login-connectivity.svg
+//= link alestra_rails_ui/login-security.svg
+//= link alestra_rails_ui/login-analytics.svg
+//= link alestra_rails_ui/login-support.svg
+//= link alestra_rails_ui/dashboard-management.svg
+//= link alestra_rails_ui/dashboard-consumption.svg
+//= link alestra_rails_ui/dashboard-account.svg
+//= link alestra_rails_ui/dashboard-help.svg
+//= link alestra_rails_ui/dashboard-consumption-donut.svg
+//= link application.js
+//= link_tree ../../javascript .js

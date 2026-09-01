@@ -1,0 +1,15 @@
+<svg viewBox="0 0 360 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Análisis de consumo</title>
+  <rect width="360" height="420" rx="24" fill="#AC4FC6"/>
+  <circle cx="57" cy="65" r="94" fill="#10069F" fill-opacity=".4"/>
+  <circle cx="320" cy="364" r="105" fill="#00B8FF" fill-opacity=".3"/>
+  <rect x="51" y="85" width="258" height="237" rx="20" fill="#FFF"/>
+  <rect x="77" y="112" width="95" height="12" rx="6" fill="#E7E7F0"/>
+  <rect x="77" y="139" width="165" height="8" rx="4" fill="#E7E7F0"/>
+  <path d="M80 271h197" stroke="#E7E7F0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M94 246 135 204l38 22 64-76 28 22" stroke="#00B8FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="94" cy="246" r="9" fill="#10069F"/>
+  <circle cx="135" cy="204" r="9" fill="#10069F"/>
+  <circle cx="173" cy="226" r="9" fill="#10069F"/>
+  <circle cx="237" cy="150" r="9" fill="#10069F"/>
+</svg>

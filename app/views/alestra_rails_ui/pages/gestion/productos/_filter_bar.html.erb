@@ -1,0 +1,38 @@
+<div class="alestra-card alestra-filter-bar" data-controller="alestra--filter">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Plan">
+      <option>Plan</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Estado">
+      <option>Estado</option>
+    </select>
+    <select class="alestra-input alestra-input--sm" aria-label="Cuenta">
+      <option>Cuenta</option>
+    </select>
+    <div class="alestra-form-group alestra-form-group--inline alestra-filter-bar__search">
+      <span class="alestra-filter-bar__search-icon" aria-hidden="true">&#128269;</span>
+      <input type="search" class="alestra-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+    <button type="button" class="alestra-btn-secondary alestra-btn--small" data-alestra--filter-target="toggle" data-action="alestra--filter#toggleAdvanced" aria-expanded="false">+ Más filtros</button>
+  </div>
+  <div class="alestra-filter-bar__advanced" data-alestra--filter-target="advanced" hidden>
+    <span>Filtros rápidos:</span>
+    <label class="alestra-filter-bar__quick"><input type="checkbox" value="active" data-alestra--filter-target="quick" data-action="change->alestra--filter#quickChanged"> Solo líneas activas</label>
+    <label class="alestra-filter-bar__quick"><input type="checkbox" value="overuse" data-alestra--filter-target="quick" data-action="change->alestra--filter#quickChanged"> Solo líneas con sobreconsumo</label>
+    <label class="alestra-filter-bar__quick"><input type="checkbox" value="blocked" data-alestra--filter-target="quick" data-action="change->alestra--filter#quickChanged"> Solo líneas bloqueadas</label>
+  </div>
+  <div class="alestra-filter-bar__applied" data-alestra--filter-target="applied" hidden>
+    <span>Filtros aplicados:</span>
+    <span class="alestra-filter-bar__tag" data-alestra--filter-target="tag" data-value="active">Solo líneas activas <button type="button" data-value="active" data-action="alestra--filter#remove">×</button></span>
+    <span class="alestra-filter-bar__tag" data-alestra--filter-target="tag" data-value="overuse">Solo líneas con sobreconsumo <button type="button" data-value="overuse" data-action="alestra--filter#remove">×</button></span>
+    <span class="alestra-filter-bar__tag" data-alestra--filter-target="tag" data-value="blocked">Solo líneas bloqueadas <button type="button" data-value="blocked" data-action="alestra--filter#remove">×</button></span>
+    <button type="button" class="alestra-filter-bar__clear" data-action="alestra--filter#clear">Limpiar filtros</button>
+  </div>
+  <div class="alestra-filter-bar__indicators">
+    <span class="alestra-filter-bar__indicators-label">Indicadores:</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-green">Líneas con datos disponibles</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-red">Líneas con consumo excedente</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-grey">Líneas bloqueadas</span>
+  </div>
+</div>

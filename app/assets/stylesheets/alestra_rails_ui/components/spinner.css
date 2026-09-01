@@ -1,0 +1,33 @@
+@keyframes alestra-spin {
+  to { transform: rotate(360deg); }
+}
+
+.alestra-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--alestra-gray-200);
+  border-top-color: var(--alestra-indigo-600);
+  border-radius: 50%;
+  animation: alestra-spin 0.8s linear infinite;
+}
+.alestra-spinner--sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+.alestra-spinner--lg {
+  width: 64px;
+  height: 64px;
+  border-width: 4px;
+}
+
+.alestra-spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

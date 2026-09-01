@@ -1,0 +1,40 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+
+<div class="alestra-card" style="max-width:640px;">
+  <h2 style="font-size:1.25rem;font-weight:700;color:#10069f;margin-bottom:0.75rem;">Nuevos servicios</h2>
+  <p style="color:#535359;margin-bottom:1.5rem;">Agrega nuevos servicios o líneas a tu cuenta corporativa.</p>
+
+  <div class="alestra-form-group">
+    <label class="alestra-label">Tipo de servicio*</label>
+    <select class="alestra-input">
+      <option value="">Selecciona el tipo</option>
+      <option>Nueva línea de voz</option>
+      <option>Línea de datos</option>
+      <option>Línea IoT</option>
+      <option>Línea de emergencias</option>
+    </select>
+  </div>
+  <div class="alestra-form-group">
+    <label class="alestra-label">Número de líneas a contratar*</label>
+    <input class="alestra-input" type="number" min="1" max="100" placeholder="1">
+  </div>
+  <div class="alestra-form-group">
+    <label class="alestra-label">Plan a contratar*</label>
+    <select class="alestra-input">
+      <option value="">Selecciona un plan</option>
+      <option>Plan Básico — 3.5 GB</option>
+      <option>Plan Estándar — 10 GB</option>
+      <option>Plan Premium — 30 GB</option>
+      <option>Plan Ilimitado</option>
+    </select>
+  </div>
+
+  <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+    <a href="<%= gestion_nuevos_servicios_confirmar_path %>" class="alestra-btn-primary">Continuar</a>
+  </div>
+</div>

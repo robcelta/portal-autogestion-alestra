@@ -1,0 +1,15 @@
+<%# Gestión > Productos > Paquetes Mensuales — Figma 559:26909
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<% content_for :topbar_right do %>
+  <%= render "alestra_rails_ui/pages/gestion/productos/topbar" %>
+<% end %>
+
+<%= render "alestra_rails_ui/pages/gestion/productos/gestion_header" %>
+<%= render "alestra_rails_ui/pages/gestion/productos/filter_bar" %>
+
+<%= render partial: "alestra_rails_ui/pages/gestion/productos/lineas_tabla",
+           locals: { rows: 8, active_action: "mensual" } %>
+
+<%= render partial: "alestra_rails_ui/pages/gestion/productos/productos_modal", locals: { active: "mensual" } %>
+<%= render "alestra_rails_ui/pages/gestion/productos/help_banner" %>

@@ -1,0 +1,37 @@
+<h1 class="alestra-page-title">Ayuda</h1>
+
+<turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" data-controller="alestra--modal" data-alestra--modal-open-value="true">
+    <div class="alestra-modal" role="dialog" aria-modal="true">
+      <div class="alestra-modal__header">
+        <h2 class="alestra-modal__title">Editar pregunta frecuente</h2>
+        <a href="<%= ayuda_root_path %>" class="alestra-modal__close" aria-label="Cerrar">×</a>
+      </div>
+      <div class="alestra-modal__body">
+        <div class="alestra-form-group">
+          <label class="alestra-label" for="editar_pregunta">Pregunta*</label>
+          <input class="alestra-input" type="text" id="editar_pregunta"
+                 value="¿Cómo puedo bloquear una línea desde el portal?">
+        </div>
+        <div class="alestra-form-group">
+          <label class="alestra-label" for="editar_respuesta">Respuesta*</label>
+          <textarea class="alestra-input" id="editar_respuesta" rows="4"
+                    style="resize:vertical;">Ingresa a Gestión de líneas y servicios, selecciona la línea que deseas bloquear y elige la opción "Bloquear línea".</textarea>
+        </div>
+        <div class="alestra-form-group">
+          <label class="alestra-label" for="editar_seccion">Sección*</label>
+          <select class="alestra-input" id="editar_seccion">
+            <option selected>Gestión de líneas y servicios</option>
+            <option>Consumo y reportes</option>
+            <option>Configuración de cuenta</option>
+            <option>Facturación</option>
+          </select>
+        </div>
+      </div>
+      <div class="alestra-modal__footer">
+        <a href="<%= ayuda_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+        <button type="submit" class="alestra-btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

@@ -1,0 +1,15 @@
+<%# Gestión > Añade productos — Figma 559:27418
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<% content_for :topbar_right do %>
+  <%= render "alestra_rails_ui/pages/gestion/productos/topbar" %>
+<% end %>
+
+<%= render "alestra_rails_ui/pages/gestion/productos/gestion_header" %>
+<%= render "alestra_rails_ui/pages/gestion/productos/filter_bar" %>
+
+<%= render partial: "alestra_rails_ui/pages/gestion/productos/lineas_tabla",
+           locals: { rows: 10, active_action: "paises" } %>
+
+<%= render "alestra_rails_ui/pages/gestion/productos/productos_modal" %>
+<%= render "alestra_rails_ui/pages/gestion/productos/help_banner" %>

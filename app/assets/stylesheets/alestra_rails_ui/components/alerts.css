@@ -1,0 +1,15 @@
+.alestra-alert {
+  padding: 1rem;
+  border-radius: var(--alestra-radius-lg);
+  font-size: 0.875rem;
+}
+.alestra-alert--error {
+  background: var(--alestra-error-bg);
+  border: 1px solid var(--alestra-error-border);
+  color: var(--alestra-error-text);
+}
+.alestra-alert--success {
+  background: var(--alestra-success-bg);
+  border: 1px solid var(--alestra-success-border);
+  color: var(--alestra-success-text);
+}

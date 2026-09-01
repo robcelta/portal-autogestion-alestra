@@ -1,0 +1,63 @@
+<%
+  notifications = local_assigns.fetch(:notifications) do
+    [
+      { title: "Nuevo servicio agregado", context: "Gestión de líneas y servicios", time: "Hace 5 minutos", read: false },
+      { title: "Línea 12345678 activada con éxito", context: "Gestión de líneas y productos", time: "Hace 7 minutos", read: false },
+      { title: "Contraseña actualizada", context: "Configuración de cuenta", time: "Hace 9 minutos", read: false },
+      { title: "Nuevo servicio agregado", context: "Gestión de líneas y servicios", time: "Hace 5 minutos", read: true },
+      { title: "Nuevo servicio agregado", context: "Gestión de líneas y servicios", time: "Hace 5 minutos", read: true }
+    ]
+  end
+%>
+
+<section
+  id="alestra-notification-center"
+  class="alestra-notification-center alestra-no-print"
+  data-alestra--notification-center-target="panel"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="alestra-notification-center-title"
+  aria-hidden="true"
+  tabindex="-1"
+  hidden
+>
+  <header class="alestra-notification-center__header">
+    <div class="alestra-notification-center__title-row">
+      <h2 id="alestra-notification-center-title" class="alestra-notification-center__title">Notificaciones</h2>
+      <a class="alestra-notification-center__settings" href="<%= configuracion_notificaciones_path %>" aria-label="Configurar notificaciones">
+        <%= alestra_icon("settings") %>
+      </a>
+    </div>
+    <button
+      type="button"
+      class="alestra-notification-center__mark-all"
+      data-alestra--notification-center-target="markAll"
+      data-action="alestra--notification-center#markAllRead"
+    >
+      <span class="alestra-notification-center__checkbox" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Marcar todas como leídas
+    </button>
+  </header>
+
+  <ul class="alestra-notification-center__list" aria-label="Notificaciones recientes">
+    <% notifications.each_with_index do |notification, index| %>
+      <li
+        class="alestra-notification-center__item<%= " alestra-notification-center__item--unread" unless notification[:read] %>"
+        data-alestra--notification-center-target="item"
+        data-read="<%= notification[:read] %>"
+      >
+        <span class="alestra-notification-center__bell" aria-hidden="true">
+          <%= alestra_icon("notifications") %>
+          <span class="alestra-notification-center__item-dot"></span>
+        </span>
+        <span class="alestra-notification-center__copy">
+          <span class="alestra-notification-center__item-title"><%= notification[:title] %></span>
+          <span class="alestra-notification-center__meta"><%= notification[:context] %> · <%= notification[:time] %></span>
+        </span>
+        <span class="alestra-notification-center__more" aria-hidden="true"><i></i><i></i><i></i></span>
+      </li>
+    <% end %>
+  </ul>
+</section>

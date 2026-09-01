@@ -1,0 +1,38 @@
+.alestra-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+.alestra-badge--info {
+  background: var(--alestra-indigo-100);
+  color: var(--alestra-indigo-900);
+}
+.alestra-badge--success {
+  background: var(--alestra-success-bg);
+  color: var(--alestra-success-text);
+}
+.alestra-badge--warning {
+  background: var(--alestra-warning-bg);
+  color: var(--alestra-warning-text);
+}
+.alestra-badge--active {
+  background: var(--alestra-success-bg);
+  color: var(--alestra-success-text);
+}
+.alestra-badge--inactive {
+  background: var(--alestra-gray-100);
+  color: var(--alestra-gray-500);
+}
+.alestra-badge--pending {
+  background: var(--alestra-warning-bg);
+  color: var(--alestra-warning-text);
+}
+.alestra-badge--blocked,
+.alestra-badge--error {
+  background: #ffe0e0;
+  color: #8d0b0b;
+}
+.alestra-badge--blue { background: #ebf0f8; color: #10069f; }
+.alestra-badge--cyan { background: rgb(0 184 255 / 0.12); color: #10069f; }

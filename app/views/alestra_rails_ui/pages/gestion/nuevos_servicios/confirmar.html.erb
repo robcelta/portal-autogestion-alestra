@@ -1,0 +1,26 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+
+<div class="alestra-card" style="max-width:640px;">
+  <turbo-frame id="modal_frame">
+  <div class="alestra-modal-backdrop" data-controller="alestra--modal" data-alestra--modal-open-value="true">
+    <div class="alestra-modal alestra-modal--sm alestra-modal--confirm" role="dialog" aria-modal="true">
+      <div class="alestra-modal__icon alestra-modal__icon--info">ℹ</div>
+      <div class="alestra-modal__header">
+        <h2 class="alestra-modal__title">¿Confirmar contratación de servicio?</h2>
+      </div>
+      <div class="alestra-modal__body">
+        <p>Estás a punto de contratar <strong>1 nueva línea de voz</strong> con el Plan Estándar (10 GB). Un asesor se pondrá en contacto contigo en las próximas 24 horas.</p>
+      </div>
+      <div class="alestra-modal__footer">
+        <a href="<%= gestion_nuevos_servicios_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+        <a href="<%= gestion_nuevos_servicios_exito_path %>" class="alestra-btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</turbo-frame>
+
+</div>

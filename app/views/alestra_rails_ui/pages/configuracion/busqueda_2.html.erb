@@ -1,0 +1,217 @@
+<%# Configuración — Búsqueda 2 (results with filter applied) — Figma 633:27672
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>).
+    State: "Ciudad de México" filter applied, notification toggles shown per city group. %>
+
+<%# ── Page heading ──────────────────────────────────────────────────────── %>
+<section class="alestra-page-heading">
+  <div class="alestra-page-heading__tabs">
+    <a href="<%= configuracion_root_path %>" class="alestra-btn-primary alestra-btn--small alestra-btn--active">Perfil y notificaciones</a>
+    <a href="<%= configuracion_perfil_path %>" class="alestra-btn-secondary alestra-btn--small">Permisos</a>
+  </div>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+  </button>
+</section>
+
+<h1 class="alestra-page-title">Perfil y notificaciones</h1>
+
+<%# ── Main two-column card ──────────────────────────────────────────────── %>
+<div class="alestra-card alestra-configuracion-card">
+
+  <div class="alestra-configuracion-card__left">
+    <div class="alestra-configuracion-profile">
+      <div class="alestra-avatar-gradient" aria-hidden="true">JP</div>
+      <div class="alestra-configuracion-profile__info">
+        <span class="alestra-badge alestra-badge--active">Cuenta activa desde 27/09/2020</span>
+        <p class="alestra-configuracion-profile__name">Juan Pérez</p>
+        <p class="alestra-configuracion-profile__role">Administrador de cuenta</p>
+        <p class="alestra-configuracion-profile__email">Juanperez@email.com</p>
+        <p class="alestra-configuracion-profile__phone">618 382 5441</p>
+      </div>
+    </div>
+    <div class="alestra-configuracion-section">
+      <h3 class="alestra-configuracion-section__title">Direcciones</h3>
+      <div class="alestra-configuracion-address">
+        <p class="alestra-configuracion-address__label">Dirección de facturación</p>
+        <p class="alestra-configuracion-address__value">Av. Lázaro Cárdenas 2400, Valle Oriente, 66269 San Pedro Garza García, N.L.</p>
+      </div>
+    </div>
+    <div class="alestra-configuracion-section">
+      <h3 class="alestra-configuracion-section__title">Acciones rápidas</h3>
+      <div class="alestra-configuracion-actions">
+        <a href="<%= configuracion_editar_path %>" class="alestra-btn-primary alestra-btn--small">Editar información</a>
+        <a href="<%= configuracion_seguridad_path %>" class="alestra-btn-primary alestra-btn--small">Cambiar contraseña</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="alestra-configuracion-card__right">
+    <div class="alestra-configuracion-notif-header">
+      <h2 class="alestra-configuracion-notif-header__title">Notificaciones</h2>
+      <p class="alestra-configuracion-notif-header__desc">
+        Aquí puedes controlar las notificaciones que deseas recibir y a qué correos deben llegar.
+      </p>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Movimientos de líneas</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox" checked>
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox" checked>
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+      <p class="alestra-configuracion-notif-group__send-label">Enviar notificaciones a:</p>
+      <div class="alestra-email-pills">
+        <span class="alestra-email-pill">
+          Juanperez@email.com
+          <button type="button" class="alestra-email-pill__edit" aria-label="Editar correo">✏</button>
+          <button type="button" class="alestra-email-pill__remove" aria-label="Eliminar correo">🗑</button>
+        </span>
+        <span class="alestra-email-pill">
+          Admon@email.com
+          <button type="button" class="alestra-email-pill__edit" aria-label="Editar correo">✏</button>
+          <button type="button" class="alestra-email-pill__remove" aria-label="Eliminar correo">🗑</button>
+        </span>
+        <a href="<%= configuracion_notificaciones_path %>" class="alestra-add-email">Agregar correo +</a>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Alerta de alto consumo</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox" checked>
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox">
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Noticias</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox" checked>
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox">
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+    <div class="alestra-configuracion-notif-group">
+      <h3 class="alestra-configuracion-notif-group__title">Fallas o mantenimiento del servicio</h3>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox" checked>
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones del dashboard</span>
+      </div>
+      <div class="alestra-switch-row">
+        <label class="alestra-switch">
+          <input type="checkbox">
+          <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+        </label>
+        <span class="alestra-switch-row__label">Notificaciones por correo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# ── Búsqueda avanzada filter bar — filter applied ─────────────────────── %>
+<div class="alestra-filter alestra-configuracion-filter">
+  <span class="alestra-filter__label">Filtrar por:</span>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-ciudad-b2">Ciudad</label>
+    <select id="filter-ciudad-b2" class="alestra-input alestra-input--select">
+      <option value="">Seleccionar</option>
+    </select>
+  </div>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-oferta-b2">Oferta</label>
+    <select id="filter-oferta-b2" class="alestra-input alestra-input--select">
+      <option value="">Seleccionar</option>
+    </select>
+  </div>
+  <div class="alestra-form-group alestra-form-group--inline">
+    <label class="alestra-label" for="filter-cliente-b2">Cliente</label>
+    <select id="filter-cliente-b2" class="alestra-input alestra-input--select">
+      <option value="">Seleccionar</option>
+    </select>
+  </div>
+  <div class="alestra-filter__search">
+    <input type="search" class="alestra-input alestra-input--search" value="Ciudad de México" aria-label="Buscar">
+  </div>
+</div>
+
+<%# Active filters row %>
+<div class="alestra-configuracion-active-filters">
+  <span class="alestra-configuracion-active-filters__label">Filtros aplicados:</span>
+  <span class="alestra-filter-tag">
+    Ciudad de México
+    <button type="button" class="alestra-filter-tag__remove" aria-label="Quitar filtro Ciudad de México">×</button>
+  </span>
+  <a href="<%= configuracion_root_path %>" class="alestra-configuracion-active-filters__clear">Limpiar filtros</a>
+</div>
+
+<%# ── Search results ─────────────────────────────────────────────────────── %>
+<div class="alestra-configuracion-search-results">
+  <p class="alestra-configuracion-search-results__heading">Resultados de búsqueda:</p>
+
+  <%# Result group for Ciudad de México %>
+  <div class="alestra-configuracion-result-group">
+    <h3 class="alestra-configuracion-result-group__title">Ciudad de México</h3>
+
+    <div class="alestra-switch-row">
+      <label class="alestra-switch">
+        <input type="checkbox" checked>
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+      </label>
+      <span class="alestra-switch-row__label">Movimientos de línea</span>
+    </div>
+
+    <div class="alestra-switch-row">
+      <label class="alestra-switch">
+        <input type="checkbox">
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+      </label>
+      <span class="alestra-switch-row__label">Alerta de alto consumo</span>
+    </div>
+
+    <div class="alestra-switch-row">
+      <label class="alestra-switch">
+        <input type="checkbox">
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+      </label>
+      <span class="alestra-switch-row__label">Noticias</span>
+    </div>
+
+    <div class="alestra-switch-row">
+      <label class="alestra-switch">
+        <input type="checkbox">
+        <span class="alestra-switch__track"><span class="alestra-switch__thumb"></span></span>
+      </label>
+      <span class="alestra-switch-row__label">Fallas o mantenimie...</span>
+    </div>
+  </div>
+</div>

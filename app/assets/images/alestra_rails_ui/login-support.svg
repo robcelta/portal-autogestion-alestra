@@ -1,0 +1,13 @@
+<svg viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Atención y soporte</title>
+  <rect width="360" height="320" rx="24" fill="#00B8FF"/>
+  <circle cx="303" cy="39" r="104" fill="#10069F" fill-opacity=".35"/>
+  <circle cx="54" cy="301" r="104" fill="#AC4FC6" fill-opacity=".46"/>
+  <path d="M97 153C97 107 134 71 180 71C226 71 263 107 263 153V188C263 202 252 213 238 213H223V171H244V153C244 118 215 90 180 90C145 90 116 118 116 153V171H137V213H121C107 213 97 202 97 188V153Z" fill="#FFF"/>
+  <rect x="144" y="151" width="72" height="61" rx="18" fill="#10069F"/>
+  <circle cx="162" cy="181" r="6" fill="#FFF"/>
+  <circle cx="180" cy="181" r="6" fill="#FFF"/>
+  <circle cx="198" cy="181" r="6" fill="#FFF"/>
+  <path d="M180 212v17c0 13 10 23 23 23h18" stroke="#FFF" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="235" cy="252" r="14" fill="#FFF"/>
+</svg>

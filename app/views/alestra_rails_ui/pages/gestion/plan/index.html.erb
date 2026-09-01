@@ -1,0 +1,149 @@
+<%# Gestión > Cambio de Plan — Figma 119:7047
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered) %>
+
+<%# ── Topbar CTAs ──────────────────────────────────────────────────────── %>
+<% content_for :topbar_right do %>
+  <div class="alestra-topbar__actions">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Gestión de líneas</a>
+    <a href="#" class="alestra-btn-secondary alestra-btn--small">Historial de cambios</a>
+    <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+      <span class="alestra-notification-cta__dot"></span>
+      &#128276;
+    </button>
+  </div>
+<% end %>
+
+<%# ── Section header ──────────────────────────────────────────────────── %>
+<section class="alestra-gestion-header">
+  <h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+  <p class="alestra-gestion-header__desc">
+    Administra todas las líneas y servicios de tu cuenta de forma rápida y segura.<br>
+    Consulta consumos, realiza cambios y activa o desactiva líneas fácilmente.
+  </p>
+  <span class="alestra-badge alestra-badge--active">Promoción de datos dobles</span>
+</section>
+
+<%# ── Filter bar ──────────────────────────────────────────────────────── %>
+<div class="alestra-card alestra-filter-bar">
+  <div class="alestra-filter-bar__row">
+    <span class="alestra-filter-bar__label">Filtrar por:</span>
+    <select class="alestra-input alestra-input--sm" aria-label="Plan"><option>Plan</option></select>
+    <select class="alestra-input alestra-input--sm" aria-label="Estado"><option>Estado</option></select>
+    <select class="alestra-input alestra-input--sm" aria-label="Cuenta"><option>Cuenta</option></select>
+    <div class="alestra-form-group alestra-form-group--inline alestra-filter-bar__search">
+      <input type="search" class="alestra-input" placeholder="Búsqueda por usuario, línea...">
+    </div>
+    <button type="button" class="alestra-btn-secondary alestra-btn--small">+ Más filtros</button>
+  </div>
+  <div class="alestra-filter-bar__indicators">
+    <span class="alestra-filter-bar__indicators-label">Indicadores:</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-green">Líneas con datos disponibles</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-red">Líneas con consumo excedente</span>
+    <span class="alestra-badge alestra-badge--dot alestra-badge--dot-grey">Líneas bloqueadas</span>
+  </div>
+</div>
+
+<%# ── Lines table ─────────────────────────────────────────────────────── %>
+<div class="alestra-gestion-tabla">
+  <p class="alestra-gestion-tabla__meta"><strong>Última actualización:</strong> 2 minutos.</p>
+
+  <div class="alestra-table" data-controller="alestra--accordion">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">
+          <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Ver detalle">›</button>
+        </span>
+      </div>
+      <div class="alestra-table__row-detail">
+        <div class="alestra-gestion-line-detail">
+          <a href="<%= gestion_plan_root_path %>" class="alestra-btn-primary alestra-btn--small">Cambiar plan</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="alestra-table__pagination">
+    <span class="alestra-table__pagination-info">1-10 de 2823 resultados - última consulta 14:53</span>
+    <nav class="alestra-pagination" aria-label="Paginación">
+      <button class="alestra-pagination__btn">‹</button>
+      <button class="alestra-pagination__btn alestra-pagination__btn--active">1</button>
+      <button class="alestra-pagination__btn">2</button>
+      <button class="alestra-pagination__btn">3</button>
+      <span class="alestra-pagination__ellipsis">...</span>
+      <button class="alestra-pagination__btn">283</button>
+      <button class="alestra-pagination__btn">›</button>
+    </nav>
+  </div>
+</div>
+
+<%# ── Modal: Cambio de plan ───────────────────────────────────────────── %>
+<div class="alestra-modal-backdrop" id="plan-modal-backdrop"></div>
+<div class="alestra-modal alestra-modal--confirm" id="plan-modal" role="dialog" aria-modal="true" aria-labelledby="plan-modal-title">
+  <div class="alestra-modal__inner">
+    <h2 class="alestra-modal__title" id="plan-modal-title">Cambio de plan</h2>
+
+    <div class="alestra-modal__body">
+      <p>Selecciona el nuevo plan que deseas asignar a la línea <strong>618 382 5441</strong>. El cambio se aplicará a partir del próximo ciclo de facturación.</p>
+    </div>
+
+    <%# ── Plan options ── %>
+    <div class="alestra-plan-grid" data-controller="alestra--selection">
+      <% [
+        { name: "Básico 1GB", price: "$149 MXN/mes", desc: "1 GB de datos nacionales. Ideal para uso básico.", current: false },
+        { name: "Cobertura Completa 3.5 GB", price: "$249 MXN/mes", desc: "3.5 GB de datos nacionales. Plan más popular.", current: true },
+        { name: "Avanzado 5GB", price: "$349 MXN/mes", desc: "5 GB de datos nacionales + roaming en EUA y CAN.", current: false },
+        { name: "Premium 10GB", price: "$499 MXN/mes", desc: "10 GB de datos nacionales + roaming ilimitado.", current: false }
+      ].each do |plan| %>
+        <div class="alestra-plan-card <%= 'alestra-plan-card--current' if plan[:current] %>" data-alestra--selection-target="item" role="option" aria-selected="false">
+          <div class="alestra-plan-card__header">
+            <p class="alestra-plan-card__name"><%= plan[:name] %></p>
+            <% if plan[:current] %>
+              <span class="alestra-badge alestra-badge--active">Plan actual</span>
+            <% end %>
+          </div>
+          <p class="alestra-plan-card__desc"><%= plan[:desc] %></p>
+          <p class="alestra-plan-card__price"><%= plan[:price] %></p>
+          <% unless plan[:current] %>
+            <button type="button" class="alestra-btn-primary alestra-btn--small alestra-plan-card__cta" data-action="alestra--selection#select">Seleccionar</button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="alestra-modal__footer">
+      <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+      <a href="<%= gestion_plan_confirmar_path %>" class="alestra-btn-primary">Confirmar</a>
+    </div>
+  </div>
+</div>
+
+<%# ── Help banner ─────────────────────────────────────────────────────── %>
+<div class="alestra-help-banner">
+  <div class="alestra-help-banner__text">
+    <p class="alestra-help-banner__title">¿Necesitas ayuda?</p>
+    <p class="alestra-help-banner__desc">Selecciona un motivo de consulta y en breve alguien de nuestro equipo técnico se pondrá en contacto contigo</p>
+  </div>
+  <div class="alestra-help-banner__form">
+    <label class="alestra-label">Motivo de consulta*</label>
+    <select class="alestra-input">
+      <option value="">Seleccione un motivo</option>
+    </select>
+  </div>
+</div>

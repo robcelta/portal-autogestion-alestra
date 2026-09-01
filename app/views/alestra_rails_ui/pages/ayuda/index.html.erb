@@ -1,0 +1,205 @@
+<%# Ayuda - FAQs — Figma 559:32955
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>).
+    All accordion sections expanded, Edit + Add CTAs visible. %>
+
+<%= render "alestra_rails_ui/pages/ayuda/faq_heading" %>
+
+<%# ── Sección 1: Servicio en el extranjero ──────────────────────────────── %>
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">1. Servicio en el extranjero</h2>
+
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué paquetes tengo disponibles para viajar al extranjero?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Deberás entrar al menú "Gestión de líneas y servicios" → "Productos adicionales" → "Añadir recarga o paquete" → "Paquetes por países" → Elegir país</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Sección 2: Garantías de equipos ──────────────────────────────────── %>
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">2. Garantías de equipos</h2>
+
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Cómo tramito la garantía de mi dispositivo de telefonía celular?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>El trámite es directamente con la marca del dispositivo:</p>
+        <ul>
+          <li>Samsung: Marca al 800 726 7864</li>
+          <li>Motorola: Marca al 800 0210 000</li>
+          <li>iPhone: Marca al 55 5209 1200</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Cómo tramitar la garantía de mi dispositivo de datos?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>El trámite es directamente con la marca del dispositivo:</p>
+        <ul>
+          <li>Peplink: 800-</li>
+          <li>Quamtum: 800 -</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Sección 3: Característica del servicio ────────────────────────────── %>
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">3. Característica del servicio</h2>
+
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué es el servicio de Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Es una solución que permite a los usuarios conectarse a las tres principales redes móviles de México: Radio Móvil DIPSA, AT&amp;T y Altán.</p>
+        <p>¿Cómo funciona?</p>
+        <ul>
+          <li>Selección manual de red: el usuario elige a qué red conectarse desde la configuración de su dispositivo.</li>
+          <li>Compatibilidad con múltiples redes: permite cambiar entre las redes disponibles según necesidad.</li>
+          <li>Cobertura ampliada: al poder cambiar de operador, se aprovecha la cobertura de distintas redes.</li>
+          <li>Sin cambio automático: el sistema no cambia de red automáticamente; requiere intervención manual.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Lo que no hace la red Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <ul>
+          <li>No se conecta automáticamente a la red con mejor señal.</li>
+          <li>No se conecta automáticamente a la red con mayor velocidad.</li>
+          <li>No cambia de red hasta que se pierde por completo la señal actual.</li>
+        </ul>
+        <p>Nota: El servicio Multioperador no incluye conectividad 5G.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>3. ¿Cómo me cambio de red manualmente?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p><strong>Android:</strong> Ajustes → Conexiones → Redes Móviles → Operadores de RED → Buscar redes → Seleccionar operador deseado.</p>
+        <p><strong>iOS:</strong> Configuración → Red celular → Red de datos → Seleccionar operador deseado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ── Sección 4: Planes y Recargas ──────────────────────────────────────── %>
+<section class="alestra-faq-section">
+  <h2 class="alestra-faq-section__title">4. Planes y Recargas</h2>
+
+  <div class="alestra-accordion" data-controller="alestra--accordion">
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>1. ¿Qué incluyen los planes empresariales?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los planes empresariales tanto control como postpago incluyen uso de datos en México, Estados Unidos y Cánada, minutos ilimitados para llamadas nacionales e internacionales a Estados Unidos y Cánada, y SMS ilimitados.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>2. ¿Qué es un plan postpago o no controlado?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los Planes postpago - libre: Te permite realizar consumos excedentes a tu plan base los cuales se verán reflejados al final de tu periodo de facturación.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>3. ¿Qué es un plan control?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Los planes control: Te permiten restringir cargos excedentes en tu factura.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>4. ¿Cómo realizó una recarga?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Deberás entrar al menú "Gestión de líneas y servicios" → "Productos adicionales" → "Añadir recarga o paquete" → Planes → Elige la recarga → Confirma el pedido.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>5. ¿Cómo funciona la oferta de datos móviles en modalidad pool?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>La oferta de datos móviles en modalidad pool funciona de la siguiente manera:</p>
+        <ul>
+          <li><strong>Uso compartido:</strong> Todas las líneas de la cuenta comparten un único paquete de datos.</li>
+          <li><strong>Cálculo en la factura:</strong> El consumo total de datos se suma entre todas las líneas y se cobra como un solo bloque.</li>
+          <li><strong>Excedentes:</strong> Si el consumo total supera el paquete contratado, se generan cargos por excedente.</li>
+          <li><strong>Límite de consumo:</strong> Es posible configurar un límite de consumo por línea para controlar el gasto.</li>
+        </ul>
+        <p>En resumen: todas las líneas comparten el mismo pool de datos, optimizando el uso y reduciendo costos.</p>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>6. ¿Qué es el servicio de Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <p>Es una solución que permite a los usuarios conectarse a las tres principales redes móviles de México: Telcel, AT&amp;T y Altán.</p>
+        <p>¿Cómo funciona?</p>
+        <ul>
+          <li>Selección manual de red: el usuario elige a qué red conectarse desde la configuración de su dispositivo.</li>
+          <li>Compatibilidad con múltiples redes: permite cambiar entre las redes disponibles según necesidad.</li>
+          <li>Cobertura ampliada: al poder cambiar de operador, se aprovecha la cobertura de distintas redes.</li>
+          <li>Sin cambio automático: el sistema no cambia de red automáticamente; requiere intervención manual.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alestra-accordion__item alestra-accordion__item--open" data-alestra--accordion-target="item">
+      <button class="alestra-accordion__trigger" aria-expanded="true" data-action="click->alestra--accordion#toggle">
+        <span>7. ¿Lo que no hace la red Multioperador de Alestra Móvil?</span>
+        <span class="alestra-accordion__chevron">›</span>
+      </button>
+      <div class="alestra-accordion__content">
+        <ul>
+          <li>No se conecta automáticamente a la red con mejor señal.</li>
+          <li>No se conecta automáticamente a la red con mayor velocidad.</li>
+          <li>No cambia de red hasta que se pierde por completo la señal actual.</li>
+          <li>No incluye conectividad 5G.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

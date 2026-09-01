@@ -1,0 +1,323 @@
+.alestra-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alestra-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(16 6 159 / 0.18);
+  backdrop-filter: blur(2px);
+}
+.alestra-modal-overlay > .alestra-modal {
+  box-shadow: 0 20px 50px rgb(16 6 159 / 0.2);
+}
+
+.alestra-modal-backdrop[hidden],
+.alestra-modal[hidden] {
+  display: none !important;
+}
+
+.alestra-modal {
+  background: #fff;
+  border-radius: var(--alestra-radius-xl);
+  padding: 2rem;
+  max-width: 640px;
+  width: 90%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.alestra-modal-backdrop + .alestra-modal {
+  position: fixed;
+  z-index: 110;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.alestra-modal__inner { width: 100%; }
+.alestra-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Size variants */
+.alestra-modal--sm { max-width: 400px; }
+.alestra-modal--lg { max-width: 800px; }
+.alestra-modal--full {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  border-radius: 0;
+}
+
+/* Confirm: centered layout for icon + text + two-button footer */
+.alestra-modal--confirm .alestra-modal__title,
+.alestra-modal--confirm .alestra-modal__body {
+  text-align: center;
+}
+.alestra-modal--confirm .alestra-modal__footer {
+  justify-content: center;
+}
+
+/* Success: centered layout, single action */
+.alestra-modal--success .alestra-modal__title,
+.alestra-modal--success .alestra-modal__body {
+  text-align: center;
+}
+.alestra-modal--success .alestra-modal__footer {
+  justify-content: center;
+}
+
+.alestra-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--alestra-gray-500);
+  line-height: 1;
+}
+.alestra-modal__close:hover { color: var(--alestra-gray-900); }
+
+/* Icon header — centered circle at top of modal (confirm/success/info patterns) */
+.alestra-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+}
+.alestra-modal__icon--success {
+  background: var(--alestra-success-bg);
+  color: var(--alestra-success-text);
+}
+.alestra-modal__icon--warning {
+  background: var(--alestra-warning-bg);
+  color: var(--alestra-warning-text);
+}
+.alestra-modal__icon--info {
+  background: var(--alestra-indigo-50);
+  color: var(--alestra-indigo-600);
+}
+.alestra-modal__icon--error {
+  background: var(--alestra-error-bg);
+  color: var(--alestra-error-text);
+}
+
+.alestra-modal__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--alestra-color-heading);
+  margin-bottom: 1rem;
+}
+.alestra-modal__inner { display: block; }
+.alestra-modal__body {
+  font-size: 0.875rem;
+  color: var(--alestra-color-text);
+}
+.alestra-modal__footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Tabs inside a product/catalog modal */
+.alestra-modal__tab-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 1rem;
+}
+.alestra-modal__tab-row .alestra-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.alestra-modal__tab-row .alestra-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--alestra-color-primary);
+  border-color: var(--alestra-color-primary);
+}
+
+.alestra-modal__footnote {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--alestra-color-muted);
+  line-height: 1.5;
+}
+
+/* Catalogue list inside modal body */
+.alestra-modal__list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--alestra-color-text);
+}
+.alestra-modal__list li { line-height: 1.4; }
+
+/* Product modal (Añade productos) — 800px, centered title */
+.alestra-modal--product {
+  max-width: 800px;
+  width: 95%;
+}
+.alestra-modal--product .alestra-modal__title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--alestra-indigo-600, #10069f);
+  margin-bottom: 0.75rem;
+}
+.alestra-modal--product .alestra-modal__body {
+  font-size: 0.9375rem;
+}
+
+/* Product country/result row */
+.alestra-product-results {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.875rem;
+  color: var(--alestra-color-text);
+}
+.alestra-product-results__label { color: var(--alestra-color-text); }
+.alestra-product-results__value { font-weight: 700; }
+
+/* Package table inside product modal */
+.alestra-product-table {
+  background: var(--alestra-indigo-600, #10069f);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: #fff;
+}
+.alestra-product-table__header {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1.4fr 1fr 1.2fr;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #fff;
+  background: var(--alestra-indigo-600, #10069f);
+}
+.alestra-product-table__row {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1.4fr 1fr 1.2fr;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  background: #fff;
+  color: var(--alestra-color-text);
+  border-top: 1px solid var(--alestra-gray-100, #f3f4f6);
+}
+.alestra-product-table__row:first-of-type { border-top: 0; }
+.alestra-product-table__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--alestra-color-text);
+  cursor: pointer;
+}
+.alestra-product-table__checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--alestra-color-text);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .alestra-product-table__header,
+  .alestra-product-table__row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  .alestra-product-table__header { display: none; }
+  .alestra-product-table__row { padding: 1rem 1.25rem; }
+}
+
+/* Confirm / success summary card inside modal */
+.alestra-confirmar__summary,
+.alestra-exito__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0 0.5rem;
+  padding: 1rem 1.25rem;
+}
+.alestra-confirmar__row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+.alestra-confirmar__label {
+  color: var(--alestra-color-muted);
+  font-weight: 500;
+}
+.alestra-confirmar__value {
+  color: var(--alestra-color-text);
+  font-weight: 600;
+  text-align: left;
+}
+@media (max-width: 480px) {
+  .alestra-confirmar__row { grid-template-columns: 1fr; }
+}
+
+/* Centered variant (success modal) */
+.alestra-modal__inner--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+.alestra-modal__body-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--alestra-color-text);
+  line-height: 1.5;
+  max-width: 32rem;
+}
+.alestra-modal__footer--centered {
+  justify-content: center;
+  width: 100%;
+}
+
+/* Hidden tab variant (active state for selected tab) */
+.alestra-btn--hidden { display: none; }
+
+/* Footnote helper (line spacing) */
+.alestra-modal__footnote-title { margin: 0.5rem 0 0; }

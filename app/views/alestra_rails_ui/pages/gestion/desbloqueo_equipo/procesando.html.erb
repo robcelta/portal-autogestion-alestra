@@ -1,0 +1,39 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+<div class="alestra-spinner-overlay" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(255,255,255,0.85);z-index:100;">
+  <div class="alestra-spinner alestra-spinner--lg"></div>
+  <p style="font-size:1.125rem;color:#10069f;font-weight:600;">Procesando solicitud de desbloqueo...</p>
+  <p style="font-size:0.875rem;color:#535359;">Por favor espera mientras procesamos tu solicitud.</p>
+</div>
+<div class="alestra-gestion-tabla">
+  <div class="alestra-table">
+    <div class="alestra-table__header alestra-gestion-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">% de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">›</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<meta http-equiv="refresh" content="3;url=<%= gestion_desbloqueo_equipo_datos_path %>">

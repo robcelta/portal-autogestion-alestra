@@ -1,0 +1,983 @@
+/* Two-column portal layout: fixed sidebar + scrollable main */
+.alestra-portal-shell {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.alestra-sidebar {
+  width: 382px;
+  flex-shrink: 0;
+  background: #ebf0f8;
+  color: var(--alestra-gray-700, #535359);
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2.5rem;
+  gap: 1.5rem;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 120;
+}
+.alestra-sidebar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alestra-sidebar__logo img { max-width: 145px; height: auto; }
+
+.alestra-sidebar__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+.alestra-sidebar__profile-visual {
+  position: relative;
+  width: 142px;
+  height: 142px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(145deg, #10069f 0 46%, #ac4fc6 46% 72%, #00b8ff 72%);
+  border: 3px solid #00b8ff;
+  border-radius: 50%;
+}
+.alestra-sidebar__profile-device {
+  position: absolute;
+  width: 54px;
+  height: 92px;
+  right: 25px;
+  bottom: -7px;
+  background: #fff;
+  border: 5px solid #1f1f1f;
+  border-radius: 9px;
+  transform: rotate(12deg);
+  box-shadow: -35px 15px 0 8px rgb(255 255 255 / 0.22);
+}
+.alestra-sidebar__profile-monogram { position: relative; z-index: 1; margin-left: -52px; font-size: 1.75rem; font-weight: 700; }
+.alestra-sidebar__profile-copy { text-align: center; }
+.alestra-sidebar__profile-img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: contain;
+  object-position: center;
+  max-width: 120px;
+}
+.alestra-sidebar__profile-greeting {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.1;
+}
+.alestra-sidebar__profile-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--alestra-indigo-600, #10069f);
+  line-height: 1.1;
+}
+
+.alestra-sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.alestra-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.72rem 0.85rem;
+  border-radius: var(--alestra-radius-lg);
+  color: var(--alestra-gray-700, #535359);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.alestra-sidebar__item:hover {
+  background: rgba(0, 184, 255, 0.12);
+  color: var(--alestra-indigo-600, #10069f);
+}
+.alestra-sidebar__item--active {
+  background: #00b8ff;
+  color: #fff;
+  font-weight: 700;
+}
+.alestra-sidebar__item--active .alestra-icon { fill: #fff; }
+.alestra-sidebar__item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alestra-sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.alestra-sidebar__user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.alestra-sidebar__user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+.alestra-sidebar__user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.alestra-sidebar__user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--alestra-color-heading, #000);
+}
+.alestra-sidebar__user-role {
+  font-size: 0.75rem;
+  color: var(--alestra-gray-500, #9ea8b1);
+}
+
+/* Collapsed sidebar */
+.alestra-sidebar--collapsed { width: 64px; padding: 1.5rem 0.5rem; }
+.alestra-sidebar--collapsed .alestra-sidebar__item {
+  justify-content: center;
+  padding: 0.75rem;
+}
+.alestra-sidebar--collapsed .alestra-sidebar__item > span:not(.alestra-sidebar__item-icon) { display: none; }
+.alestra-sidebar--collapsed .alestra-sidebar__profile { display: none; }
+.alestra-sidebar--collapsed .alestra-sidebar__user-info { display: none; }
+.alestra-sidebar--collapsed .alestra-sidebar__user { justify-content: center; }
+.alestra-sidebar--collapsed .alestra-sidebar__logo { justify-content: center; }
+
+.alestra-sidebar-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 160;
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  background: #fff;
+  border: 1px solid #00b8ff;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+}
+.alestra-sidebar-toggle span { display: block; height: 2px; margin: 4px 0; background: #10069f; border-radius: 2px; }
+.alestra-sidebar-backdrop { position: fixed; inset: 0; z-index: 110; background: rgb(16 6 159 / 0.28); backdrop-filter: blur(2px); }
+.alestra-sidebar-backdrop[hidden] { display: none; }
+
+.alestra-filter-bar__advanced {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+.alestra-filter-bar__advanced[hidden],
+.alestra-filter-bar__applied[hidden] { display: none; }
+.alestra-filter-bar__applied {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  color: var(--alestra-blue-visionary, #10069f);
+  font-weight: 700;
+}
+.alestra-filter-bar__quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1f1f1f;
+  font-weight: 400;
+}
+.alestra-filter-bar__quick input { width: 1.2rem; height: 1.2rem; accent-color: var(--alestra-blue-digital, #00b8ff); }
+.alestra-filter-bar__tag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.55rem; border: 1px solid currentColor; border-radius: 0.25rem; font-weight: 400; }
+.alestra-filter-bar__tag[hidden] { display: none; }
+.alestra-filter-bar__tag button { color: inherit; background: transparent; border: 0; cursor: pointer; }
+.alestra-filter-bar__clear { color: var(--alestra-purple-mobility, #ac4fc6); background: transparent; border: 0; font-weight: 700; cursor: pointer; }
+
+.alestra-topbar {
+  height: 64px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--alestra-gray-200);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 clamp(1.5rem, 3vw, 4rem);
+  border-bottom: 0;
+}
+.alestra-topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.alestra-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.alestra-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alestra-notification-cta__dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.alestra-portal-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.alestra-portal-content {
+  flex: 1;
+  width: 100%;
+  padding: clamp(2rem, 3vw, 4rem);
+}
+
+
+/* ─── Dashboard page ────────────────────────────────────────────────── */
+
+/* Heading row: title block + notification bell */
+.alestra-dashboard-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.alestra-dashboard-heading__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.alestra-dashboard-heading__subtitle {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Notification bell CTA */
+.alestra-notification-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  background: #fff;
+  border: 1px solid #00b8ff;
+  border-radius: 9999px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+.alestra-notification-cta .alestra-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Quick-link cards grid override for Figma design (#ebf0f8 background, horizontal layout) */
+.alestra-dashboard-quick-links {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1600px) {
+  .alestra-dashboard-quick-links { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1366px) {
+  .alestra-sidebar { width: 300px; padding-inline: 1.5rem; }
+  .alestra-dashboard-quick-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .alestra-portal-shell { display: block; }
+  .alestra-sidebar-toggle { display: block; }
+  .alestra-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(340px, 88vw);
+    padding-top: 4.5rem;
+    transform: translateX(-105%);
+    transition: transform 0.22s ease;
+    box-shadow: 12px 0 32px rgb(16 6 159 / 0.16);
+  }
+  .alestra-sidebar--open { transform: translateX(0); }
+  .alestra-topbar { min-height: 64px; height: auto; padding: 0.75rem 1rem 0.75rem 4.5rem; }
+  .alestra-topbar__right { flex-wrap: wrap; justify-content: flex-end; }
+  .alestra-portal-content { padding: 5rem 1rem 2rem; }
+  .alestra-topbar + .alestra-portal-content { padding-top: 1.5rem; }
+}
+
+@media (max-width: 820px) {
+  .alestra-dashboard-consumo-card { flex-direction: column; align-items: stretch; }
+  .alestra-dashboard-consumo-card__chart-content { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .alestra-dashboard-quick-links { grid-template-columns: 1fr; }
+  .alestra-dashboard-consumo-card { flex-direction: column; align-items: stretch; }
+  .alestra-page-title { font-size: 1.8rem; line-height: 1.15; }
+}
+
+.alestra-dashboard-ql-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #ebf0f8;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  min-height: 137px;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+}
+.alestra-dashboard-ql-card:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+}
+.alestra-dashboard-ql-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+.alestra-dashboard-ql-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #10069f;
+  margin: 0;
+  line-height: 1.2;
+}
+.alestra-dashboard-ql-card__desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+}
+.alestra-dashboard-ql-card__img {
+  flex-shrink: 0;
+  width: 86px;
+  height: 137px;
+  overflow: hidden;
+  border-radius: 0 0.75rem 0.75rem 0;
+  margin: -1.25rem -1.25rem -1.25rem 0;
+}
+.alestra-dashboard-ql-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Floating search banner */
+.alestra-dashboard-search-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #ac4fc6;
+  border-radius: 0.8125rem;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.alestra-dashboard-search-banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #fff;
+  flex: 1;
+  min-width: 200px;
+}
+.alestra-dashboard-search-banner__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+.alestra-dashboard-search-banner__subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+.alestra-dashboard-search-banner__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 0.75px solid #9ea8b1;
+  border-radius: 3px;
+  padding: 0.75rem;
+  flex: 1;
+  min-width: 240px;
+  max-width: 31rem;
+  cursor: text;
+  text-decoration: none;
+}
+.alestra-dashboard-search-banner__input-icon .alestra-icon {
+  width: 14px;
+  height: 14px;
+  color: #535359;
+  flex-shrink: 0;
+}
+.alestra-dashboard-search-banner__placeholder {
+  font-size: 0.9375rem;
+  color: #535359;
+}
+
+/* Consumo summary card */
+.alestra-dashboard-consumo-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+}
+.alestra-dashboard-consumo-card__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+.alestra-dashboard-consumo-card__desc {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #000;
+  margin: 0;
+  line-height: 1.4;
+  max-width: 27.75rem;
+}
+.alestra-dashboard-consumo-card__actions {
+  display: flex;
+  gap: 1.625rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.alestra-dashboard-consumo-card__chart-panel {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #e7e7f0;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 185px;
+}
+.alestra-dashboard-consumo-card__chart-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.alestra-dashboard-consumo-card__donut {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+}
+.alestra-dashboard-consumo-card__donut img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+.alestra-dashboard-consumo-card__legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+.alestra-dashboard-consumo-card__legend-rows {
+  display: flex;
+  flex-direction: column;
+}
+.alestra-dashboard-consumo-card__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #000;
+  white-space: nowrap;
+}
+.alestra-dashboard-consumo-card__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.alestra-dashboard-consumo-card__dot--low  { background: #22c55e; }
+.alestra-dashboard-consumo-card__dot--mid  { background: #f59e0b; }
+.alestra-dashboard-consumo-card__dot--high { background: #ef4444; }
+.alestra-dashboard-consumo-card__meta {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.625rem;
+  margin-top: 0.25rem;
+}
+.alestra-dashboard-consumo-card__cutoff {
+  font-size: 0.75rem;
+  color: #10069f;
+  line-height: 1.1;
+}
+
+/* VIP lines section */
+.alestra-dashboard-lineas {
+  margin-bottom: 2.5rem;
+}
+.alestra-dashboard-lineas__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Table header with blue background */
+.alestra-dashboard-table-header {
+  background: #10069f;
+  border-radius: 0.75rem 0.75rem 0 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.alestra-dashboard-table-header .alestra-table__cell {
+  color: #fff;
+}
+
+/* Footer placeholder */
+.alestra-dashboard-footer {
+  margin-top: 2rem;
+  min-height: 1rem;
+}
+
+/* ─── Gestión de líneas y servicios ──────────────────────── */
+
+.alestra-gestion-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.alestra-gestion-header__desc {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.alestra-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.alestra-filter-bar__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.alestra-filter-bar__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--alestra-color-heading);
+}
+.alestra-filter-bar__search {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+  margin-bottom: 0;
+}
+.alestra-filter-bar__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--alestra-gray-500);
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+.alestra-filter-bar__search .alestra-input {
+  padding-left: 2.25rem;
+}
+.alestra-filter-bar__indicators {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.alestra-filter-bar__indicators-label {
+  font-size: 0.75rem;
+  color: var(--alestra-color-muted);
+  margin-right: 0.25rem;
+}
+
+.alestra-badge--dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.alestra-badge--dot::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.alestra-badge--dot-green { background: #dcfce7; color: #166534; }
+.alestra-badge--dot-red   { background: #fee2e2; color: #991b1b; }
+.alestra-badge--dot-grey  { background: #f3f4f6; color: #4b5563; }
+
+.alestra-gestion-tabla {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.alestra-gestion-tabla__meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--alestra-color-muted);
+}
+
+/* Header/row grid: 6 cells + reserved space for the toggle on the right */
+.alestra-table--gestion .alestra-table__header,
+.alestra-table--gestion .alestra-table__row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1.1fr 1.8fr 1.4fr 1.4fr 2rem;
+  align-items: center;
+  column-gap: 1rem;
+}
+.alestra-table--gestion .alestra-table__row {
+  padding: 0 1.5rem;
+  height: 60px;
+}
+.alestra-table--gestion .alestra-table__header {
+  padding: 0 1.5rem;
+}
+.alestra-table--gestion .alestra-table__expand-toggle {
+  justify-self: end;
+}
+.alestra-table--gestion .alestra-table__row-detail {
+  display: none;
+  padding: 0.75rem 1.5rem 0.75rem 4.5rem;
+  background: var(--alestra-gray-50);
+  border-bottom: 1px solid var(--alestra-gray-100);
+  font-size: 0.875rem;
+}
+.alestra-table--gestion .alestra-table__row-detail--open {
+  display: block;
+}
+@media (max-width: 768px) {
+  .alestra-table--gestion .alestra-table__header,
+  .alestra-table--gestion .alestra-table__row {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    padding: 0.75rem 1rem;
+  }
+  .alestra-table--gestion .alestra-table__header { display: none; }
+}
+
+.alestra-gestion-table-header {
+  background: var(--alestra-indigo-600, #10069f);
+  color: #fff;
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 0 1.5rem;
+  height: 60px;
+}
+.alestra-gestion-table-header .alestra-table__cell {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.alestra-gestion-table-header + .alestra-table__row,
+.alestra-gestion-table-header + .alestra-table__row-detail {
+  border-top: 0;
+}
+
+.alestra-gestion-line-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.alestra-table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem 0;
+}
+.alestra-table__pagination-info {
+  font-size: 0.875rem;
+  color: var(--alestra-color-muted);
+}
+.alestra-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--alestra-gray-500);
+}
+
+/* Help banner / floating CTA */
+.alestra-help-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--alestra-gray-200, #e7e7f0);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: var(--alestra-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+.alestra-help-banner__text {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.alestra-help-banner__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--alestra-color-heading);
+  margin: 0;
+  line-height: 1.2;
+}
+.alestra-help-banner__desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  line-height: 1.4;
+}
+.alestra-help-banner__form {
+  flex: 0 1 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.alestra-help-banner__label {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .alestra-help-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .alestra-help-banner__form {
+    flex: 1 1 auto;
+  }
+}
+
+/* FAQ page layout */
+.alestra-page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.alestra-page-heading__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alestra-cta-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--alestra-gray-200, #e7e7f0);
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--alestra-color-heading, #000);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.alestra-cta-circle:hover {
+  background: var(--alestra-gray-50, #f3f4f6);
+}
+
+.alestra-cta-circle--edit,
+.alestra-cta-circle--add {
+  flex-shrink: 0;
+}
+
+.alestra-cta-circle--delete {
+  border-color: var(--alestra-purple-600, #7e22ce);
+  color: var(--alestra-purple-600, #7e22ce);
+}
+
+.alestra-faq-section {
+  margin-bottom: 1.5rem;
+}
+
+.alestra-faq-section__title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--alestra-color-heading, #000);
+}
+
+.alestra-accordion {
+  background: #fff;
+  border: 1px solid var(--alestra-gray-200, #e5e7eb);
+  border-radius: var(--alestra-radius-xl, 0.875rem);
+  box-shadow: var(--alestra-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+
+.alestra-accordion__item + .alestra-accordion__item {
+  border-top: 1px solid var(--alestra-gray-100, #f3f4f6);
+}
+
+.alestra-accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--alestra-color-text, #111827);
+  text-align: left;
+}
+
+.alestra-accordion__trigger:hover {
+  background: var(--alestra-gray-50, #f9fafb);
+}
+
+.alestra-accordion__chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--alestra-gray-500, #6b7280);
+  transition: transform 0.2s ease;
+}
+
+.alestra-accordion__content {
+  display: none;
+  padding: 0 1.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--alestra-gray-700, #374151);
+}
+
+.alestra-accordion__content p,
+.alestra-accordion__content ul {
+  margin: 0;
+}
+
+.alestra-accordion__content p + p,
+.alestra-accordion__content p + ul,
+.alestra-accordion__content ul + p {
+  margin-top: 0.75rem;
+}
+
+.alestra-accordion__item--open .alestra-accordion__chevron {
+  transform: rotate(90deg);
+}
+
+.alestra-accordion__item--open > .alestra-accordion__content {
+  display: block;
+}
+
+.alestra-accordion--edit .alestra-accordion__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.alestra-accordion__edit-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.alestra-accordion__trigger--edit {
+  flex: 1;
+  padding: 0;
+}
+
+.alestra-accordion--edit .alestra-accordion__content {
+  padding: 0 1.5rem 1rem 3.25rem;
+}
+
+@media (max-width: 768px) {
+  .alestra-page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .alestra-accordion__trigger {
+    padding: 0.875rem 1rem;
+  }
+
+  .alestra-accordion__content {
+    padding: 0 1rem 0.875rem;
+  }
+
+  .alestra-accordion--edit .alestra-accordion__content {
+    padding: 0 1rem 0.875rem 2.75rem;
+  }
+}

@@ -1,0 +1,166 @@
+<%# Dashboard Inicio/Aviso — Figma 146:29433
+    Same as index.html.erb but adds an .alestra-banner--info at the very top.
+    Layout: alestra_rails_ui/portal (sidebar auto-rendered)
+    This file renders only the main content area (inside <main>). %>
+
+<%# ── Info banner ───────────────────────────────────────────────────────── %>
+<div class="alestra-banner alestra-banner--info" role="status">
+  <strong>Importante:</strong> tu pago vence el 15 de octubre.
+  <button type="button" class="alestra-banner__dismiss" aria-label="Cerrar aviso">×</button>
+</div>
+
+<%# ── Heading ──────────────────────────────────────────────────────────── %>
+<section class="alestra-dashboard-heading">
+  <div class="alestra-dashboard-heading__text">
+    <h1 class="alestra-page-title">Administra tu Alestra Móvil</h1>
+    <p class="alestra-dashboard-heading__subtitle">
+      Aquí encontrarás un resumen de tus paquetes y servicios, para gestionarlos de forma rápida y segura.
+    </p>
+  </div>
+  <button type="button" class="alestra-notification-cta" aria-label="Notificaciones">
+    <%= alestra_icon("notifications") %>
+  </button>
+</section>
+
+<%# ── Quick-link cards ──────────────────────────────────────────────────── %>
+<div class="alestra-quick-links alestra-dashboard-quick-links">
+  <a href="<%= gestion_root_path %>" class="alestra-dashboard-ql-card">
+    <div class="alestra-dashboard-ql-card__body">
+      <p class="alestra-dashboard-ql-card__title">Gestión de líneas y servicios</p>
+      <p class="alestra-dashboard-ql-card__desc">Realiza altas, bajas, recargas y bloqueos.</p>
+    </div>
+    <div class="alestra-dashboard-ql-card__img" aria-hidden="true">
+      <%= image_tag "alestra_rails_ui/dashboard-management.svg", alt: "" %>
+    </div>
+  </a>
+
+  <a href="<%= consumo_root_path %>" class="alestra-dashboard-ql-card">
+    <div class="alestra-dashboard-ql-card__body">
+      <p class="alestra-dashboard-ql-card__title">Consumo y reportes</p>
+      <p class="alestra-dashboard-ql-card__desc">Visualiza y exporta los datos de uso y consumo de tu servicio.</p>
+    </div>
+    <div class="alestra-dashboard-ql-card__img" aria-hidden="true">
+      <%= image_tag "alestra_rails_ui/dashboard-consumption.svg", alt: "" %>
+    </div>
+  </a>
+
+  <a href="<%= configuracion_root_path %>" class="alestra-dashboard-ql-card">
+    <div class="alestra-dashboard-ql-card__body">
+      <p class="alestra-dashboard-ql-card__title">Configuración de cuenta</p>
+      <p class="alestra-dashboard-ql-card__desc">Activa o desactiva las notificaciones que deseas recibir.</p>
+    </div>
+    <div class="alestra-dashboard-ql-card__img" aria-hidden="true">
+      <%= image_tag "alestra_rails_ui/dashboard-account.svg", alt: "" %>
+    </div>
+  </a>
+
+  <a href="<%= ayuda_root_path %>" class="alestra-dashboard-ql-card">
+    <div class="alestra-dashboard-ql-card__body">
+      <p class="alestra-dashboard-ql-card__title">Ayuda</p>
+      <p class="alestra-dashboard-ql-card__desc">Revisa nuestra sección de preguntas frecuentes.</p>
+    </div>
+    <div class="alestra-dashboard-ql-card__img" aria-hidden="true">
+      <%= image_tag "alestra_rails_ui/dashboard-help.svg", alt: "" %>
+    </div>
+  </a>
+</div>
+
+<%# ── Floating search banner ───────────────────────────────────────────── %>
+<div class="alestra-dashboard-search-banner">
+  <div class="alestra-dashboard-search-banner__text">
+    <p class="alestra-dashboard-search-banner__title">¿No encuentras lo que estás buscando?</p>
+    <p class="alestra-dashboard-search-banner__subtitle">Utiliza nuestra herramienta de busqueda para encontrar más rápido lo que necesitas.</p>
+  </div>
+  <a href="<%= busqueda_root_path %>" class="alestra-dashboard-search-banner__input-wrap" aria-label="Ir a búsqueda">
+    <span class="alestra-dashboard-search-banner__input-icon">
+      <%= alestra_icon("search") %>
+    </span>
+    <span class="alestra-dashboard-search-banner__placeholder">Búsqueda</span>
+  </a>
+</div>
+
+<%# ── Consumo y reportes summary card ─────────────────────────────────── %>
+<div class="alestra-card alestra-dashboard-consumo-card">
+  <div class="alestra-dashboard-consumo-card__left">
+    <h2 class="alestra-page-title">Consumo y reportes</h2>
+    <p class="alestra-dashboard-consumo-card__desc">
+      Aquí tienes un resumen del consumo mensual por servicio. Si quieres ver el detalle por línea,
+      selecciona "Ver detalle de consumo".
+    </p>
+    <div class="alestra-dashboard-consumo-card__actions">
+      <a href="<%= consumo_root_path %>" class="alestra-btn-primary alestra-btn--small">Ver detalle de consumo</a>
+      <a href="<%= consumo_root_path %>" class="alestra-btn-primary alestra-btn--small">Descargar reporte</a>
+    </div>
+  </div>
+
+  <div class="alestra-dashboard-consumo-card__chart-panel">
+    <div class="alestra-dashboard-consumo-card__chart-content">
+      <div class="alestra-dashboard-consumo-card__donut" aria-hidden="true">
+        <%= image_tag "alestra_rails_ui/dashboard-consumption-donut.svg", alt: "" %>
+      </div>
+      <div class="alestra-dashboard-consumo-card__legend">
+        <div class="alestra-dashboard-consumo-card__legend-rows">
+          <div class="alestra-dashboard-consumo-card__legend-item">
+            <span class="alestra-dashboard-consumo-card__dot alestra-dashboard-consumo-card__dot--low"></span>
+            <span><strong>Líneas con consumo bajo:</strong> 123</span>
+          </div>
+          <div class="alestra-dashboard-consumo-card__legend-item">
+            <span class="alestra-dashboard-consumo-card__dot alestra-dashboard-consumo-card__dot--mid"></span>
+            <span><strong>Líneas con consumo medio:</strong> 123</span>
+          </div>
+          <div class="alestra-dashboard-consumo-card__legend-item">
+            <span class="alestra-dashboard-consumo-card__dot alestra-dashboard-consumo-card__dot--high"></span>
+            <span><strong>Líneas con consumo excedido:</strong> 123</span>
+          </div>
+        </div>
+        <div class="alestra-dashboard-consumo-card__meta">
+          <span class="alestra-dashboard-consumo-card__cutoff">Próxima fecha<br>de corte: 01/10</span>
+          <span class="alestra-badge alestra-badge--active">345 líneas activas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# ── Resumen de líneas VIP ────────────────────────────────────────────── %>
+<section class="alestra-dashboard-lineas">
+  <div class="alestra-dashboard-lineas__header">
+    <h2 class="alestra-page-title">Resumen de líneas etiquetadas como "VIP"</h2>
+    <a href="<%= gestion_root_path %>" class="alestra-btn-primary alestra-btn--small">Ver todas mis líneas</a>
+  </div>
+
+  <div class="alestra-table" data-controller="alestra--accordion">
+    <%# Table header %>
+    <div class="alestra-table__header alestra-dashboard-table-header">
+      <span class="alestra-table__cell"># de línea</span>
+      <span class="alestra-table__cell alestra-table__cell--sm">Estatus</span>
+      <span class="alestra-table__cell">Usuario</span>
+      <span class="alestra-table__cell">Tipo de plan</span>
+      <span class="alestra-table__cell">Porcentaje de consumo</span>
+      <span class="alestra-table__cell">Capacidad total</span>
+      <span class="alestra-table__cell alestra-table__cell--sm"></span>
+    </div>
+
+    <% 8.times do %>
+      <div class="alestra-table__row">
+        <span class="alestra-table__cell">618 382 5441</span>
+        <span class="alestra-table__cell alestra-table__cell--sm">
+          <span class="alestra-badge alestra-badge--active">Activo</span>
+        </span>
+        <span class="alestra-table__cell">Jon Snow</span>
+        <span class="alestra-table__cell">Cobertura Completa 3.5 GB_Control</span>
+        <span class="alestra-table__cell">15% de consumo de datos</span>
+        <span class="alestra-table__cell">5GB de capacidad total</span>
+        <span class="alestra-table__cell alestra-table__cell--sm alestra-table__cell--actions">
+          <button type="button" class="alestra-table__expand-toggle" data-action="click->alestra--accordion#toggle" aria-label="Ver detalle">›</button>
+        </span>
+      </div>
+      <div class="alestra-table__row-detail">
+        <p>Detalle adicional de la línea 618 382 5441.</p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<%# ── Footer placeholder ───────────────────────────────────────────────── %>
+<footer class="alestra-dashboard-footer"></footer>

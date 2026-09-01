@@ -1,0 +1,36 @@
+<% content_for :topbar_right do %>
+  <a href="<%= gestion_root_path %>" class="alestra-btn-secondary alestra-btn--small">Volver a líneas</a>
+<% end %>
+
+<h1 class="alestra-page-title">Gestión de líneas y servicios</h1>
+
+<div class="alestra-card" style="max-width:640px;">
+  <h2 style="font-size:1.25rem;font-weight:700;color:#10069f;margin-bottom:0.75rem;">Activación de eSIM</h2>
+  <p style="color:#535359;margin-bottom:1.5rem;">
+    Activa tu eSIM escaneando el código QR que te enviamos o ingresando el código de activación manualmente.
+  </p>
+
+  <div style="display:flex;flex-direction:column;gap:1.5rem;">
+    <div class="alestra-card" style="display:flex;align-items:center;justify-content:center;min-height:180px;background:#f5f5f5;border:2px dashed #9ea8b1;">
+      <div style="text-align:center;color:#535359;">
+        <div style="font-size:3rem;margin-bottom:0.5rem;">📱</div>
+        <p style="font-size:0.875rem;">Código QR de activación eSIM</p>
+        <p style="font-size:0.75rem;">(Se mostrará al procesar la solicitud)</p>
+      </div>
+    </div>
+
+    <div class="alestra-form-group">
+      <label class="alestra-label">Número de línea a migrar a eSIM*</label>
+      <input class="alestra-input" type="tel" placeholder="618 382 5441">
+    </div>
+    <div class="alestra-form-group">
+      <label class="alestra-label">Código de activación (alternativo)</label>
+      <input class="alestra-input" type="text" placeholder="LPA:1$smdp.example.com$XXXXXXXX">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+    <a href="<%= gestion_root_path %>" class="alestra-btn-secondary">Cancelar</a>
+    <a href="<%= gestion_esim_exito_path %>" class="alestra-btn-primary">Activar eSIM</a>
+  </div>
+</div>

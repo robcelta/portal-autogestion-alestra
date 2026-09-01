@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : "Alestra" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags if respond_to?(:csrf_meta_tags) %>
+    <%= csp_meta_tag if respond_to?(:csp_meta_tag) %>
+    <%= yield :head %>
+    <%= stylesheet_link_tag "alestra_rails_ui/tokens", "alestra_rails_ui/components", "alestra_rails_ui/print", "data-turbo-track": "reload" %>
+    <%= yield :styles %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="alestra-layout-body alestra-portal-shell" data-controller="alestra--sidebar alestra--notification-center">
+    <button type="button"
+            class="alestra-sidebar-toggle alestra-no-print"
+            aria-label="Abrir menú"
+            aria-controls="alestra-sidebar"
+            aria-expanded="false"
+            data-alestra--sidebar-target="toggle"
+            data-action="alestra--sidebar#toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="alestra-sidebar-backdrop" data-alestra--sidebar-target="backdrop" data-action="click->alestra--sidebar#collapse" hidden></div>
+    <aside id="alestra-sidebar" class="alestra-sidebar" data-alestra--sidebar-target="sidebar">
+      <div class="alestra-sidebar__logo">
+        <% if content_for?(:sidebar_logo) %>
+          <%= yield :sidebar_logo %>
+        <% else %>
+          <%= image_tag "alestra_rails_ui/alestra_logo.svg", alt: "Alestra Móvil", height: "60" %>
+        <% end %>
+      </div>
+
+      <% if content_for?(:sidebar_profile) %>
+        <%= yield :sidebar_profile %>
+      <% else %>
+        <div class="alestra-sidebar__profile">
+          <div class="alestra-sidebar__profile-visual" aria-hidden="true">
+            <span class="alestra-sidebar__profile-device"></span>
+            <span class="alestra-sidebar__profile-monogram">JP</span>
+          </div>
+          <div class="alestra-sidebar__profile-copy">
+            <div class="alestra-sidebar__profile-greeting">Bienvenido</div>
+            <div class="alestra-sidebar__profile-name"><%= content_for?(:sidebar_user_name) ? yield(:sidebar_user_name) : "Juan Pérez" %></div>
+          </div>
+        </div>
+      <% end %>
+
+      <nav class="alestra-sidebar__nav">
+        <% if content_for?(:sidebar_nav) %>
+          <%= yield :sidebar_nav %>
+        <% else %>
+          <%= render "alestra_rails_ui/shared/portal_nav" %>
+        <% end %>
+      </nav>
+    </aside>
+
+    <div class="alestra-portal-main">
+      <% if content_for?(:topbar_left) || content_for?(:topbar_right) %>
+        <header class="alestra-topbar alestra-no-print">
+          <div class="alestra-topbar__left"><%= yield :topbar_left %></div>
+          <div class="alestra-topbar__right"><%= yield :topbar_right %></div>
+        </header>
+      <% end %>
+
+      <main class="alestra-portal-content alestra-print-main">
+        <% if respond_to?(:alert) && alert.present? %>
+          <div class="alestra-alert alestra-alert--error alestra-mb-4" role="alert"><%= alert %></div>
+        <% end %>
+        <% if respond_to?(:notice) && notice.present? %>
+          <div class="alestra-alert alestra-alert--success alestra-mb-4" role="status"><%= notice %></div>
+        <% end %>
+        <%= yield %>
+      </main>
+    </div>
+    <%= render "alestra_rails_ui/shared/notification_center" %>
+    <%= yield :scripts %>
+  </body>
+</html>

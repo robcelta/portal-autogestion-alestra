@@ -1,0 +1,92 @@
+.alestra-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--alestra-color-primary);
+  border: none;
+  border-radius: var(--alestra-radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+.alestra-btn-primary:hover {
+  background-color: var(--alestra-color-primary-hover);
+  color: #fff;
+}
+.alestra-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.alestra-btn-secondary {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--alestra-gray-700);
+  background: #fff;
+  border: 1px solid var(--alestra-gray-300);
+  border-radius: var(--alestra-radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+.alestra-btn-secondary:hover {
+  background: #fff;
+  border-color: var(--alestra-blue-digital, #00b8ff);
+  color: var(--alestra-blue-visionary, #10069f);
+}
+
+.alestra-btn--active {
+  color: #fff;
+  background: var(--alestra-blue-digital, #00b8ff);
+  border-color: var(--alestra-blue-digital, #00b8ff);
+}
+
+.alestra-btn--danger {
+  color: #8d0b0b;
+  background: #fff;
+  border-color: #f00;
+}
+.alestra-btn--danger:hover {
+  color: #fff;
+  background: #8d0b0b;
+  border-color: #8d0b0b;
+}
+
+.alestra-btn-primary:focus-visible,
+.alestra-btn-secondary:focus-visible {
+  outline: 3px solid rgb(0 184 255 / 0.28);
+  outline-offset: 2px;
+}
+
+.alestra-btn--small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alestra-btn--large {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+}
+
+.alestra-btn--icon {
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.alestra-btn--with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Used to hide a tab button when it represents the active state */
+.alestra-btn--hidden { display: none; }
